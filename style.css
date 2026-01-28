@@ -1,0 +1,95 @@
+/* style.css - Design & Animations */
+
+/* Configuration de base */
+body {
+    background-color: #0B0F19;
+    color: #F8FAFC;
+    overflow-x: hidden;
+    font-family: 'General Sans', sans-serif;
+}
+
+/* Navigation effet verre */
+.glass-nav {
+    background: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Cartes effet verre */
+.glass-card {
+    background: rgba(18, 24, 38, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px -10px rgba(0, 212, 255, 0.1);
+}
+
+/* Texte dégradé (Bleu électrique) */
+.text-accent-gradient {
+    background: linear-gradient(135deg, #00D4FF 0%, #0055FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0B0F19; }
+::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #00D4FF; }
+
+/* Animation des blobs (le fond coloré) */
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: float 10s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, 40px); }
+
+
+    /* --- Ajout pour les animations d'arrière-plan --- */
+
+/* Le conteneur fixé au fond */
+.background-ambience {
+    position: fixed;
+    inset: 0;
+    pointer-events: none; /* Important : pour pouvoir cliquer au travers */
+    overflow: hidden;
+    z-index: -10; /* Derrière tout le reste */
+}
+
+/* Les formes colorées */
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px); /* Le flou magique */
+    opacity: 0.4;
+}
+
+/* Position et couleur des blobs */
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background-color: rgba(0, 212, 255, 0.4); /* Couleur Accent */
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(139, 92, 246, 0.4); /* Violet pour le contraste */
+}
+}
