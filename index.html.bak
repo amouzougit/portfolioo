@@ -8,8 +8,6 @@
     <meta name="keywords" content="Kevo Amouzou, Supply Chain, Data Engineering, Oracle ERP, Chef de Projet, UTBM, Belfort">
     <meta property="og:title" content="Kevo Amouzou | Ingénieur d'Affaires & Data Engineering">
     <meta property="og:description" content="Double Master UTBM · 3× Oracle Certified · Disponible CDI Août 2026">
-    <meta property="og:image" content="./images/kevo.jpeg">
-    <meta property="og:url" content="https://kevoamouzou.com">
 
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -39,8 +37,6 @@
 
     <style>
         * { box-sizing: border-box; }
-
-        html { scroll-behavior: smooth; }
 
         body {
             background-color: #0B0F19;
@@ -92,11 +88,6 @@
             opacity: 0.25;
             animation: float 14s ease-in-out infinite;
         }
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(30px, -50px); }
-            66% { transform: translate(-20px, 40px); }
-        }
         .blob-1 {
             top: -15%; left: -10%;
             width: 560px; height: 560px;
@@ -106,6 +97,11 @@
             bottom: -15%; right: -10%;
             width: 440px; height: 440px;
             background: #7C3AED;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, -50px); }
+            66% { transform: translate(-20px, 40px); }
         }
 
         /* ── SCROLLBAR ── */
@@ -121,11 +117,6 @@
             border-radius: 12px;
             padding: 12px;
             text-align: center;
-            transition: all 0.3s ease;
-        }
-        .stat-card:hover {
-            background: rgba(0,212,255,0.08);
-            border-color: rgba(0,212,255,0.25);
         }
 
         /* ── CERTIF ORACLE ── */
@@ -180,18 +171,6 @@
             background: rgba(11,15,25,0.97);
             backdrop-filter: blur(16px);
         }
-
-        /* ── FOCUS STATES ── */
-        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-            outline: none;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
     </style>
 </head>
 
@@ -206,20 +185,20 @@
     <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <a href="#" class="font-display font-bold text-2xl tracking-tight hover:text-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded px-1" aria-label="Accueil">
+                <a href="#" class="font-display font-bold text-2xl tracking-tight hover:text-accent transition-colors duration-200">
                     KEVO<span class="text-accent">.</span>
                 </a>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="#about" class="text-sm font-medium text-secondary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">À propos</a>
-                    <a href="#skills" class="text-sm font-medium text-secondary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Compétences</a>
-                    <a href="#projects" class="text-sm font-medium text-secondary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Projets</a>
-                    <a href="#experience" class="text-sm font-medium text-secondary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Parcours</a>
-                    <a href="#contact" class="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-accent hover:text-dark hover:border-accent transition-all text-sm font-bold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                    <a href="#about"      class="text-sm font-medium text-secondary hover:text-white transition-colors">À propos</a>
+                    <a href="#skills"     class="text-sm font-medium text-secondary hover:text-white transition-colors">Compétences</a>
+                    <a href="#projects"   class="text-sm font-medium text-secondary hover:text-white transition-colors">Projets</a>
+                    <a href="#experience" class="text-sm font-medium text-secondary hover:text-white transition-colors">Parcours</a>
+                    <a href="#contact"    class="px-5 py-2.5 rounded-full border border-white/10 bg-white/5 hover:bg-accent hover:text-dark hover:border-accent transition-all text-sm font-bold">
                         Me contacter
                     </a>
                 </div>
                 <!-- Mobile burger -->
-                <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded" :aria-expanded="mobileOpen" aria-label="Basculer le menu">
+                <button @click="mobileOpen = !mobileOpen" class="md:hidden p-2 text-secondary hover:text-white" aria-label="Basculer le menu">
                     <i class="ph ph-list text-2xl" x-show="!mobileOpen" aria-hidden="true"></i>
                     <i class="ph ph-x text-2xl" x-show="mobileOpen" aria-hidden="true"></i>
                 </button>
@@ -227,11 +206,11 @@
         </div>
         <!-- Mobile menu -->
         <div x-show="mobileOpen" x-transition class="mobile-menu md:hidden border-t border-white/5 px-6 py-6 flex flex-col gap-5">
-            <a @click="mobileOpen=false" href="#about" class="text-sm font-medium text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">À propos</a>
-            <a @click="mobileOpen=false" href="#skills" class="text-sm font-medium text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Compétences</a>
-            <a @click="mobileOpen=false" href="#projects" class="text-sm font-medium text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Projets</a>
-            <a @click="mobileOpen=false" href="#experience" class="text-sm font-medium text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Parcours</a>
-            <a @click="mobileOpen=false" href="#contact" class="text-sm font-bold text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Me contacter →</a>
+            <a @click="mobileOpen=false" href="#about"      class="text-sm font-medium text-secondary hover:text-white">À propos</a>
+            <a @click="mobileOpen=false" href="#skills"     class="text-sm font-medium text-secondary hover:text-white">Compétences</a>
+            <a @click="mobileOpen=false" href="#projects"   class="text-sm font-medium text-secondary hover:text-white">Projets</a>
+            <a @click="mobileOpen=false" href="#experience" class="text-sm font-medium text-secondary hover:text-white">Parcours</a>
+            <a @click="mobileOpen=false" href="#contact"    class="text-sm font-bold text-accent">Me contacter →</a>
         </div>
     </nav>
 
@@ -275,10 +254,12 @@
                 </div>
 
                 <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="px-8 py-4 rounded-full bg-accent text-dark font-bold text-sm hover:bg-white transition-colors shadow-[0_0_24px_rgba(0,212,255,0.25)] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                    <a href="#projects"
+                       class="px-8 py-4 rounded-full bg-accent text-dark font-bold text-sm hover:bg-white transition-colors shadow-[0_0_24px_rgba(0,212,255,0.25)] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
                         Voir mes projets
                     </a>
-                    <a href="./CV_Kevo_Amouzou.pdf" target="_blank" rel="noopener noreferrer" class="px-8 py-4 rounded-full border border-white/10 bg-white/3 hover:bg-white/8 transition-colors flex items-center gap-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark" aria-label="Télécharger CV (nouvelle fenêtre)">
+                    <a href="./CV_Kevo_Amouzou.pdf" target="_blank" rel="noopener noreferrer"
+                       class="px-8 py-4 rounded-full border border-white/10 bg-white/3 hover:bg-white/8 transition-colors flex items-center gap-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark" aria-label="Télécharger CV (nouvelle fenêtre)">
                         Télécharger CV <i class="ph ph-download-simple" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -289,7 +270,7 @@
                 <div class="relative w-72 h-72 lg:w-[380px] lg:h-[380px]">
                     <div class="absolute inset-0 bg-accent rounded-full blur-[110px] opacity-20"></div>
                     <img src="./images/kevo.jpeg"
-                         alt="Kevo Amouzou - Portrait professionnel, Ingénieur d'Affaires et Data Engineering"
+                         alt="Kevo Amouzou - Portrait professionnel"
                          class="relative z-10 w-full h-full object-cover rounded-[2rem] border border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 rotate-2 hover:rotate-0 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark"
                          loading="lazy">
                 </div>
@@ -307,7 +288,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div class="cert-badge">
                     <div class="w-10 h-10 rounded-lg bg-red-500/15 flex items-center justify-center flex-shrink-0">
-                        <i class="ph ph-medal text-red-400 text-xl" aria-hidden="true"></i>
+                        <i class="ph ph-medal text-red-400 text-xl"></i>
                     </div>
                     <div>
                         <div class="text-white text-sm font-bold leading-tight">Oracle Cloud GenAI</div>
@@ -316,7 +297,7 @@
                 </div>
                 <div class="cert-badge">
                     <div class="w-10 h-10 rounded-lg bg-red-500/15 flex items-center justify-center flex-shrink-0">
-                        <i class="ph ph-medal text-red-400 text-xl" aria-hidden="true"></i>
+                        <i class="ph ph-medal text-red-400 text-xl"></i>
                     </div>
                     <div>
                         <div class="text-white text-sm font-bold leading-tight">Oracle ERP Foundations</div>
@@ -325,7 +306,7 @@
                 </div>
                 <div class="cert-badge">
                     <div class="w-10 h-10 rounded-lg bg-red-500/15 flex items-center justify-center flex-shrink-0">
-                        <i class="ph ph-medal text-red-400 text-xl" aria-hidden="true"></i>
+                        <i class="ph ph-medal text-red-400 text-xl"></i>
                     </div>
                     <div>
                         <div class="text-white text-sm font-bold leading-tight">Oracle AI Vector Search</div>
@@ -349,7 +330,7 @@
                 <div class="glass-card rounded-2xl p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
-                            <i class="ph ph-database text-accent text-lg" aria-hidden="true"></i>
+                            <i class="ph ph-database text-accent text-lg"></i>
                         </div>
                         <h3 class="font-bold text-white text-sm">Data & Business Intelligence</h3>
                     </div>
@@ -363,7 +344,7 @@
                 <div class="glass-card rounded-2xl p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
-                            <i class="ph ph-buildings text-accent text-lg" aria-hidden="true"></i>
+                            <i class="ph ph-buildings text-accent text-lg"></i>
                         </div>
                         <h3 class="font-bold text-white text-sm">ERP & Systèmes d'Information</h3>
                     </div>
@@ -377,7 +358,7 @@
                 <div class="glass-card rounded-2xl p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
-                            <i class="ph ph-code text-accent text-lg" aria-hidden="true"></i>
+                            <i class="ph ph-code text-accent text-lg"></i>
                         </div>
                         <h3 class="font-bold text-white text-sm">Développement & IA</h3>
                     </div>
@@ -391,7 +372,7 @@
                 <div class="glass-card rounded-2xl p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
-                            <i class="ph ph-truck text-accent text-lg" aria-hidden="true"></i>
+                            <i class="ph ph-truck text-accent text-lg"></i>
                         </div>
                         <h3 class="font-bold text-white text-sm">Supply Chain & Industrie</h3>
                     </div>
@@ -405,7 +386,7 @@
                 <div class="glass-card rounded-2xl p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
-                            <i class="ph ph-kanban text-accent text-lg" aria-hidden="true"></i>
+                            <i class="ph ph-kanban text-accent text-lg"></i>
                         </div>
                         <h3 class="font-bold text-white text-sm">Gestion de Projet</h3>
                     </div>
@@ -419,7 +400,7 @@
                 <div class="glass-card rounded-2xl p-6">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
-                            <i class="ph ph-translate text-accent text-lg" aria-hidden="true"></i>
+                            <i class="ph ph-translate text-accent text-lg"></i>
                         </div>
                         <h3 class="font-bold text-white text-sm">Langues</h3>
                     </div>
@@ -467,8 +448,7 @@
                         <div class="h-44 overflow-hidden relative">
                             <div class="absolute inset-0 bg-dark/50 group-hover:bg-dark/20 transition-all z-10 duration-500"></div>
                             <img :src="project.image" :alt="project.title"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                 loading="lazy">
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="p-6">
                             <div class="flex flex-wrap gap-1.5 mb-3">
@@ -483,17 +463,15 @@
                             </template>
                             <div class="flex items-center gap-5 pt-4 border-t border-white/5">
                                 <template x-if="project.linkRepo">
-                                    <a :href="project.linkRepo" target="_blank" rel="noopener noreferrer"
-                                       class="text-white hover:text-accent text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1"
-                                       :aria-label="'Code source: ' + project.title">
-                                        <i class="ph ph-github-logo text-base" aria-hidden="true"></i> Code
+                                    <a :href="project.linkRepo" target="_blank"
+                                       class="text-white hover:text-accent text-xs flex items-center gap-1.5 font-semibold transition-colors">
+                                        <i class="ph ph-github-logo text-base"></i> Code
                                     </a>
                                 </template>
                                 <template x-if="project.linkDemo">
-                                    <a :href="project.linkDemo" target="_blank" rel="noopener noreferrer"
-                                       class="text-secondary hover:text-white text-xs flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1"
-                                       :aria-label="'Démo: ' + project.title">
-                                        <i class="ph ph-arrow-square-out text-base" aria-hidden="true"></i> Demo
+                                    <a :href="project.linkDemo" target="_blank"
+                                       class="text-secondary hover:text-white text-xs flex items-center gap-1.5 transition-colors">
+                                        <i class="ph ph-arrow-square-out text-base"></i> Demo
                                     </a>
                                 </template>
                                 <template x-if="!project.linkRepo && !project.linkDemo">
@@ -608,24 +586,15 @@
                 </p>
 
                 <form action="https://formspree.io/f/mjknokbg" method="POST" class="space-y-3">
-                    <div>
-                        <label for="name" class="sr-only">Votre nom</label>
-                        <input type="text" id="name" name="name" placeholder="Votre nom"
-                               class="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-secondary/60 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none transition-colors"
-                               required>
-                    </div>
-                    <div>
-                        <label for="email" class="sr-only">Votre email</label>
-                        <input type="email" id="email" name="email" placeholder="Votre email"
-                               class="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-secondary/60 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none transition-colors"
-                               required>
-                    </div>
-                    <div>
-                        <label for="message" class="sr-only">Votre message</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Votre message..."
-                                  class="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-secondary/60 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none transition-colors resize-none"
-                                  required></textarea>
-                    </div>
+                    <input type="text" name="name" placeholder="Votre nom"
+                           class="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-secondary/60 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none transition-colors"
+                           required aria-label="Votre nom">
+                    <input type="email" name="email" placeholder="Votre email"
+                           class="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-secondary/60 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none transition-colors"
+                           required aria-label="Votre email">
+                    <textarea name="message" rows="4" placeholder="Votre message..."
+                              class="w-full bg-white/3 border border-white/8 rounded-xl px-4 py-3 text-sm text-white placeholder-secondary/60 focus:border-accent focus:ring-2 focus:ring-accent/30 focus:outline-none transition-colors resize-none"
+                              required aria-label="Votre message"></textarea>
                     <button type="submit"
                             class="w-full py-3.5 rounded-xl bg-accent text-dark font-bold text-sm hover:bg-white transition-colors flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark focus:ring-white">
                         Envoyer <i class="ph ph-paper-plane-right" aria-hidden="true"></i>
