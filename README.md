@@ -107,7 +107,6 @@ Agile/Scrum · KANBAN · PMI · PERT/GANTT · ADKAR · PDCA
 - **GitHub** → [github.com/amouzougit](https://github.com/amouzougit)
 - **LinkedIn** → [linkedin.com/in/kevo-amouzou](https://www.linkedin.com/in/kevo-amouzou)
 - **Email** → kevoamouzou@gmail.com
-- **Phone** → +33 780 866 575
 
 **📍 Belfort, France** · Disponible CDI — **Août 2026** ✅
 
