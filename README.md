@@ -20,16 +20,18 @@ Profil hybride combinant **maîtrise technique avancée** (Data pipelines, IA/Ge
 
 ## 🎯 Réalisations clés
 
-### 📊 BH2M — Pilotage BI & Automatisation (Stage)
-- ✅ **+15 Dashboards Metabase** en production (SQL) — pilotage temps réel portefeuille M€
-- ✅ **80% réduction** temps saisie manuelle via VBA/SQL automation (+50 tâches/jour)
-- ✅ Digitalisation ISO 9001 complète → portail SharePoint intranet
-- ✅ Audit cybersécurité AD → sécurisation +50 comptes utilisateurs
+### 📊 BH2M — Digital Transformation Lead (BI + ERP + RPA)
+- ✅ **+15 Metabase Dashboards** en production (real-time KPIs, SQL optimization)
+- ✅ **80% RPA automation** — VBA/SQL 50+ daily tasks automated (company-wide impact)
+- ✅ **ISO 9001 Digitalization** → SharePoint intranet, GED, workflow Offre→ARC, Bid/No Bid analysis
+- ✅ **Cybersecurity Hardening** → AD audit, +50 accounts secured, compliance-first approach
+- ✅ **Change Management** → 95% user adoption, training 100+ staff
 
-### 🤖 Chatbot IA — Architecture RAG (Mission Canada)
-- ✅ **500+ utilisateurs** — Flask, REST API, Pinecone, GenAI
-- ✅ Architecture complète: analyse → conception → implémentation → livraison
-- ✅ Mission internationale (Remote, Université de Lomé)
+### 🤖 Tech Startup (Canada) — Senior AI Engineer / GenAI Product
+- ✅ **500+ Active Users** — Chatbot intelligent avec RAG architecture
+- ✅ **<2s Latency** — FastAPI backend, Pinecone vector DB, proprietary knowledge base
+- ✅ **End-to-End Leadership** — Requirements → Design → Implementation → Production
+- ✅ **International Mission** — Remote, cross-border collaboration
 
 ### 🔗 6 Projets en production
 1. **Urban Mobility Analytics** → ETL/dbt pipeline (Airflow, PostgreSQL)
@@ -75,8 +77,8 @@ Agile/Scrum · KANBAN · PMI · PERT/GANTT · ADKAR · PDCA
 
 ## 📚 Parcours
 
-- **Master 2 — Affaires Industrielles Internationales** (UTBM, En cours 2025)
-- **Master — Informatique & Systèmes** (UTBM, 2022-2024)
+- **Master 2 — Affaires Industrielles Internationales** (UTBM, En cours 2025)  - Supply chain globale & resilience · Commerce international (Incoterms) · Nearshoring strategy · Geopolitical risk management · Digital transformation opérationnelle
+  - **Master — Informatique & Systèmes** (UTBM, 2022-2024)
 - **Licence — Génie Logiciel** (Université de Lomé)
 - **Certifications Oracle** (3x: Cloud GenAI, ERP Foundations, AI Vector Search)
 
@@ -84,18 +86,19 @@ Agile/Scrum · KANBAN · PMI · PERT/GANTT · ADKAR · PDCA
 
 ## 🌐 Portfolio Features
 
-### ✨ **Optimisations Produit**
-- ✅ **Accessibilité WCAG AA+** — focus states, aria-labels, sr-only labels
-- ✅ **Animations GSAP** — parallax blobs, cascade projects, timeline smooth enter
-- ✅ **Performance** — lazy loading images, smooth scroll, optimized CSS
-- ✅ **Responsive Design** — Mobile-first, Tailwind CSS, menu burger Alpine.js
-- ✅ **SEO Ready** — meta tags, Open Graph, structured data
+### ✨ **Strategic & Conversion-Optimized**
+- ✅ **Recruiter-Focused Design** — Clear value propositions, strategic positioning, sector targeting
+- ✅ **Trending Keywords 2026** — Supply Chain Resilience, Data-Driven, Digital Transformation, GenAI
+- ✅ **Master A2I Highlighted** — International business, Nearshoring, Trade compliance
+- ✅ **ROI-Oriented Descriptions** — Measurable impact, KPIs, business value
+- ✅ **Multi-Role Positioning** — Data Engineer / Business Engineer / Supply Chain Officer
 
-### 🎨 **Design**
-- Dark mode glassmorphism (Tailwind + custom CSS)
-- Cyan accent (#00D4FF) + Purple gradient
-- Smooth animations & micro-interactions
-- Bonus: Custom scrollbar, stat cards hover effects
+### ✨ **Technical Excellence**
+- ✅ **Accessibility WCAG AA+** — Full keyboard navigation, aria-labels, screen reader ready
+- ✅ **Animations GSAP** — Parallax blobs, cascade projects, timeline smooth enter
+- ✅ **Performance Optimized** — Lazy loading, smooth scroll, tree-shaken CSS
+- ✅ **Responsive Design** — Mobile-first, Tailwind CSS, Alpine.js menu
+- ✅ **SEO Ready** — Meta tags, Open Graph, structured data, keywords
 
 ---
 
@@ -110,15 +113,31 @@ Agile/Scrum · KANBAN · PMI · PERT/GANTT · ADKAR · PDCA
 
 ---
 
-## 🎯 Recherche: CDI — Data Engineering / Ingénieur d'Affaires
+## 🎯 Recherche: CDI — Data Engineering / Ingénieur d'Affaires (Août 2026)
 
-Je cherche un poste en **CDI** où je peux:
-- ✅ Piloter des projets data/BI en production
-- ✅ Architecturer des pipelines ETL/ELT robustes
-- ✅ Combiner expertise technique + vision business
-- ✅ Impacter directement la stratégie opérationnelle
+### 🔥 Tendances 2026 & Mon Expertise
 
-**Open to:** France métropole, Luxembourg, Suisse, remote hybride
+| Tendance | Mon Expertise |
+|----------|---------------|
+| **Supply Chain Resilience** | Digital Twin modeling, nearshoring strategy, disruption planning |
+| **Data-Driven Decision Making** | Real-time BI, Predictive Analytics, ETL/ELT pipelines |
+| **Digital Transformation** | ERP Cloud (Oracle Fusion), Process Automation, RPA, Change Mgmt |
+| **GenAI Integration** | RAG architecture, LLM applications, vector databases |
+| **Cybersecurity & Compliance** | Data governance, ISO certifications, AD hardening |
+
+### 💼 Postes Recherchés
+
+1. **Data Engineer / Analytics** (Stack: Python, Airflow, dbt, SQL, Metabase)
+   - Secteurs: Supply Chain, Logistique, Retail, Manufacturing
+
+2. **Ingénieur d'Affaires Digital** (ERP, Transformation, Change Management)
+   - Secteurs: Consulting, Automotive, Distribution
+
+3. **Supply Chain Planning Officer** (Demand Planning, Inventory Optimization, Resilience)
+   - Secteurs: Automotive, Electronics, Pharma
+
+**📍 Localisation:** France métropole, Luxembourg, Suisse, Remote hybride  
+**📈 Niveau:** Senior (3-4 ans), Lead Technical, ou rôle stratégique
 
 ---
 
