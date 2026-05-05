@@ -1,0 +1,61 @@
+{
+  "name": "Kevo Amouzou - Ingénieur d'Affaires & Data Engineering",
+  "short_name": "Kevo Amouzou",
+  "description": "Portfolio professionnel - Ingénieur d'Affaires, Data Engineering, Supply Chain Resilience. Double Master UTBM, 3x Oracle Certified. Disponible CDI août 2026.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0F19",
+  "theme_color": "#00D4FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./images/kevo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/kevo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/kevo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./images/kevo.jpeg",
+      "sizes": "540x720",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./images/kevo.jpeg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["business", "professional"],
+  "shortcuts": [
+    {
+      "name": "Voir mes projets",
+      "short_name": "Projets",
+      "description": "Découvrez mes derniers projets et réalisations",
+      "url": "/?section=projects",
+      "icons": [{"src": "./images/kevo.jpeg", "sizes": "192x192"}]
+    },
+    {
+      "name": "Me contacter",
+      "short_name": "Contact",
+      "description": "Envoyez-moi un message",
+      "url": "/?section=contact",
+      "icons": [{"src": "./images/kevo.jpeg", "sizes": "192x192"}]
+    }
+  ]
+}
