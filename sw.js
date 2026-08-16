@@ -1,19 +1,26 @@
 /**
  * Service Worker - Kevo Amouzou Portfolio
- * Enables offline functionality and PWA capabilities
+ *
+ * Strategie :
+ *  - documents HTML : network-first, avec repli sur le cache hors ligne.
+ *    Indispensable pour qu'une mise a jour du site soit visible immediatement
+ *    par les visiteurs deja venus.
+ *  - autres ressources de meme origine : cache-first.
+ *
+ * A chaque deploiement modifiant index.html, incrementer CACHE_VERSION.
  */
 
-const CACHE_NAME = 'kevo-portfolio-v1';
+const CACHE_VERSION = 'v3';
+const CACHE_NAME = `kevo-portfolio-${CACHE_VERSION}`;
+
 const urlsToCache = [
     '/',
     '/index.html',
-    '/style.css',
-    '/projects.js',
     '/images/kevo.jpeg',
-    '/CV_Kevo_Amouzou_CDI.pdf'
+    '/CV_Kevo_Amouzou_Industriel.pdf'
 ];
 
-// Install event - cache resources
+// Installation : precache des ressources essentielles
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -22,7 +29,7 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Activate event - clean old caches
+// Activation : suppression des anciens caches
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -37,44 +44,43 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', (event) => {
-    // Skip cross-origin requests
-    if (!event.request.url.startsWith(self.location.origin)) {
+    const request = event.request;
+
+    if (request.method !== 'GET' || !request.url.startsWith(self.location.origin)) {
         return;
     }
 
+    const isDocument = request.mode === 'navigate' || request.destination === 'document';
+
+    if (isDocument) {
+        // Network-first : le contenu a jour prime toujours sur le cache
+        event.respondWith(
+            fetch(request)
+                .then((response) => {
+                    const copy = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+                    return response;
+                })
+                .catch(() => caches.match(request).then((cached) => cached || caches.match('/index.html')))
+        );
+        return;
+    }
+
+    // Cache-first pour les ressources statiques
     event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Return cached response if available
-                if (response) {
+        caches.match(request).then((cached) => {
+            if (cached) {
+                return cached;
+            }
+            return fetch(request).then((response) => {
+                if (!response || response.status !== 200 || response.type === 'error') {
                     return response;
                 }
-
-                // Otherwise, fetch from network
-                return fetch(event.request)
-                    .then((response) => {
-                        // Don't cache non-successful responses
-                        if (!response || response.status !== 200 || response.type === 'error') {
-                            return response;
-                        }
-
-                        // Clone and cache successful responses
-                        const responseToCache = response.clone();
-                        caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                cache.put(event.request, responseToCache);
-                            });
-
-                        return response;
-                    })
-                    .catch(() => {
-                        // Return offline fallback for document requests
-                        if (event.request.mode === 'navigate') {
-                            return caches.match('/index.html');
-                        }
-                    });
-            })
+                const copy = response.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+                return response;
+            });
+        })
     );
 });
