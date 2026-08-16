@@ -10,7 +10,7 @@ Format : objectif, fait, décisions, ouvert.
 **Objectif**
 
 Fermer les points ouverts de la session 003, puis appliquer une relecture externe du site.
-Dix commits, de `6cb9ce1` à `d16cab0`.
+Treize commits, de `6cb9ce1` à `7033d0f`.
 
 **Fait**
 
@@ -88,12 +88,29 @@ Apports du second CV, dit CV ESN, commit `d16cab0`
 - Primavera P6 affiché séparément, libellé « En cours de formation », commit `69f72eb`.
   Posé à plat au milieu de MS Project, il aurait laissé croire à une maîtrise.
 
+Lecture du second CV, commits `02fe837` et `7033d0f`
+- Le CV ESN, `Amouzou KEVO- CV.pdf`, a été décodé via ses tables `ToUnicode` : il utilise une
+  police sous-ensemble à encodage propriétaire, une extraction naïve ne rend que du charabia.
+- Il confirme mot pour mot tout ce qui avait été ajouté au site à l'aveugle : les deux missions
+  BH2M, le projet logistique et ses dates, Excel, Macros, Industrie 4.0, les six qualités
+  professionnelles. Rien n'avait été inventé.
+- `PMO` ajouté aux compétences : présent dans la rubrique Pilotage Projet du CV industriel,
+  il manquait au site depuis le début. `Kanban` ajouté, présent sur le second CV.
+- Mission IA localisée : le second CV écrit « Client international (Canada) ». La ligne de la
+  frise et le contexte de la carte chatbot le mentionnent désormais. C'était le seul endroit du
+  site qu'un recruteur ne pouvait pas situer, et le premier point de la relecture externe.
+- Cinquième projet ajouté, Digital Supply Chain Twin en Python et SimPy, avec le lien vers
+  `github.com/amouzougit/SC_Resilience_Twin`, dépôt vérifié en 200. Il figure sur les deux CV
+  mais avait disparu du site quand la session 002 a réduit les projets de six à trois. Le site
+  lie donc maintenant deux dépôts publics au lieu d'un.
+- Non retenu faute de réponse : rien. Les arbitrages ont tous été tranchés.
+
 Divers
 - `preconnect` vers `cdnjs.cloudflare.com` supprimé, plus rien n'y était chargé depuis GSAP.
 - Espaces avant les points d'interrogation rétablis dans le placeholder du formulaire.
 - `CLAUDE.md` mis à jour deux fois : architecture et dépendances réelles, puis cibles de postes
   et règle sur les secteurs.
-- `CACHE_VERSION` de v3 à v13.
+- `CACHE_VERSION` de v3 à v15.
 
 **Décisions**
 
@@ -109,15 +126,36 @@ Divers
 | Promesse de délai | Supprimée, non prouvable |
 | Primavera P6 | Affiché comme formation en cours |
 | Industrie 4.0 | Ajouté, justifié par sa présence sur le second CV |
+| Pays de la mission IA | Canada affiché, le second CV l'écrit noir sur blanc |
+| Nature du contrat de la mission IA | Toujours non précisée, aucun des deux CV ne la donne |
+| Digital Supply Chain Twin | Réintégré comme cinquième projet, avec son dépôt public |
+| Écart site / CV industriel | Assumé, le CV n'est pas mis à jour. Décision de l'utilisateur |
 
 **Ouvert**
 
-- **Divergence site / CV, prioritaire.** Les apports du second CV sont sur le site mais pas sur
-  `CV_Kevo_Amouzou_Industriel.pdf`, seul CV lié : deux missions BH2M, projet logistique A2I,
-  Excel, Macros, Industrie 4.0, qualités professionnelles. C'est exactement la classe d'écart
-  éliminée en session 003. Soit reporter sur le CV industriel, soit lier aussi le CV ESN.
-- La mission IA reste le seul endroit invérifiable du site : « Client international · Remote »,
-  sans secteur, pays, taille ni nature de contrat. Le CV est tout aussi vague.
+- **Le second CV se contredit avec le CV industriel sur trois points. Le plus grave de la
+  session, et rien n'a été corrigé, ces documents appartiennent à l'utilisateur.**
+
+  | Élément | CV industriel | CV ESN | Site |
+  |---|---|---|---|
+  | Poste BH2M | Assistant Chef de Projet Digitalisation Industrielle et SI | Chef de Projet SI / PMO | Assistant Chef de Projet |
+  | Dates BH2M | Fév. 2026 - Juil. 2026 | Feb 2026 - Present | Fév. 2026 - Juil. 2026 |
+  | Mission IA | Oct. 2025 - Jan. 2026 | Oct 2025 - Oct 2025 | Oct. 2025 - Jan. 2026 |
+
+  Le même poste, chez le même employeur, sur la même période, porte deux intitulés selon le
+  document. Le CV ESN annonce en outre un poste en cours alors que le stage s'est terminé le
+  17 juillet 2026. La durée de la mission IA passe de quatre mois à un.
+  Le titre visé diverge aussi : « Ingénieur Digitalisation Industrielle et SI » contre
+  « Consultant SI industriel / Data et transformation digitale, Industrie 4.0 / PMO ».
+
+- **Divergence site / CV industriel, assumée.** Plusieurs éléments issus du second CV sont sur
+  le site mais pas sur `CV_Kevo_Amouzou_Industriel.pdf`, seul CV lié : deux missions BH2M,
+  projet logistique A2I, Excel, Macros, Industrie 4.0, qualités professionnelles, Canada,
+  Digital Supply Chain Twin. Décision de l'utilisateur de laisser en l'état. Trois issues
+  restent possibles : régénérer le CV depuis son fichier source, retoucher le PDF, ou retirer
+  du site ce qui n'y figure pas.
+- Nature du contrat de la mission IA toujours inconnue : prestation, CDD, freelance ou stage.
+  Aucun des deux CV ne le dit. Le pays, lui, est désormais affiché.
 - Licence Génie Logiciel de l'Université de Lomé : sur le site, absente de la rubrique Formation
   du CV. À ajouter au CV plutôt qu'à retirer du site.
 - Domaine `kevoamouzou.com` toujours non enregistré. Une URL Netlify générée sur un CV fait
