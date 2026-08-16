@@ -5,6 +5,88 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 003 — 16 août 2026 — Relecture du contenu et nettoyage des résidus
+
+**Objectif**
+
+Relire le texte publié en le confrontant au CV PDF, puis sortir du dépôt les fichiers de travail
+qui n'ont rien à faire en production.
+
+**Fait**
+
+Contenu du site, écarts avec le CV
+- `+15 tableaux de bord` subsistait dans la timeline BH2M. La session 002 avait annoncé sa
+  suppression, elle n'avait été faite que dans le hero et les cartes de résultats. Le site se
+  contredisait donc lui-même. Remplacé par `10+ indicateurs de pilotage sur 3 processus métiers`.
+- Deux chiffres absents du CV retirés : `+50 tâches quotidiennes` (timeline et carte de résultats)
+  et `+50 comptes utilisateurs sécurisés`. Formulations reprises sans le chiffre.
+- Reste de positionnement supply chain dans la section Postes recherchés : « data et business se
+  rencontrent », « vision stratégique supply chain/affaires ». Réécrit sur le positionnement
+  industriel.
+- `Master Informatique et Systèmes` complété en `Master Informatique et Systèmes d'Information`,
+  intitulé exact du CV.
+- Mobilité : la page disait trois choses différentes (« France & Europe » dans le badge,
+  « France entière » dans le hero, « France métropole, Luxembourg, Suisse » dans les postes
+  recherchés). Tout aligné sur le CV : France entière, permis B, télétravail hybride possible.
+- Numérotation des sections : elle affichait 01, 03, 02. Remise en ordre 01, 02, 03.
+- Espace avant deux-points rétabli : `Secteurs :`, `Localisation :`, `Niveau :`.
+
+README
+- Le fichier était resté sur l'ancien positionnement et contredisait le site sur presque tout :
+  « Ingénieur d'Affaires & Data Engineering », « Senior (3-4 ans) », « Polonais (Courant) »,
+  « +15 Metabase Dashboards », « 95% user adoption », « training 100+ staff », « <2s Latency »,
+  « Senior AI Engineer », « Tech Startup (Canada) », « 6 projets », « Disponible Août 2026 »,
+  plus les emojis et les tirets cadratins bannis, et une description de la stack technique
+  (GSAP, Tailwind, Alpine) supprimée en session 002.
+- Réécrit intégralement à partir du CV et du site. C'est la page d'accueil du dépôt GitHub,
+  donc un document lu par un recruteur.
+
+Code mort
+- `myPortfolio()` supprimé, 55 lignes : données Alpine devenues inutiles après le passage des
+  projets en HTML statique, jamais appelées, et déjà divergentes du HTML affiché.
+- Commentaire `<!-- Canada -->` corrigé en `<!-- Mission IA en remote -->`, l'expérience est
+  présentée comme « client international » partout ailleurs.
+
+Résidus sortis du dépôt
+- `PROMPT-KIMI.md`, `diagnostic-portfolio-2026-08-15.md` et `images/resilience_chart.png`
+  étaient suivis par git, donc servis en production. N'importe qui pouvait lire
+  `/diagnostic-portfolio-2026-08-15.md`, un document de 30 Ko listant tous les défauts du
+  portfolio. Déplacés dans `.archive/`, ignoré par git. Ils répondent maintenant 404.
+- `CACHE_VERSION` passé de `v3` à `v4`.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Chiffres absents du CV | Retirés du site plutôt qu'ajoutés au CV, le PDF n'est pas retouché |
+| Mobilité | Formulation du CV, France entière, reprise partout |
+| Fichiers de travail | Conservés en local dans `.archive/`, hors dépôt et hors production |
+| README | Réécrit, aligné sur le CV et le site |
+
+**Contrôles**
+
+0 tiret cadratin et 0 emoji dans `index.html` et `README.md`. Aucune occurrence de
+`+15`, `95%`, `100+`, `Polonais`, `Senior (`, `supply chain`, `+50`, `Canada`, `Août 2026`.
+5 ancres présentes, 3 cartes projets, numérotation 01 / 02 / 03, blocs script équilibrés,
+JSON-LD valide, 107 `div` ouverts et fermés. Servi en local : page, CV, portrait, `sw.js`,
+`manifest.json`, `robots.txt` et `sitemap.xml` en 200, les trois résidus en 404.
+
+**Ouvert**
+
+- `CLAUDE.md` est périmé : il décrit encore `index.html.bak`, `style.css`, `projects.js`,
+  Tailwind CDN, Alpine, GSAP et `CV_Kevo_Amouzou_CDI.pdf`, tous supprimés. Non traité.
+- `CLAUDE.md`, `SESSIONS.md` et `README.md` restent servis en production. `SESSIONS.md` décrit
+  les chiffres retirés du site, ce qui est lisible par un recruteur. Piste : un `netlify.toml`
+  renvoyant 404 sur ces chemins.
+- Deux tags de compétences, `Active Directory` et `KeePass`, ne figurent pas dans la rubrique
+  Compétences du CV. Ils apparaissent en revanche dans les missions BH2M.
+- La Licence Génie Logiciel de l'Université de Lomé figure sur le site mais pas dans la rubrique
+  Formation du CV.
+- Formspree toujours jamais testé en conditions réelles.
+- Profil LinkedIn toujours à confronter au site et au CV.
+
+---
+
 ## Session 002 — 16 août 2026 — Revue externe et passage en version sobre
 
 **Objectif**
@@ -90,6 +172,8 @@ visiteurs déjà venus verront donc l'ancienne version une seule fois, puis la n
   Unicode. Le titre a été réencodé glyphe par glyphe dans le flux de la page, le flux recompressé,
   /Length mis à jour et la table xref reconstruite. Contrôles : 62 lignes de texte identiques
   avant et après sauf le titre, mêmes flux décompressables, rendu vérifié via Quick Look.
+- Fait : les 8 tirets cadratins du CV remplacés par des tirets simples, 5 dans des chaînes Tj
+  et 3 isolés dans des tableaux TJ avec crénage. Rendu revérifié.
 - Reste ouvert : envoi réel du formulaire Formspree jamais testé.
 - Fait : `CV_Kevo_Amouzou_CDI.pdf` supprimé du dépôt.
 
@@ -195,4 +279,4 @@ Passage en thème clair
 **Références**
 
 Rapport de diagnostic complet, 45 points avec fichier, ligne, problème et correction :
-`diagnostic-portfolio-2026-08-15.md`.
+`.archive/diagnostic-portfolio-2026-08-15.md`, conservé en local, hors dépôt depuis la session 003.
