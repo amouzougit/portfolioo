@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message reçu | Kevo Amouzou</title>
+    <meta name="description" content="Votre message a bien été transmis à Kevo Amouzou.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#F7F7F4">
+    <link rel="icon" type="image/png" sizes="192x192" href="./images/icon-192.png">
+    <link rel="apple-touch-icon" href="./images/icon-512.png">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #F7F7F4;
+            color: #1A2233;
+            font-family: 'General Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        header, footer {
+            padding: 24px;
+            max-width: 1120px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        footer {
+            border-top: 1px solid #E4E7EC;
+            font-size: .75rem;
+            color: #5A6478;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: #1A2233;
+            text-decoration: none;
+        }
+        .logo span { color: #0F4C81; }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            background: #FFFFFF;
+            border: 1px solid #E4E7EC;
+            border-radius: 24px;
+            padding: 40px 32px;
+            max-width: 34rem;
+            width: 100%;
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(15,76,129,0.85);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 0 0 12px;
+        }
+
+        p { margin: 0 0 16px; color: #5A6478; font-size: .95rem; }
+        p.lead { color: #1A2233; }
+        p:last-of-type { margin-bottom: 0; }
+
+        .delai {
+            display: inline-block;
+            margin: 4px 0 24px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(15,76,129,0.06);
+            border: 1px solid rgba(15,76,129,0.15);
+            color: #0F4C81;
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-size: .875rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .btn-primary { background: #0F4C81; color: #FFFFFF; }
+        .btn-primary:hover { background: #1A2233; }
+        .btn-secondary { background: #FFFFFF; border: 1px solid #E4E7EC; color: #1A2233; }
+        .btn-secondary:hover { background: #EFEFEA; }
+
+        .liens {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding-top: 20px;
+            border-top: 1px solid #E4E7EC;
+            font-size: .8125rem;
+        }
+        .liens a { color: #5A6478; text-decoration: none; }
+        .liens a:hover { color: #0F4C81; }
+
+        a:focus-visible, .btn:focus-visible {
+            outline: 2px solid #0F4C81;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 32px 20px; }
+            h1 { font-size: 1.5rem; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="/" class="logo">KEVO<span>.</span></a>
+    </header>
+
+    <main>
+        <div class="card">
+            <span class="eyebrow">Message reçu</span>
+            <h1>Merci, votre message est bien parti</h1>
+
+            <p class="lead">
+                Il arrive directement dans ma boîte. Je le lis et je vous réponds personnellement.
+            </p>
+
+            <span class="delai">Réponse en 24h</span>
+
+            <div class="actions">
+                <a href="/" class="btn btn-primary">Retour au site</a>
+                <a href="./CV_Kevo_Amouzou_Industriel.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Télécharger le CV</a>
+            </div>
+
+            <div class="liens">
+                <a href="https://www.linkedin.com/in/kevo-amouzou" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/amouzougit" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:kevoamouzou@gmail.com">kevoamouzou@gmail.com</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Kevo Amouzou · Ingénieur Digitalisation Industrielle &amp; SI · Belfort, France
+    </footer>
+
+</body>
+</html>
