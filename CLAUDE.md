@@ -35,7 +35,8 @@ Site statique, sans build, sans dépendances à installer.
 
 ```
 index.html                      tout le site : HTML, CSS inline, JS inline, projets en HTML statique
-sw.js                           service worker (HTML en network-first, statique en cache-first)
+sw.js                           service worker (HTML et CV en network-first, autres ressources
+                                en stale-while-revalidate)
 manifest.json                   PWA
 robots.txt, sitemap.xml         indexation
 _redirects                      Netlify : CLAUDE.md, SESSIONS.md et README.md renvoient vers /
@@ -92,13 +93,13 @@ git push origin main
 ```
 
 Incrémenter `CACHE_VERSION` dans `sw.js` après toute modification d'un fichier listé dans
-`urlsToCache`, pas seulement `index.html` : `images/kevo.jpeg` et
-`CV_Kevo_Amouzou_Industriel.pdf` sont servis en cache-first, donc un CV mis à jour sans
-changement de `CACHE_VERSION` reste l'ancien pour tout visiteur déjà venu.
+`PRECACHE`. Ce n'est plus une condition de fraîcheur depuis la session 003, seulement une
+purge propre : `index.html` et le CV sont en network-first, `images/kevo.jpeg` en
+stale-while-revalidate, donc un oubli ne fige plus le site sur une version périmée.
 
-Le HTML est en network-first : un visiteur déjà venu voit la nouvelle page dès le premier
-chargement suivant un déploiement. L'ancienne version affichée une fois, observée en session 002,
-venait du service worker cache-first antérieur à la session 001, remplacé depuis.
+Le HTML et le CV sont refetchés avec `cache: 'reload'`, ce qui court-circuite aussi le cache
+HTTP du navigateur. Un visiteur déjà venu voit donc la nouvelle page dès le premier chargement
+suivant un déploiement.
 
 Vérifications avant de pousser :
 

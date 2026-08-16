@@ -1,48 +1,96 @@
 /**
  * Service Worker - Kevo Amouzou Portfolio
  *
- * Strategie :
- *  - documents HTML : network-first, avec repli sur le cache hors ligne.
- *    Indispensable pour qu'une mise a jour du site soit visible immediatement
- *    par les visiteurs deja venus.
- *  - autres ressources de meme origine : cache-first.
+ * Objectif : un visiteur deja venu ne doit jamais voir une version perimee du site
+ * ni un CV perime. La fraicheur prime sur la vitesse, le cache ne sert que de repli
+ * hors ligne ou d'affichage immediat pour les ressources ou une version d'avance
+ * est sans consequence.
  *
- * A chaque deploiement modifiant index.html, incrementer CACHE_VERSION.
+ * Strategies :
+ *  - documents HTML et CV PDF : network-first, en contournant le cache HTTP du
+ *    navigateur. Repli sur le cache uniquement si le reseau echoue.
+ *  - autres ressources de meme origine (images, icones) : stale-while-revalidate,
+ *    servies depuis le cache et rafraichies en arriere-plan.
+ *  - ressources d'autres origines (polices, icones CDN) : non interceptees.
+ *
+ * Incrementer CACHE_VERSION apres toute modification d'un fichier de PRECACHE.
  */
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_NAME = `kevo-portfolio-${CACHE_VERSION}`;
 
-const urlsToCache = [
+const PRECACHE = [
     '/',
     '/index.html',
     '/images/kevo.jpeg',
     '/CV_Kevo_Amouzou_Industriel.pdf'
 ];
 
-// Installation : precache des ressources essentielles
+// Ressources dont une version perimee n'est pas acceptable.
+const ALWAYS_FRESH = ['/CV_Kevo_Amouzou_Industriel.pdf'];
+
+// Installation : precache tolerant, un fichier manquant ne doit pas faire echouer
+// l'installation et laisser l'ancien worker en place.
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then((cache) => cache.addAll(urlsToCache))
+            .then((cache) => Promise.all(
+                PRECACHE.map((url) => cache.add(url).catch(() => null))
+            ))
             .then(() => self.skipWaiting())
     );
 });
 
-// Activation : suppression des anciens caches
+// Activation : suppression des anciens caches, puis prise de controle immediate.
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-        caches.keys().then((cacheNames) => {
-            return Promise.all(
-                cacheNames.map((cacheName) => {
-                    if (cacheName !== CACHE_NAME) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        }).then(() => self.clients.claim())
+        caches.keys()
+            .then((names) => Promise.all(
+                names.filter((name) => name !== CACHE_NAME).map((name) => caches.delete(name))
+            ))
+            .then(() => self.clients.claim())
     );
 });
+
+/**
+ * Network-first. On refetch par URL plutot qu'en reutilisant la Request : une
+ * requete de navigation ne peut pas etre reconstruite en JavaScript, et
+ * cache: 'reload' est indispensable pour court-circuiter le cache HTTP du
+ * navigateur, sinon une reponse perimee peut etre servie sans toucher le reseau.
+ */
+function networkFirst(request) {
+    return fetch(request.url, { cache: 'reload', credentials: 'same-origin' })
+        .then((response) => {
+            if (response && response.ok) {
+                const copy = response.clone();
+                caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+            }
+            return response;
+        })
+        .catch(() => caches.match(request)
+            .then((cached) => cached || caches.match('/index.html'))
+            .then((cached) => cached || Response.error()));
+}
+
+/**
+ * Stale-while-revalidate : reponse immediate depuis le cache, mise a jour en
+ * arriere-plan pour le chargement suivant.
+ */
+function staleWhileRevalidate(request) {
+    return caches.match(request).then((cached) => {
+        const network = fetch(request)
+            .then((response) => {
+                if (response && response.ok && response.type === 'basic') {
+                    const copy = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+                }
+                return response;
+            })
+            .catch(() => cached);
+
+        return cached || network;
+    });
+}
 
 self.addEventListener('fetch', (event) => {
     const request = event.request;
@@ -52,35 +100,12 @@ self.addEventListener('fetch', (event) => {
     }
 
     const isDocument = request.mode === 'navigate' || request.destination === 'document';
+    const path = new URL(request.url).pathname;
 
-    if (isDocument) {
-        // Network-first : le contenu a jour prime toujours sur le cache
-        event.respondWith(
-            fetch(request)
-                .then((response) => {
-                    const copy = response.clone();
-                    caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-                    return response;
-                })
-                .catch(() => caches.match(request).then((cached) => cached || caches.match('/index.html')))
-        );
+    if (isDocument || ALWAYS_FRESH.includes(path)) {
+        event.respondWith(networkFirst(request));
         return;
     }
 
-    // Cache-first pour les ressources statiques
-    event.respondWith(
-        caches.match(request).then((cached) => {
-            if (cached) {
-                return cached;
-            }
-            return fetch(request).then((response) => {
-                if (!response || response.status !== 200 || response.type === 'error') {
-                    return response;
-                }
-                const copy = response.clone();
-                caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
-                return response;
-            });
-        })
-    );
+    event.respondWith(staleWhileRevalidate(request));
 });
