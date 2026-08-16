@@ -15,29 +15,45 @@ et confrontée au CV et au profil LinkedIn.
 
 ## Objectif
 
-Décrocher un CDI. Positionnement retenu : **Chef de Projet SI et Méthodes Industrielles,
-digitalisation des opérations**, aligné sur `CV_Kevo_Amouzou_Industriel.pdf`.
+Décrocher un CDI. Positionnement retenu : **Ingénieur Digitalisation Industrielle et SI**,
+aligné sur `CV_Kevo_Amouzou_Industriel.pdf`.
+
+Ne pas confondre deux choses :
+
+- le **positionnement visé**, « Ingénieur Digitalisation Industrielle et SI », qui sert dans le
+  titre, les metas, le JSON-LD, le hero et le pied de page ;
+- le **poste réellement occupé** chez BH2M, « Assistant Chef de Projet Digitalisation Industrielle
+  et SI », qui est l'intitulé exact du CV et ne doit apparaître que sur la ligne BH2M.
 
 Cibles de postes : chef de projet digitalisation industrielle, ingénieur méthodes et amélioration
-continue, data et pilotage industriel. Secteurs : industrie, énergie, ingénierie.
+continue, data et pilotage industriel. Secteurs : industrie, énergie, ingénierie. Pas de
+spécialisation sectorielle affichée : la seule expérience du secteur est la mission BH2M.
 
 ## Architecture
 
 Site statique, sans build, sans dépendances à installer.
 
 ```
-index.html                      tout le site : HTML, CSS inline, JS inline, données projets (Alpine.js)
+index.html                      tout le site : HTML, CSS inline, JS inline, projets en HTML statique
 sw.js                           service worker (HTML en network-first, statique en cache-first)
 manifest.json                   PWA
+robots.txt, sitemap.xml         indexation
+_redirects                      Netlify : CLAUDE.md, SESSIONS.md et README.md renvoient vers /
+                                (Netlify ne supporte pas le glob /*.md, il faut des chemins
+                                explicites, avec ! pour forcer la regle)
 images/kevo.jpeg                portrait, seule image de la page
-CV_Kevo_Amouzou_Industriel.pdf  CV lié depuis le site
-CV_Kevo_Amouzou_CDI.pdf         ancien CV, périmé, non lié
-index.html.bak                  résidu à supprimer
-style.css, projects.js          orphelins, plus référencés par index.html
+images/icon-192.png, icon-512   icônes PWA
+CV_Kevo_Amouzou_Industriel.pdf  CV lié depuis le site, seul CV diffusé
+.archive/                       fichiers de travail hors dépôt (gitignored), ne pas les remettre
+                                sous git : ils seraient servis en production
 ```
 
-Dépendances chargées par CDN : Tailwind (mode CDN), Alpine.js, GSAP + ScrollTrigger, Phosphor Icons,
-Fontshare. Formulaire de contact : Formspree, endpoint `mjknokbg`.
+Chargé par CDN : Phosphor Icons (unpkg), polices Fontshare. Formulaire de contact : Formspree,
+endpoint `mjknokbg`.
+
+Aucun framework JavaScript. Tailwind CDN, Alpine.js, GSAP et ScrollTrigger ont été retirés en
+session 002 : le CSS est écrit à la main dans `index.html` et le JS se limite à trois blocs
+(bouton retour en haut, lien de navigation actif, menu mobile). Ne pas les réintroduire.
 
 ## Règles de contenu, non négociables
 
@@ -49,11 +65,21 @@ Fontshare. Formulaire de contact : Formspree, endpoint `mjknokbg`.
 5. **Pas de tiret cadratin.** Utiliser `·`, `:`, `,` ou un tiret simple pour les plages de dates.
 6. **Pas d'image de banque d'images.** Le portrait est la seule image de la page.
 7. Écriture directe et factuelle, en français. Pas de promesse générique sans preuve derrière.
+8. Typographie française : espace avant `:`, `?`, `!`, `;`.
 
 ## Cohérence à maintenir en permanence
 
-Site, CV PDF et profil LinkedIn doivent dire la même chose sur : intitulés de poste, dates,
-employeurs, niveau de langue, chiffres. Toute modification de l'un implique de vérifier les deux autres.
+Site, CV PDF, `README.md` et profil LinkedIn doivent dire la même chose sur : intitulés de poste,
+dates, employeurs, secteurs, niveau de langue, chiffres. Toute modification de l'un implique de
+vérifier les autres.
+
+`README.md` compte autant que le site : c'est la page d'accueil du dépôt GitHub, donc un document
+lu par un recruteur. Les règles de contenu ci-dessus s'y appliquent intégralement.
+
+Le CV est un PDF mPDF à xref classique, encodage Identity où le CID vaut le point de code Unicode.
+Le modifier suppose de réencoder le texte glyphe par glyphe dans le flux de page, de recompresser
+le flux, de mettre `/Length` à jour et de reconstruire la table xref. Vérifier ensuite que les
+flux se décompressent et que le nombre de lignes de texte est inchangé.
 
 ## Workflow
 
@@ -65,18 +91,29 @@ python3 -m http.server 8899 --bind 127.0.0.1   # puis http://127.0.0.1:8899/inde
 git push origin main
 ```
 
-Après toute modification de `index.html`, incrémenter `CACHE_VERSION` dans `sw.js`. Sans cela,
-les visiteurs déjà venus continuent de voir l'ancienne page.
+Incrémenter `CACHE_VERSION` dans `sw.js` après toute modification d'un fichier listé dans
+`urlsToCache`, pas seulement `index.html` : `images/kevo.jpeg` et
+`CV_Kevo_Amouzou_Industriel.pdf` sont servis en cache-first, donc un CV mis à jour sans
+changement de `CACHE_VERSION` reste l'ancien pour tout visiteur déjà venu.
+
+Le HTML est en network-first : un visiteur déjà venu voit la nouvelle page dès le premier
+chargement suivant un déploiement. L'ancienne version affichée une fois, observée en session 002,
+venait du service worker cache-first antérieur à la session 001, remplacé depuis.
 
 Vérifications avant de pousser :
 
 ```bash
-grep -c "—" index.html                     # doit renvoyer 0
-python3 -c "import re;print(len(re.findall('[\U0001F300-\U0001FAFF]',open('index.html',encoding='utf-8').read())))"   # doit renvoyer 0
+grep -c "—" index.html README.md            # doit renvoyer 0 pour les deux
+python3 -c "import re;[print(f,len(re.findall('[\U0001F300-\U0001FAFF]',open(f,encoding='utf-8').read()))) for f in ['index.html','README.md']]"   # doit renvoyer 0
 ```
 
-Contrôler aussi : les 5 ancres (`#about`, `#skills`, `#projects`, `#experience`, `#contact`),
-l'affichage des 6 cartes projets, et l'absence d'erreur console.
+Contrôler aussi :
+
+- les 5 ancres `#about`, `#skills`, `#projects`, `#experience`, `#contact` ;
+- l'affichage des 3 cartes projets ;
+- la numérotation des sections, `01 · Résultats`, `02 · Compétences`, `03 · Projets`, dans cet
+  ordre d'apparition ;
+- l'absence d'erreur console.
 
 ## Journal des sessions
 
