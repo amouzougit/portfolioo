@@ -5,7 +5,130 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
-## Session 003 — 16 août 2026 — Relecture du contenu et nettoyage des résidus
+## Session 004 · 16 août 2026 · Fraîcheur, formulaire, relecture externe et positionnement
+
+**Objectif**
+
+Fermer les points ouverts de la session 003, puis appliquer une relecture externe du site.
+Dix commits, de `6cb9ce1` à `d16cab0`.
+
+**Fait**
+
+Accès public aux fichiers de travail
+- `_redirects` ajouté : `/CLAUDE.md`, `/SESSIONS.md` et `/README.md` renvoient 301 vers `/`.
+  Netlify ne supporte pas le glob `/*.md`, il faut des chemins explicites, avec `!` pour
+  forcer la règle même quand le fichier existe. Vérifié en production : 301 et contenu non servi.
+- Les fichiers de travail hors dépôt vivent dans `.archive/`, ignoré par git.
+
+Service worker, commit `56bfd5a`
+- Le vrai défaut n'était pas le HTML mais le CV : `CV_Kevo_Amouzou_Industriel.pdf` et
+  `images/kevo.jpeg` étaient en cache-first sans revalidation. Un CV mis à jour restait l'ancien
+  pour tout visiteur déjà venu tant que `CACHE_VERSION` n'était pas incrémenté. Le CV avait été
+  retouché deux fois juste avant.
+- CV passé en network-first comme le HTML. Les deux sont refetchés avec `cache: 'reload'`, ce qui
+  court-circuite aussi le cache HTTP du navigateur : l'ancien `fetch(request)` pouvait être
+  satisfait sans jamais toucher le réseau. Le refetch se fait par URL, une requête de navigation
+  ne pouvant pas être reconstruite en JavaScript.
+- Images et icônes passées en stale-while-revalidate.
+- Precache rendu tolérant. `cache.addAll` échouait en bloc sur un seul 404, ce qui annulait
+  l'installation et laissait l'ancien worker aux commandes indéfiniment. C'était le piège le plus
+  sérieux du fichier.
+- Vérifié dans Chrome : bascule v3 vers v5 et purge des anciens caches constatées, cache
+  empoisonné volontairement puis navigation réelle servant bien la page et le CV frais.
+
+Formulaire de contact, commits `4320d68` et `c00b330`
+- Testé en production pour la première fois : l'endpoint fonctionne, les messages sont relayés.
+- Après envoi, le visiteur était éjecté vers la page générique de Formspree, en anglais.
+  `merci.html` créée, aux couleurs et polices du site, en `noindex`.
+- Première tentative par champ `_next` : Formspree ne l'honore pas sur l'offre gratuite, les
+  redirections personnalisées sont réservées aux offres payantes. Le champ partait correctement,
+  le service l'ignorait. Constaté sur deux envois réels.
+- Envoi passé en `fetch` avec `Accept: application/json`, ce qui laisse la redirection sous
+  notre contrôle. Succès : redirection vers `/merci.html`. Échec : message d'erreur sous le
+  bouton avec l'adresse email en repli, bouton réactivé. Sans JavaScript, le POST classique
+  reste en place. Les trois cas sont testés.
+
+Relecture externe, commits `7ee4ec2` et `f65436f`
+- Sans arbitrage : répétition « Profil hybride » supprimée (introduite par erreur en session 003
+  lors de la réécriture de la ligne supply chain), promesse « Réponse en 24h » retirée des trois
+  emplacements, « partenaires » retiré, « Collaboration internationale » retiré, sous-titre
+  Projets reformulé, LinkedIn et email ajoutés dans le hero.
+- Premier poste recherché : « Chef de projet digitalisation industrielle » devient « Ingénieur
+  digitalisation industrielle ». Les offres réelles de chef de projet en industrie demandent
+  3 à 5 ans, vérifié par recherche.
+- Secteurs recentrés sur industrie, énergie, ingénierie. Les rôles affichaient six secteurs sans
+  expérience derrière : Consulting, Manufacturing, Distribution, Automotive, Electronics, Pharma.
+  Les tags par rôle sont supprimés, les secteurs énoncés une seule fois dans l'encadré.
+- « Énergie » ajouté au positionnement du hero. Cela revient sur la décision de session 002,
+  assumé : la mission BH2M est de l'ingénierie hydroélectrique, la mention est factuelle.
+- Ligne « CDI visés » ajoutée au hero, reprenant à l'identique les trois intitulés du bas de page.
+  La section détaillée est conservée.
+
+Contexte BH2M et vocabulaire, commit `d16cab0`
+- Recherche en ligne : BH2M est un bureau d'études en conception et rénovation d'alternateurs
+  hydroélectriques jusqu'à 400 MW, PME créée en février 2021 par Sébastien Bruna et dix collègues
+  pour reprendre l'expertise de la division Hydro de General Electric à Belfort, certifiée
+  ISO 9001 depuis décembre 2023.
+- L'effectif n'est pas affiché : les sources divergent, 16 selon BFC Industries, « bientôt 13 »
+  selon un article plus ancien. Les clients de BH2M (EDF, Engie, CNR) ne sont pas nommés, ce sont
+  ceux de l'employeur et non ceux du candidat.
+- Vocabulaire AMOA ajouté. Les offres d'AMOA junior en ESN décrivent le travail réellement fait
+  chez BH2M, mais le site ne contenait aucune occurrence de `AMOA`, `expression de besoin`,
+  `recueil`, `spécifications`, `recette` ni `MOA`. Un ATS filtrant sur AMOA ne le trouvait pas.
+  Chaque terme ajouté est adossé à une ligne existante du CV.
+- Type d'employeur explicité dans l'encadré : industriel en direct, bureau d'études, ESN ou
+  société de conseil sur mission industrielle. Le positionnement industriel ne change pas.
+
+Apports du second CV, dit CV ESN, commit `d16cab0`
+- Deux missions BH2M : gestion des ressources et équipements d'atelier, automatisation du
+  reporting projet. La frise BH2M passe à 7 puces.
+- Quatrième projet, logistique internationale, Master A2I, sans impact chiffré ni lien de code.
+- Excel et Macros à côté de VBA, Industrie 4.0 dans les SI industriels.
+- Bloc « Qualités professionnelles », présenté comme tel et non comme des compétences techniques.
+- Primavera P6 affiché séparément, libellé « En cours de formation », commit `69f72eb`.
+  Posé à plat au milieu de MS Project, il aurait laissé croire à une maîtrise.
+
+Divers
+- `preconnect` vers `cdnjs.cloudflare.com` supprimé, plus rien n'y était chargé depuis GSAP.
+- Espaces avant les points d'interrogation rétablis dans le placeholder du formulaire.
+- `CLAUDE.md` mis à jour deux fois : architecture et dépendances réelles, puis cibles de postes
+  et règle sur les secteurs.
+- `CACHE_VERSION` de v3 à v13.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Premier poste affiché | Ingénieur, pas Chef de projet |
+| Secteurs | Industrie, énergie, ingénierie, et rien d'autre |
+| Spécialisation énergie | Affichée, revient sur la décision de session 002 |
+| Structure | La section Postes recherchés est conservée, résumée dans le hero |
+| Effectif BH2M | Non affiché, sources divergentes |
+| Clients de BH2M | Non nommés, ce sont ceux de l'employeur |
+| Redirection formulaire | AJAX, `_next` inutilisable sur l'offre gratuite |
+| Promesse de délai | Supprimée, non prouvable |
+| Primavera P6 | Affiché comme formation en cours |
+| Industrie 4.0 | Ajouté, justifié par sa présence sur le second CV |
+
+**Ouvert**
+
+- **Divergence site / CV, prioritaire.** Les apports du second CV sont sur le site mais pas sur
+  `CV_Kevo_Amouzou_Industriel.pdf`, seul CV lié : deux missions BH2M, projet logistique A2I,
+  Excel, Macros, Industrie 4.0, qualités professionnelles. C'est exactement la classe d'écart
+  éliminée en session 003. Soit reporter sur le CV industriel, soit lier aussi le CV ESN.
+- La mission IA reste le seul endroit invérifiable du site : « Client international · Remote »,
+  sans secteur, pays, taille ni nature de contrat. Le CV est tout aussi vague.
+- Licence Génie Logiciel de l'Université de Lomé : sur le site, absente de la rubrique Formation
+  du CV. À ajouter au CV plutôt qu'à retirer du site.
+- Domaine `kevoamouzou.com` toujours non enregistré. Une URL Netlify générée sur un CV fait
+  provisoire.
+- Les points 1, 7 et 8 d'une consigne de relecture reçue n'ont jamais été transmis, la
+  numérotation saute de 6 à 9.
+- Profil LinkedIn confronté au site et au CV, déclaré cohérent.
+
+---
+
+## Session 003 · 16 août 2026 · Relecture du contenu et nettoyage des résidus
 
 **Objectif**
 
@@ -87,7 +210,7 @@ JSON-LD valide, 107 `div` ouverts et fermés. Servi en local : page, CV, portrai
 
 ---
 
-## Session 002 — 16 août 2026 — Revue externe et passage en version sobre
+## Session 002 · 16 août 2026 · Revue externe et passage en version sobre
 
 **Objectif**
 
@@ -179,7 +302,7 @@ visiteurs déjà venus verront donc l'ancienne version une seule fois, puis la n
 
 ---
 
-## Session 001 — 15 et 16 août 2026 — Diagnostic complet et remise à niveau du contenu
+## Session 001 · 15 et 16 août 2026 · Diagnostic complet et remise à niveau du contenu
 
 **Objectif**
 
