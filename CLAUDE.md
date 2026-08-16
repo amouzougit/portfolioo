@@ -25,9 +25,18 @@ Ne pas confondre deux choses :
 - le **poste réellement occupé** chez BH2M, « Assistant Chef de Projet Digitalisation Industrielle
   et SI », qui est l'intitulé exact du CV et ne doit apparaître que sur la ligne BH2M.
 
-Cibles de postes : chef de projet digitalisation industrielle, ingénieur méthodes et amélioration
-continue, data et pilotage industriel. Secteurs : industrie, énergie, ingénierie. Pas de
-spécialisation sectorielle affichée : la seule expérience du secteur est la mission BH2M.
+Cibles de postes : ingénieur digitalisation industrielle, ingénieur méthodes et amélioration
+continue, data et pilotage industriel. Ces trois intitulés sont affichés à l'identique dans le
+hero et dans la section Postes recherchés, ils doivent le rester.
+
+Ne pas afficher « Chef de projet » comme objectif : en France ce titre suppose 3 à 5 ans
+d'expérience, et le hero annonce « Ingénieur ». Le titre réellement occupé chez BH2M,
+« Assistant Chef de Projet », reste bien sûr affiché sur la ligne BH2M.
+
+Secteurs : industrie, énergie, ingénierie, et rien d'autre. Les trois sont énoncés une seule
+fois, dans l'encadré en bas de la section Postes recherchés. Élargir à Automotive, Pharma,
+Distribution ou Consulting a déjà été fait et retiré : sans expérience du secteur, cela se lit
+comme du tir à vue. « Énergie » est légitime, la mission BH2M est de l'ingénierie hydroélectrique.
 
 ## Architecture
 
