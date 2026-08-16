@@ -85,11 +85,13 @@ visiteurs déjà venus verront donc l'ancienne version une seule fois, puis la n
 - Formspree n'a pas été testé en conditions réelles.
 - Fait : robots.txt, sitemap.xml, icônes PWA carrées 192 et 512, favicon, .gitignore,
   suppression de index.html.bak, style.css et projects.js.
-- Reste ouvert : l'en-tête du CV PDF dit encore "Chef de Projet SI et Méthodes Industrielles"
-  alors que le site dit "Ingénieur Digitalisation Industrielle et SI". Le texte du PDF est
-  positionné glyphe par glyphe, il faut rouvrir le document source et réexporter.
+- Fait : l'en-tête du CV PDF est corrigé en "INGENIEUR DIGITALISATION INDUSTRIELLE & SI".
+  Le fichier est un PDF mPDF à xref classique, encodage Identity où le CID vaut le point de code
+  Unicode. Le titre a été réencodé glyphe par glyphe dans le flux de la page, le flux recompressé,
+  /Length mis à jour et la table xref reconstruite. Contrôles : 62 lignes de texte identiques
+  avant et après sauf le titre, mêmes flux décompressables, rendu vérifié via Quick Look.
 - Reste ouvert : envoi réel du formulaire Formspree jamais testé.
-- Reste ouvert : `CV_Kevo_Amouzou_CDI.pdf` est encore dans le dépôt sans être lié.
+- Fait : `CV_Kevo_Amouzou_CDI.pdf` supprimé du dépôt.
 
 ---
 
