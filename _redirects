@@ -1,3 +1,5 @@
-# Les fichiers de travail (journal, contexte projet, rapports) ne doivent pas
-# etre servis publiquement. Le ! force la regle meme si le fichier existe.
-/*.md    /    301!
+# Les fichiers de travail ne doivent pas etre servis publiquement.
+# Le ! force la regle meme si le fichier existe (shadowing).
+/docs/*     /  301!
+/CLAUDE.md  /  301!
+/README.md  /  301!
