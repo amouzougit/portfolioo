@@ -61,15 +61,35 @@ Sobriété visuelle et performance
 | Animations | Aucune au scroll, un seul fondu au chargement |
 | Bibliothèques JS | GSAP, ScrollTrigger et Alpine supprimés |
 
+**Déploiement**
+
+Commit `1324685` poussé sur `main` le 16 août 2026, déploiement Netlify confirmé.
+Contrôles en production : 0 emoji, 0 tiret cadratin, 0 référence à Tailwind, GSAP, Alpine, Unsplash
+ou au domaine non enregistré, 0 témoignage, 0 mention "Polonais" ou "+15 dashboards".
+robots.txt, sitemap.xml, manifest, service worker, icônes et CV répondent en 200.
+`index.html.bak`, `style.css` et `projects.js` renvoient bien 404.
+Page mesurée en production : 7 sections, 3 projets, 14 requêtes, chargement complet en 2,0 s
+contre 4,5 s avant, hauteur 6 566 pixels contre environ 11 000.
+
+Observation utile : au premier chargement après déploiement, l'ancien service worker a servi
+la page en cache. Le nouveau s'est installé puis a pris la main au chargement suivant. Les
+visiteurs déjà venus verront donc l'ancienne version une seule fois, puis la nouvelle.
+
 **Ouvert**
 
-- Tailwind est toujours chargé par CDN, environ 407 Ko de JavaScript. La revue recommande de le
-  remplacer par du CSS écrit à la main. C'est le dernier gros poste de performance.
+- Fait : Tailwind CDN remplacé par 260 lignes de CSS écrites à la main, plus un reset équivalent
+  au preflight. Avec GSAP, ScrollTrigger et Alpine, environ 560 Ko de JavaScript en moins.
 - Le CV PDF doit suivre le changement d'intitulé : son en-tête dit encore
   "Chef de Projet SI et Méthodes Industrielles".
-- `CV_Kevo_Amouzou_Industriel.pdf` n'est toujours pas suivi par git.
+- Fait : `CV_Kevo_Amouzou_Industriel.pdf` est suivi par git et servi en production.
 - Formspree n'a pas été testé en conditions réelles.
-- Reste à faire : robots.txt, sitemap.xml, suppression de index.html.bak, icônes du manifest.
+- Fait : robots.txt, sitemap.xml, icônes PWA carrées 192 et 512, favicon, .gitignore,
+  suppression de index.html.bak, style.css et projects.js.
+- Reste ouvert : l'en-tête du CV PDF dit encore "Chef de Projet SI et Méthodes Industrielles"
+  alors que le site dit "Ingénieur Digitalisation Industrielle et SI". Le texte du PDF est
+  positionné glyphe par glyphe, il faut rouvrir le document source et réexporter.
+- Reste ouvert : envoi réel du formulaire Formspree jamais testé.
+- Reste ouvert : `CV_Kevo_Amouzou_CDI.pdf` est encore dans le dépôt sans être lié.
 
 ---
 
