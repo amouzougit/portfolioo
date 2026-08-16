@@ -105,6 +105,44 @@ Lecture du second CV, commits `02fe837` et `7033d0f`
   lie donc maintenant deux dépôts publics au lieu d'un.
 - Non retenu faute de réponse : rien. Les arbitrages ont tous été tranchés.
 
+Engagement professionnel, commit `61b3ac4`
+- Deux éléments transmis en fin de session, absents des deux CV : membre actif de PMI France et
+  participant aux Olympiades du Management de Projet, édition 2026.
+- C'est la première preuve tierce et vérifiable du site. Toutes les autres formes de preuve
+  sociale ont été bannies en session 001 faute de vérifiabilité. Une adhésion à une organisation
+  reconnue et une participation à une compétition en sont, et elles étayent le tag `PMO` que le
+  site affiche.
+- Formulations volontairement neutres : « Participant », aucun résultat revendiqué, ni finaliste
+  ni lauréat. À remonter si la compétition avance, avec le résultat réel.
+- La carte certifications et langues passe de deux à trois colonnes. JSON-LD complété avec
+  `memberOf` sur PMI France.
+
+Recherche d'offres dans le bassin, non versée au site
+- Recherches France Travail en CDI sur le Territoire de Belfort et le Doubs, par angle :
+  ingénieur méthodes 9 offres, chef de projet informatique 2, amélioration continue 1,
+  ERP ou données ou data 0.
+- Conclusion utile pour la suite : localement l'angle SI et data est vide, l'angle méthodes et
+  industrialisation recrute. Le positionnement du site ne change pas, mais les candidatures
+  locales doivent attaquer par les méthodes et amener la digitalisation en différenciateur.
+- Quatre offres de Belfort ouvertes et lues en détail. Le partage est net :
+
+  | Offre | Expérience exigée | Accessible |
+  |---|---|---|
+  | Talents Industrie, Ingénieur Industrialisation, 45 à 55 k | 5 ans minimum | non |
+  | Moben & Rooster, Ingénieur Méthodes, 42 à 55 k | 5 ans minimum | non |
+  | Davidson Digital Est, Ingénieur méthodes et industrialisation | ouvert aux débutants | oui |
+  | ALTEN, Ingénieur Méthodes Industrialisation | débutants acceptés | oui |
+
+  Les deux postes accessibles sont chez des ESN. Les deux postes en industrie directe demandent
+  cinq ans. La décision d'afficher « ESN ou société de conseil » dans les types d'employeurs est
+  donc validée par le marché local, ce n'était pas un élargissement de confort.
+- Point de vigilance relevé : Davidson exige un diplôme d'ingénieur, ALTEN accepte
+  explicitement un master. Les diplômes UTBM du candidat sont des masters, pas un diplôme
+  d'ingénieur habilité CTI. Certains filtres automatiques peuvent écarter sur ce seul critère.
+- À noter pour plus tard : l'offre Talents Industrie porte sur l'assemblage et les essais de
+  turbines et d'alternateurs, exactement le métier de BH2M. C'est une cible à cinq ans, pas
+  aujourd'hui.
+
 Divers
 - `preconnect` vers `cdnjs.cloudflare.com` supprimé, plus rien n'y était chargé depuis GSAP.
 - Espaces avant les points d'interrogation rétablis dans le placeholder du formulaire.
