@@ -1071,7 +1071,7 @@
                 <p class="text-xs text-secondary text-center mb-6">
                     Disponible immédiatement · France entière · Télétravail hybride possible
                 </p>
-                <form action="https://formspree.io/f/mjknokbg" method="POST" class="space-y-3">
+                <form id="contact-form" action="https://formspree.io/f/mjknokbg" method="POST" class="space-y-3">
                     <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
                     <input type="hidden" name="_next" value="https://keen-selkie-a72fc7.netlify.app/merci.html">
                     <div>
@@ -1093,6 +1093,10 @@
                             class="w-full py-3.5 rounded-xl bg-accent text-dark font-bold text-sm hover:bg-ink transition-all flex items-center justify-center gap-2 btn-glow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark focus:ring-ink">
                         Envoyer mon message <i class="ph ph-paper-plane-right" aria-hidden="true"></i>
                     </button>
+                    <p id="form-erreur" role="alert" hidden class="text-sm text-center" style="color:#B3261E">
+                        L'envoi a échoué. Écrivez-moi directement à
+                        <a href="mailto:kevoamouzou@gmail.com" class="font-semibold underline">kevoamouzou@gmail.com</a>.
+                    </p>
                 </form>
 
                 <div class="mt-8 flex justify-center gap-6 pt-6 border-t border-line">
@@ -1152,6 +1156,41 @@
                 });
             }, { threshold: 0.38 });
             sections.forEach(s => obs.observe(s));
+        })();
+
+        // ── FORMULAIRE DE CONTACT ──
+        // Envoi en AJAX plutot qu'en POST classique : Formspree n'honore pas le
+        // champ _next sur l'offre gratuite et renvoie sa propre page de
+        // remerciement, en anglais. On garde donc la main sur la redirection.
+        // Sans JavaScript, le formulaire reste fonctionnel en POST classique.
+        (function () {
+            const form   = document.getElementById('contact-form');
+            const erreur = document.getElementById('form-erreur');
+            if (!form || !erreur) return;
+
+            const bouton  = form.querySelector('button[type="submit"]');
+            const initial = bouton.innerHTML;
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                erreur.hidden = true;
+                bouton.disabled = true;
+                bouton.innerHTML = 'Envoi en cours...';
+
+                try {
+                    const reponse = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (!reponse.ok) throw new Error(reponse.status);
+                    window.location.href = '/merci.html';
+                } catch (err) {
+                    erreur.hidden = false;
+                    bouton.disabled = false;
+                    bouton.innerHTML = initial;
+                }
+            });
         })();
 
         // ── MENU MOBILE ──

@@ -16,7 +16,7 @@
  * Incrementer CACHE_VERSION apres toute modification d'un fichier de PRECACHE.
  */
 
-const CACHE_VERSION = 'v6';
+const CACHE_VERSION = 'v7';
 const CACHE_NAME = `kevo-portfolio-${CACHE_VERSION}`;
 
 const PRECACHE = [
