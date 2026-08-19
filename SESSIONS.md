@@ -28,6 +28,14 @@ Faire apparaître Loxya, outil utilisé chez BH2M, aux côtés de Dolibarr déj�
   Vérifié après coup : les 27 entrées xref pointent bien sur leur `N 0 obj`, les 7 flux se
   décompressent, les `/Length` correspondent, 79 lignes de texte comme avant, et le rendu
   visuel de la page est conforme.
+- Puce BH2M du CV réécrite dans la foulée : « Mise en place de Loxya, systeme de gestion des
+  ressources et equipements atelier ». La ligne est justifiée, il a donc fallu la recomposer.
+  Méthode : lecture des largeurs de glyphes dans le tableau `/W` de l'objet 6, mesure du bord
+  droit sur les autres lignes justifiées de la page pour retrouver la marge, soit 547,0 pt,
+  puis nouveau découpage en deux lignes, nouvel écart inter-mots `-164` dans le tableau `TJ`
+  et `Tw` de la ligne précédente aligné à `1.476`, soit `164 / 1000 x 9 pt`. Le modèle de
+  largeur a été validé avant modification : il reproduit le bord droit des 17 lignes justifiées
+  de la page à 0,1 pt près.
 
 **Décisions**
 
@@ -37,10 +45,6 @@ Faire apparaître Loxya, outil utilisé chez BH2M, aux côtés de Dolibarr déj�
 
 **Ouvert**
 
-- La puce BH2M du CV parle toujours d'« un systeme de gestion des ressources et equipements
-  atelier » sans nommer Loxya, là où le site écrit « mise en place de Loxya ». Non corrigé :
-  la ligne est justifiée, la réécrire imposerait de recalculer le `Tw` et les coupures. L'outil
-  figure désormais dans la ligne de compétences du CV, ce qui suffit à la cohérence.
 - Profil LinkedIn à aligner de la même façon.
 
 ## Session 004 · 16 août 2026 · Fraîcheur, formulaire, relecture externe et positionnement
