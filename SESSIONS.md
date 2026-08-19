@@ -20,6 +20,14 @@ Faire apparaître Loxya, outil utilisé chez BH2M, aux côtés de Dolibarr déj�
 - `README.md` : Loxya ajouté à la ligne Digitalisation et SI industriels.
 - `sw.js` : `CACHE_VERSION` passé de `v16` à `v17`.
 - Dolibarr était déjà présent dans les deux fichiers, aucune modification nécessaire de ce côté.
+- `CV_Kevo_Amouzou_Industriel.pdf` : « Loxya » ajouté en fin de ligne « Digitalisation & SI ».
+  Le PDF est un PyFPDF 1.7.2, xref classique, polices DejaVu sous-ensemblées en Identity-H
+  où le CID vaut le point de code Unicode. La chaîne `(SharePoint) Tj` du flux de page a été
+  réencodée en UTF-16BE, le flux recompressé, `/Length` mis à jour et la table xref reconstruite
+  entièrement : l'objet 4 est le premier du fichier, donc tous les décalages suivants bougent.
+  Vérifié après coup : les 27 entrées xref pointent bien sur leur `N 0 obj`, les 7 flux se
+  décompressent, les `/Length` correspondent, 79 lignes de texte comme avant, et le rendu
+  visuel de la page est conforme.
 
 **Décisions**
 
@@ -29,9 +37,10 @@ Faire apparaître Loxya, outil utilisé chez BH2M, aux côtés de Dolibarr déj�
 
 **Ouvert**
 
-- `CV_Kevo_Amouzou_Industriel.pdf` décrit la mise en place du système de gestion des ressources
-  et équipements atelier sans nommer Loxya. Ajouter « Loxya » à la ligne « Digitalisation & SI »
-  du CV pour que les deux documents disent la même chose.
+- La puce BH2M du CV parle toujours d'« un systeme de gestion des ressources et equipements
+  atelier » sans nommer Loxya, là où le site écrit « mise en place de Loxya ». Non corrigé :
+  la ligne est justifiée, la réécrire imposerait de recalculer le `Tw` et les coupures. L'outil
+  figure désormais dans la ligne de compétences du CV, ce qui suffit à la cohérence.
 - Profil LinkedIn à aligner de la même façon.
 
 ## Session 004 · 16 août 2026 · Fraîcheur, formulaire, relecture externe et positionnement
