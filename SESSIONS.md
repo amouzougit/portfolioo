@@ -5,6 +5,35 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 005 · 19 août 2026 · Loxya ajouté à la stack BH2M
+
+**Objectif**
+
+Faire apparaître Loxya, outil utilisé chez BH2M, aux côtés de Dolibarr déjà présent partout.
+
+**Fait**
+
+- `index.html` : Loxya nommé dans la puce « Ressources et équipements » de l'expérience BH2M,
+  ajouté comme `skill-tag` dans la carte Digitalisation et SI industriels, ajouté au `knowsAbout`
+  du JSON-LD, aux `keywords` de la meta description et à la stack du rôle « Ingénieur
+  digitalisation industrielle ».
+- `README.md` : Loxya ajouté à la ligne Digitalisation et SI industriels.
+- `sw.js` : `CACHE_VERSION` passé de `v16` à `v17`.
+- Dolibarr était déjà présent dans les deux fichiers, aucune modification nécessaire de ce côté.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Formulation Loxya | Nommer l'outil derrière une réalisation déjà écrite, sans ajouter de nouvelle affirmation ni de chiffre |
+
+**Ouvert**
+
+- `CV_Kevo_Amouzou_Industriel.pdf` décrit la mise en place du système de gestion des ressources
+  et équipements atelier sans nommer Loxya. Ajouter « Loxya » à la ligne « Digitalisation & SI »
+  du CV pour que les deux documents disent la même chose.
+- Profil LinkedIn à aligner de la même façon.
+
 ## Session 004 · 16 août 2026 · Fraîcheur, formulaire, relecture externe et positionnement
 
 **Objectif**

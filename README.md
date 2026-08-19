@@ -32,8 +32,8 @@ Langues : français langue maternelle, anglais professionnel B2, espagnol élém
 
 ## Compétences
 
-Digitalisation et SI industriels : ERP Dolibarr, Oracle Fusion Cloud, SharePoint, GED, MES,
-Active Directory, KeePass, ISO 9001 / 14001 / 45001.
+Digitalisation et SI industriels : ERP Dolibarr, Loxya, Oracle Fusion Cloud, SharePoint, GED,
+MES, Active Directory, KeePass, ISO 9001 / 14001 / 45001.
 
 Data, BI et développement : SQL, PostgreSQL, Metabase, Power BI, VBA, Python, Airflow, dbt,
 Docker, Flask, API REST.
