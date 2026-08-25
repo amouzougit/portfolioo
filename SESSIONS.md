@@ -91,6 +91,11 @@ industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
 - L'engagement professionnel (PMI, Olympiades, bénévolat Grand Est) est sur le site mais
   absent de `CV_Kevo_Amouzou_Industriel.pdf`. Écart connu, à combler côté CV si l'engagement
   doit compter dans les candidatures.
+- Bug de mise en page corrigé dans la section Parcours, visible en production. Les `<li>`
+  de la timeline sont des conteneurs flex contenant trois enfants : la flèche, le `<strong>`
+  du libellé, puis un nœud de texte nu. En flexbox un nœud de texte nu devient un élément
+  flex anonyme : le libellé et le texte formaient donc deux colonnes séparées qui se
+  coupaient n'importe où. Libellé et texte réunis dans un seul `<span>`, 10 puces corrigées.
 - Cinq schémas d'architecture ajoutés en SVG écrit à la main, un par projet sauf le 06.
   Placés juste après les tags, avant le contexte : c'est la première chose que voit un
   recruteur qui scanne. Motif : la page faisait 2 094 mots, 10,7 écrans de défilement et
