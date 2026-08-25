@@ -91,6 +91,22 @@ industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
 - L'engagement professionnel (PMI, Olympiades, bénévolat Grand Est) est sur le site mais
   absent de `CV_Kevo_Amouzou_Industriel.pdf`. Écart connu, à combler côté CV si l'engagement
   doit compter dans les candidatures.
+- Cinq schémas d'architecture ajoutés en SVG écrit à la main, un par projet sauf le 06.
+  Placés juste après les tags, avant le contexte : c'est la première chose que voit un
+  recruteur qui scanne. Motif : la page faisait 2 094 mots, 10,7 écrans de défilement et
+  zéro image. Un schéma se lit en 3 secondes là où un paragraphe en demande 30, et savoir
+  représenter une architecture est en soi une compétence d'ingénieur SI.
+- Schémas sous `min-width: 600px` dans un cadre à défilement horizontal plutôt que
+  redimensionnés : sous 600px le texte deviendrait illisible.
+- Reste à faire sur la lisibilité : raccourcir BH2M (640 mots, 31% de la page, le bloc
+  « Ce que ça démontre » fait doublon avec les décisions) et ajouter en tête de chaque
+  projet une phrase à retenir.
+- Cabinets de conseil et ESN : question posée, réponse négative assumée. Ne pas ajouter
+  « conseil » aux secteurs cibles, cela diluerait le positionnement. Une ESN lit déjà
+  « industrie, énergie, ingénierie » comme son terrain, et screene la mobilité et la
+  transposabilité, toutes deux déjà présentes.
+- GMAO absent du site. À rapprocher éventuellement de Loxya, gestion des ressources et
+  équipements atelier, si le rapprochement est légitime. À confirmer par Kevo.
 - Le rendu n'a pas pu être capturé en image : l'outil de capture du navigateur renvoyait
   des images blanches avec une fenêtre désynchronisée. Vérification faite par le DOM à la
   place, concluante. Un contrôle visuel humain reste à faire.
