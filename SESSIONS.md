@@ -57,12 +57,15 @@ industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
 | « Performance par acheteur » | Reformulé en « performance achats par portefeuille » : évite la lecture « suivi individuel de salariés » |
 | Chiffre `+35% de performances` | Ajouté, il figure au CV mais pas encore sur le site |
 | Badges de nature | Obligatoires. Un recruteur ne doit jamais découvrir seul qu'un projet était scolaire |
+| Projet 04, gestion immobilière | Retenu en format complet : seul projet montrant la conception d'une application métier de bout en bout, ce qui manquait pour un poste SI. Badge « Académique », c'est un projet de soutenance |
+| OffreAPI | Format court en « Autres réalisations ». Le détailler répéterait le projet 04, deuxième back-end Java Spring Boot en couches. Seuls JWT et la doc OpenAPI générée sont retenus, ce sont ses deux apports propres |
+| Texte BH2M | Validé tel quel par Kevo, sans passage par le tuteur |
 
 **Ouvert**
 
-- Faire valider le texte BH2M par le tuteur de stage avant mise en ligne. Vérifier aussi
-  la clause de confidentialité de la convention de stage : elle porte sur les données,
-  pas sur la méthode, mais elle doit être lue.
+- Validation du texte BH2M par le tuteur : proposée, non retenue. Kevo a tranché, le texte
+  part tel quel. Le risque est faible, aucune donnée n'est publiée, mais la clause de
+  confidentialité de la convention de stage reste à lire une fois.
 - Projet 05, logistique internationale : peu de matière, laissé court volontairement
   plutôt que gonflé. À enrichir ou à retirer.
 - `waniapi` est un fork de `Hophoet/waniapi` d'après sa page GitHub. Ne jamais le mettre
@@ -75,9 +78,9 @@ industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
   identifiants SMTP n'a jamais été commité dans `PROJECT-API`. Un secret poussé dans Git
   y reste, même supprimé ensuite. Le CV revendique « Sécurité des SI » : c'est le premier
   endroit où ça se vérifie.
-- Nature du projet 04 à confirmer : badge « Réalisation technique » retenu faute de savoir
-  s'il s'agissait d'une commande réelle ou d'un projet encadré. Le nom du dépôt dit
-  « Projet Professionnel », ce qui en contexte scolaire français reste ambigu.
+- Projet 04 : établissement et année de la soutenance à ajouter sous le titre. Les deux
+  autres projets académiques affichent « UTBM, Master 2 A2I · Oct. 2025 - Jan. 2026 ».
+  Le 04 affiche seulement « Projet de soutenance », ce qui détonne. Une ligne suffit.
 - Agile et Scrum : déjà présents sur l'accueil en compétence et dans la mission R&D IA.
   Ne pas les répéter sur la page projets sans un projet précis où le montrer.
 - PMI France et Olympiades du Management de Projet : déjà sur l'accueil, lignes 387-388.
