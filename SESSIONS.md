@@ -60,6 +60,7 @@ industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
 | Projet 04, gestion immobilière | Retenu en format complet : seul projet montrant la conception d'une application métier de bout en bout, ce qui manquait pour un poste SI. Badge « Académique », c'est un projet de soutenance |
 | OffreAPI | Format court en « Autres réalisations ». Le détailler répéterait le projet 04, deuxième back-end Java Spring Boot en couches. Seuls JWT et la doc OpenAPI générée sont retenus, ce sont ses deux apports propres |
 | Texte BH2M | Validé tel quel par Kevo, sans passage par le tuteur |
+| Bénévolat PMI Grand Est | Remplace « Membre actif » au lieu de s'y ajouter : deux lignes auraient dit deux fois la même chose, en plus faible |
 
 **Ouvert**
 
@@ -83,8 +84,13 @@ industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
   Le 04 affiche seulement « Projet de soutenance », ce qui détonne. Une ligne suffit.
 - Agile et Scrum : déjà présents sur l'accueil en compétence et dans la mission R&D IA.
   Ne pas les répéter sur la page projets sans un projet précis où le montrer.
-- PMI France et Olympiades du Management de Projet : déjà sur l'accueil, lignes 387-388.
-  Ne pas dupliquer.
+- PMI : la ligne « Membre actif de PMI France » est devenue « Bénévole PMI France,
+  Project Management Institute, région Grand Est ». Remplacement et non ajout, « bénévole »
+  dit déjà « membre » et vaut plus qu'une adhésion payée. Les Olympiades restent sur la
+  deuxième ligne.
+- L'engagement professionnel (PMI, Olympiades, bénévolat Grand Est) est sur le site mais
+  absent de `CV_Kevo_Amouzou_Industriel.pdf`. Écart connu, à combler côté CV si l'engagement
+  doit compter dans les candidatures.
 - Le rendu n'a pas pu être capturé en image : l'outil de capture du navigateur renvoyait
   des images blanches avec une fenêtre désynchronisée. Vérification faite par le DOM à la
   place, concluante. Un contrôle visuel humain reste à faire.
