@@ -5,6 +5,129 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 007 · 25 août 2026 · Page projets détaillée, orientée recruteurs
+
+**Objectif**
+
+Sortir le détail des projets de l'accueil vers une page dédiée, écrite pour un recruteur
+industriel. Suggestion venue d'un ami : ne pas tout empiler sur une seule page.
+
+**Fait**
+
+- `styles.css` créé : les 462 lignes du bloc `<style>` d'`index.html` extraites en source
+  unique, partagée par les deux pages. Plus de bloc `<style>` inline dans `index.html`.
+- `projets.html` créée, 975 lignes. Sommaire de 7 entrées, puis 6 projets détaillés, un bloc
+  « Autres réalisations », puis un appel au contact. Nav renvoyant vers `index.html#...`,
+  lien de retour à l'accueil.
+- Format identique pour chaque projet : Contexte, Le problème, Ce que j'ai fait,
+  Décisions techniques, Résultat, Transposable à. Le bloc Décisions techniques est le
+  différenciateur : il montre le raisonnement, pas la liste des outils.
+- Badge de nature sur chaque projet : Professionnel, Réalisation technique, Académique.
+- Ancres stables `#bi-dolibarr`, `#chatbot-rag`, `#pipeline-elt`, `#back-end-metier`,
+  `#digital-twin`, `#supply-chain`, `#autres`, pour envoyer à un recruteur le lien d'un
+  seul projet.
+- Projet 04 ajouté, back-end métier Java de gestion immobilière. Retenu pour une raison
+  précise : c'est le seul projet qui montre la conception d'une application métier de bout
+  en bout, découpage par domaine, séparation des couches, gestion des secrets. Les autres
+  montrent la lecture de données, l'IA ou le pipeline, pas la conception applicative.
+- Bloc « Autres réalisations » créé, format court volontaire. OffreAPI y figure, API REST
+  Spring Boot avec Spring Security, JWT, MongoDB et documentation OpenAPI générée.
+- Projet BH2M enrichi avec la matière réelle fournie par Kevo : les 3 processus Offre,
+  SSE et Achats, le taux horaire vendu en moyenne glissante 12 mois, le calendrier fiscal
+  MASE de juillet à juin, l'année fiscale achats d'octobre à septembre, la source de
+  données unique croisant DIGIRISK, tickets et déclarations.
+- Accueil allégé : 3 cartes projets au lieu de 5, lien « Voir le détail » sur chaque carte,
+  bouton vers `projets.html`. Les 2 projets académiques UTBM ne sont plus sur l'accueil.
+- `sitemap.xml`, `sw.js` (`v18`, PRECACHE et ALWAYS_FRESH) et `CLAUDE.md` mis à jour.
+- Règle `.underline` ajoutée : elle était utilisée sur le lien mail du formulaire sans
+  jamais avoir été définie.
+- Vérifié : 0 tiret cadratin, 0 emoji, 5 ancres atteignables et non masquées par la nav
+  fixe, 3 cartes sur l'accueil, numérotation 01/02/03 intacte, aucune erreur console,
+  `styles.css` chargé sur les deux pages.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Structure | Une seule page `projets.html`, pas une page par projet : un seul lien à envoyer, un seul fichier à tenir cohérent avec le CV |
+| CSS | Extrait dans `styles.css`, contre la règle « tout inline » d'avant. Dupliquer 900 lignes de CSS aurait créé exactement le type d'incohérence que le CLAUDE.md cherche à éviter |
+| `styles.css` en network-first | Une version périmée à côté d'un HTML frais afficherait une page nue |
+| Confidentialité BH2M | Méthode publiée, données jamais. Aucun montant, volume, nom de client ou de fournisseur. Note de confidentialité visible en bas du projet |
+| « Indicateur historique qui amalgamait » | Reformulé en « distinction méthodologique alignée sur le référentiel MASE ». La version d'origine disait publiquement que le reporting sécurité d'une PME certifiée était faux |
+| « Performance par acheteur » | Reformulé en « performance achats par portefeuille » : évite la lecture « suivi individuel de salariés » |
+| Chiffre `+35% de performances` | Ajouté, il figure au CV mais pas encore sur le site |
+| Badges de nature | Obligatoires. Un recruteur ne doit jamais découvrir seul qu'un projet était scolaire |
+
+**Ouvert**
+
+- Faire valider le texte BH2M par le tuteur de stage avant mise en ligne. Vérifier aussi
+  la clause de confidentialité de la convention de stage : elle porte sur les données,
+  pas sur la méthode, mais elle doit être lue.
+- Projet 05, logistique internationale : peu de matière, laissé court volontairement
+  plutôt que gonflé. À enrichir ou à retirer.
+- `waniapi` est un fork de `Hophoet/waniapi` d'après sa page GitHub. Ne jamais le mettre
+  en lien : un recruteur qui clique voit « forked from » en haut de page. Le dépôt lié pour
+  la gestion immobilière est `Projet-Professionnel-Gestion-_Immobiliere`.
+- `PROJECT-API` annonce une licence MIT dans son README mais aucun fichier `LICENSE` n'est
+  visible dans le dépôt. Et son README indique « en développement actif, juin 2026 » alors
+  qu'on est fin août. Deux détails qu'un relecteur technique peut remarquer.
+- Vérifier qu'aucun `application.properties` contenant un vrai secret JWT ou de vrais
+  identifiants SMTP n'a jamais été commité dans `PROJECT-API`. Un secret poussé dans Git
+  y reste, même supprimé ensuite. Le CV revendique « Sécurité des SI » : c'est le premier
+  endroit où ça se vérifie.
+- Nature du projet 04 à confirmer : badge « Réalisation technique » retenu faute de savoir
+  s'il s'agissait d'une commande réelle ou d'un projet encadré. Le nom du dépôt dit
+  « Projet Professionnel », ce qui en contexte scolaire français reste ambigu.
+- Agile et Scrum : déjà présents sur l'accueil en compétence et dans la mission R&D IA.
+  Ne pas les répéter sur la page projets sans un projet précis où le montrer.
+- PMI France et Olympiades du Management de Projet : déjà sur l'accueil, lignes 387-388.
+  Ne pas dupliquer.
+- Le rendu n'a pas pu être capturé en image : l'outil de capture du navigateur renvoyait
+  des images blanches avec une fenêtre désynchronisée. Vérification faite par le DOM à la
+  place, concluante. Un contrôle visuel humain reste à faire.
+
+---
+
+## Session 006 · 21 août 2026 · Profil APEC aligné sur le CV industriel
+
+**Objectif**
+
+Mettre le profil APEC en cohérence avec `CV_Kevo_Amouzou_Industriel.pdf` et `index.html`.
+
+**Fait**
+
+- Audit du profil APEC à partir d'une capture : titre, objectif professionnel, expériences,
+  formations, compétences, souhaits, projets.
+- Contenu de remplacement rédigé champ par champ, uniquement à partir du CV, dans
+  `.archive/apec-a-coller-2026-08-21.md`, hors dépôt.
+- Écarts relevés côté APEC : « Chef de Projet Informatique » dans le titre, objectif
+  professionnel visant trois métiers absents du site, « Master Supply Chain » inexistant,
+  mission Ingénieur R&D IA manquante, BH2M sans description et daté juin au lieu de juillet,
+  « Master Computer Science » au lieu de l'intitulé français, UTBM absent des deux formations.
+- Vérification des dates de la mission IA : `index.html:1025` affiche déjà `Oct. 2025 - Jan. 2026`,
+  identique au CV. Aucune modification du site nécessaire.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Dates de la mission IA | Site et CV déjà alignés sur Oct. 2025 - Jan. 2026, point clos |
+| Nom du projet jumeau numérique | « Digital Supply Chain Twin », nom du CV et du site, retenu partout |
+| Troisième projet du CV | Non publié sur l'APEC, son dépôt n'est pas public |
+| Titre APEC | « Ingénieur Digitalisation Industrielle et SI », sans « Chef de Projet » |
+
+**Ouvert**
+
+- Le point « Écart de dates entre le site et le CV » ouvert en session 003 est clos : il ne
+  correspondait plus à l'état de `index.html`.
+- Le dépôt GitHub `SC_Resilience_Twin` porte un nom différent du titre affiché sur le site et
+  le CV, « Digital Supply Chain Twin ». Renommer le dépôt ou l'assumer.
+- Profil LinkedIn toujours à vérifier, mêmes écarts possibles que sur l'APEC.
+- Fourchette de salaire à trancher sur l'APEC, « À négocier » exclut le profil des recherches
+  filtrées.
+
+---
+
 ## Session 005 · 19 août 2026 · Loxya ajouté à la stack BH2M
 
 **Objectif**

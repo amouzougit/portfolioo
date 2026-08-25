@@ -32,470 +32,7 @@
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
 
-    <style>
-        /* ══ UTILITAIRES ══ (remplace Tailwind CDN, uniquement les classes utilisees) */
-        :root {
-            --accent: #0F4C81;
-            --ink: #1A2233;
-            --secondary: #5A6478;
-            --line: #E4E7EC;
-            --mist: #EFEFEA;
-            --page: #F7F7F4;
-            --ring-color: var(--accent);
-            --ring-offset: 0px;
-            --ring-offset-color: var(--page);
-            --rw: 0px;
-        }
-
-        /* mise en page */
-        .relative { position: relative; }
-        .absolute { position: absolute; }
-        .fixed { position: fixed; }
-        .inset-0 { inset: 0; }
-        .top-1\.5 { top: 0.375rem; }
-        .-left-\[43px\] { left: -43px; }
-        .z-10 { z-index: 10; }
-        .z-50 { z-index: 50; }
-        .hidden { display: none; }
-        .flex { display: flex; }
-        .inline-flex { display: inline-flex; }
-        .grid { display: grid; }
-        .flex-col { flex-direction: column; }
-        .flex-wrap { flex-wrap: wrap; }
-        .items-center { align-items: center; }
-        .items-start { align-items: flex-start; }
-        .items-end { align-items: flex-end; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .shrink-0 { flex-shrink: 0; }
-        .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-        .overflow-hidden { overflow: hidden; }
-        .min-h-screen { min-height: 100vh; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .order-1 { order: 1; }
-        .order-2 { order: 2; }
-
-        /* dimensions */
-        .w-full { width: 100%; }
-        .w-2 { width: 0.5rem; }
-        .w-4 { width: 1rem; }
-        .w-9 { width: 2.25rem; }
-        .w-72 { width: 18rem; }
-        .h-full { height: 100%; }
-        .h-1 { height: 0.25rem; }
-        .h-2 { height: 0.5rem; }
-        .h-4 { height: 1rem; }
-        .h-9 { height: 2.25rem; }
-        .h-20 { height: 5rem; }
-        .h-72 { height: 18rem; }
-        .max-w-md { max-width: 28rem; }
-        .max-w-lg { max-width: 32rem; }
-        .max-w-xl { max-width: 36rem; }
-        .max-w-2xl { max-width: 42rem; }
-        .max-w-3xl { max-width: 48rem; }
-        .max-w-5xl { max-width: 64rem; }
-        .max-w-6xl { max-width: 72rem; }
-        .max-w-7xl { max-width: 80rem; }
-
-        /* espacements */
-        .gap-1\.5 { gap: 0.375rem; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-3 { gap: 0.75rem; }
-        .gap-4 { gap: 1rem; }
-        .gap-5 { gap: 1.25rem; }
-        .gap-6 { gap: 1.5rem; }
-        .gap-8 { gap: 2rem; }
-        .gap-16 { gap: 4rem; }
-        .p-1 { padding: 0.25rem; }
-        .p-2 { padding: 0.5rem; }
-        .p-6 { padding: 1.5rem; }
-        .p-8 { padding: 2rem; }
-        .px-1 { padding-left: .25rem; padding-right: .25rem; }
-        .px-2 { padding-left: .5rem; padding-right: .5rem; }
-        .px-3 { padding-left: .75rem; padding-right: .75rem; }
-        .px-4 { padding-left: 1rem; padding-right: 1rem; }
-        .px-5 { padding-left: 1.25rem; padding-right: 1.25rem; }
-        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-        .px-8 { padding-left: 2rem; padding-right: 2rem; }
-        .py-0\.5 { padding-top: .125rem; padding-bottom: .125rem; }
-        .py-1 { padding-top: .25rem; padding-bottom: .25rem; }
-        .py-1\.5 { padding-top: .375rem; padding-bottom: .375rem; }
-        .py-2\.5 { padding-top: .625rem; padding-bottom: .625rem; }
-        .py-3\.5 { padding-top: .875rem; padding-bottom: .875rem; }
-        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
-        .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-        .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
-        .pt-4 { padding-top: 1rem; }
-        .pt-6 { padding-top: 1.5rem; }
-        .pt-20 { padding-top: 5rem; }
-        .pl-4 { padding-left: 1rem; }
-        .pl-10 { padding-left: 2.5rem; }
-        .ml-5 { margin-left: 1.25rem; }
-        .mb-0\.5 { margin-bottom: .125rem; }
-        .mb-1 { margin-bottom: .25rem; }
-        .mb-2 { margin-bottom: .5rem; }
-        .mb-3 { margin-bottom: .75rem; }
-        .mb-4 { margin-bottom: 1rem; }
-        .mb-5 { margin-bottom: 1.25rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mb-8 { margin-bottom: 2rem; }
-        .mb-12 { margin-bottom: 3rem; }
-        .mb-14 { margin-bottom: 3.5rem; }
-        .mb-16 { margin-bottom: 4rem; }
-        .mb-20 { margin-bottom: 5rem; }
-        .mt-0\.5 { margin-top: .125rem; }
-        .mt-5 { margin-top: 1.25rem; }
-        .mt-8 { margin-top: 2rem; }
-        .mt-12 { margin-top: 3rem; }
-        .space-y-2 > * + * { margin-top: .5rem; }
-        .space-y-3 > * + * { margin-top: .75rem; }
-        .space-y-12 > * + * { margin-top: 3rem; }
-
-        /* typographie */
-        .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .font-display { font-family: 'Clash Display', sans-serif; }
-        .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-        .font-medium { font-weight: 500; }
-        .font-semibold { font-weight: 600; }
-        .font-bold { font-weight: 700; }
-        .text-\[10px\] { font-size: 10px; }
-        .text-xs { font-size: .75rem; line-height: 1rem; }
-        .text-sm { font-size: .875rem; line-height: 1.25rem; }
-        .text-base { font-size: 1rem; line-height: 1.5rem; }
-        .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
-        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
-        .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
-        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-        .text-center { text-align: center; }
-        .leading-tight { line-height: 1.25; }
-        .leading-relaxed { line-height: 1.625; }
-        .leading-\[1\.08\] { line-height: 1.08; }
-        .tracking-tight { letter-spacing: -0.025em; }
-        .tracking-wide { letter-spacing: 0.025em; }
-        .tracking-wider { letter-spacing: 0.05em; }
-        .sr-only {
-            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
-        }
-
-        /* couleurs de texte */
-        .text-ink { color: var(--ink); }
-        .text-ink\/70 { color: rgba(26,34,51,0.7); }
-        .text-secondary { color: var(--secondary); }
-        .text-accent { color: var(--accent); }
-        .text-dark { color: var(--page); }
-        .text-blue-700 { color: #1D4ED8; }
-        .text-purple-700 { color: #6D28D9; }
-        .text-cyan-700 { color: #0E7490; }
-        .text-emerald-700 { color: #047857; }
-
-        /* fonds */
-        .bg-white { background-color: #FFFFFF; }
-        .bg-mist { background-color: var(--mist); }
-        .bg-accent { background-color: var(--accent); }
-        .bg-accent\/5 { background-color: rgba(15,76,129,0.05); }
-        .bg-accent\/8 { background-color: rgba(15,76,129,0.08); }
-        .bg-accent\/10 { background-color: rgba(15,76,129,0.10); }
-        .bg-secondary\/30 { background-color: rgba(90,100,120,0.30); }
-        .bg-emerald-500 { background-color: #10B981; }
-        .bg-emerald-500\/8 { background-color: rgba(16,185,129,0.08); }
-        .bg-blue-500\/10 { background-color: rgba(59,130,246,0.10); }
-        .bg-purple-500\/10 { background-color: rgba(168,85,247,0.10); }
-        .bg-cyan-500\/10 { background-color: rgba(6,182,212,0.10); }
-
-        /* bordures */
-        .border { border: 1px solid var(--line); }
-        .border-t { border-top: 1px solid var(--line); }
-        .border-l { border-left: 1px solid var(--line); }
-        .border-l-2 { border-left-width: 2px; border-left-style: solid; }
-        .border-l-4 { border-left-width: 4px; border-left-style: solid; }
-        .border-line { border-color: var(--line); }
-        .border-accent { border-color: var(--accent); }
-        .border-accent\/15 { border-color: rgba(15,76,129,0.15); }
-        .border-emerald-500\/30 { border-color: rgba(16,185,129,0.30); }
-        .border-blue-500\/20 { border-color: rgba(59,130,246,0.20); }
-        .border-purple-500\/20 { border-color: rgba(168,85,247,0.20); }
-        .border-cyan-500\/20 { border-color: rgba(6,182,212,0.20); }
-        .border-l-blue-500 { border-left-color: #3B82F6; }
-        .border-l-purple-500 { border-left-color: #A855F7; }
-        .border-l-cyan-500 { border-left-color: #06B6D4; }
-        .rounded { border-radius: .25rem; }
-        .rounded-md { border-radius: .375rem; }
-        .rounded-lg { border-radius: .5rem; }
-        .rounded-xl { border-radius: .75rem; }
-        .rounded-2xl { border-radius: 1rem; }
-        .rounded-3xl { border-radius: 1.5rem; }
-        .rounded-\[2rem\] { border-radius: 2rem; }
-        .rounded-full { border-radius: 9999px; }
-        .ring-2 { box-shadow: 0 0 0 2px var(--page); }
-        .ring-dark { box-shadow: 0 0 0 2px var(--page); }
-
-        /* effets */
-        .object-cover { object-fit: cover; }
-        .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(20,35,65,0.25); }
-        .opacity-10 { opacity: 0.1; }
-        .blur-\[110px\] { filter: blur(110px); }
-        .resize-none { resize: none; }
-        .transition-colors { transition: color .2s ease, background-color .2s ease, border-color .2s ease; }
-        .transition-all { transition: all .2s ease; }
-        .duration-200 { transition-duration: .2s; }
-        .duration-700 { transition-duration: .7s; }
-        .animate-pulse { animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite; }
-        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
-
-        /* etats */
-        .hover\:bg-accent:hover { background-color: var(--accent); }
-        .hover\:bg-ink:hover { background-color: var(--ink); }
-        .hover\:bg-mist:hover { background-color: var(--mist); }
-        .hover\:text-accent:hover { color: var(--accent); }
-        .hover\:text-ink:hover { color: var(--ink); }
-        .hover\:text-dark:hover { color: var(--page); }
-        .hover\:border-accent:hover { border-color: var(--accent); }
-        .focus\:outline-none:focus { outline: none; }
-        .focus\:ring-1:focus { --rw: 1px; }
-        .focus\:ring-2:focus { --rw: 2px; }
-        .focus\:ring-1:focus, .focus\:ring-2:focus {
-            box-shadow: 0 0 0 var(--ring-offset) var(--ring-offset-color),
-                        0 0 0 calc(var(--ring-offset) + var(--rw)) var(--ring-color);
-        }
-        .focus\:ring-accent:focus { --ring-color: var(--accent); }
-        .focus\:ring-ink:focus { --ring-color: var(--ink); }
-        .focus\:ring-offset-2:focus { --ring-offset: 2px; }
-        .focus\:ring-offset-dark:focus { --ring-offset-color: var(--page); }
-
-        /* interlignage : declare apres les tailles pour primer, comme dans Tailwind */
-        .leading-tight { line-height: 1.25; }
-        .leading-relaxed { line-height: 1.625; }
-        .leading-\[1\.08\] { line-height: 1.08; }
-
-        /* points de rupture */
-        @media (min-width: 640px) {
-            .sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-        }
-        @media (min-width: 768px) {
-            .md\:flex { display: flex; }
-            .md\:hidden { display: none; }
-            .md\:flex-row { flex-direction: row; }
-            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-            .md\:text-5xl { font-size: 3rem; line-height: 1; }
-        }
-        @media (min-width: 1024px) {
-            .lg\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-            .lg\:order-1 { order: 1; }
-            .lg\:order-2 { order: 2; }
-            .lg\:justify-end { justify-content: flex-end; }
-            .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
-            .lg\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
-            .lg\:text-\[64px\] { font-size: 64px; }
-            .lg\:w-\[380px\] { width: 380px; }
-            .lg\:h-\[380px\] { height: 380px; }
-        }
-
-        /* ── BASE ── */
-        .hero-text, .hero-img { animation: fadeIn 0.3s ease-out both; }
-        .hero-img { animation-delay: 0.08s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-
-        /* ── RESET (equivalent du preflight Tailwind) ── */
-        h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: inherit; }
-        a { color: inherit; text-decoration: none; }
-        ul, ol { list-style: none; }
-        img, svg, video, canvas { display: block; max-width: 100%; height: auto; }
-        button, input, textarea, select { font: inherit; color: inherit; background: none; border: 0; }
-        button { cursor: pointer; }
-        b, strong { font-weight: 600; }
-        table { border-collapse: collapse; }
-
-        body {
-            background-color: #F7F7F4;
-            color: #1A2233;
-            overflow-x: hidden;
-            font-family: 'General Sans', sans-serif;
-        }
-
-        /* ── NAV ── */
-        .glass-nav {
-            background: rgba(247, 247, 244, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid #E4E7EC;
-        }
-        .nav-link {
-            position: relative;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #5A6478;
-            transition: color 0.2s;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 8px;
-            width: 0; height: 1.5px;
-            background: #0F4C81;
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover, .nav-link.is-active { color: #1A2233; }
-        .nav-link.is-active::after, .nav-link:hover::after { width: calc(100% - 16px); }
-
-        /* ── CARDS ── */
-        .glass-card {
-            background: #FFFFFF;
-            border: 1px solid #E4E7EC;
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-        }
-        .glass-card:hover {
-            border-color: #CFD6E0;
-            box-shadow: 0 6px 16px -8px rgba(20,35,65,0.18);
-            transform: translateY(-2px);
-        }
-
-        /* ── GRADIENT TEXTE ── */
-        .text-accent-gradient { color: #0F4C81; }
-
-        /* ── SCROLLBAR ── */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #ECECE6; }
-        ::-webkit-scrollbar-thumb { background: #C7CEDA; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #0F4C81; }
-
-        /* ── STAT CARDS ── */
-        .stat-card {
-            background: rgba(15,76,129,0.05);
-            border: 1px solid rgba(15,76,129,0.16);
-            border-radius: 16px;
-            padding: 16px 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative; overflow: hidden;
-        }
-        .stat-card::before {
-            content: '';
-            position: absolute; inset: 0;
-            background: rgba(15,76,129,0.05);
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .stat-card:hover { border-color: rgba(15,76,129,0.4); transform: translateY(-3px); }
-        .stat-card:hover::before { opacity: 1; }
-
-        /* ── CERTIF ORACLE ── */
-        .cert-badge {
-            background: rgba(220,38,38,0.05);
-            border: 1px solid rgba(220,38,38,0.22);
-            border-radius: 14px; padding: 14px 16px;
-            display: flex; align-items: center; gap: 12px;
-            transition: all 0.3s ease;
-        }
-        .cert-badge:hover {
-            border-color: rgba(220,38,38,0.45);
-            background: rgba(220,38,38,0.09);
-            transform: translateY(-2px);
-        }
-
-        /* ── TIMELINE ── */
-        .timeline-dot-active {
-            box-shadow: 0 0 0 4px #F7F7F4, 0 0 14px rgba(15,76,129,0.55);
-        }
-
-        /* ── SKILL TAG ── */
-        .skill-tag {
-            font-size: 11px; padding: 4px 11px; border-radius: 6px;
-            background: rgba(15,76,129,0.06);
-            border: 1px solid rgba(15,76,129,0.16);
-            color: #33405A;
-            display: inline-block; margin: 3px;
-            transition: all 0.2s ease;
-        }
-        .skill-tag:hover {
-            background: rgba(15,76,129,0.12);
-            color: #0F4C81; border-color: rgba(15,76,129,0.35);
-            transform: translateY(-1px);
-        }
-
-        /* ── HERO OVERLAY ── */
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 75% 20%, rgba(15,76,129,0.10), transparent 55%),
-                        radial-gradient(circle at 20% 85%, rgba(124,58,237,0.08), transparent 55%);
-            z-index: 1;
-            pointer-events: none;
-        }
-        /* ── IMPACT BADGE ── */
-        .impact-badge {
-            background: rgba(15,76,129,0.06);
-            border: 1px solid rgba(15,76,129,0.16);
-            border-radius: 8px; padding: 6px 10px;
-            font-size: 11px; color: #0F4C81; font-weight: 600;
-        }
-
-        /* ── MOBILE NAV ── */
-        .mobile-menu { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); }
-
-        /* ── SECTION NUM ── */
-        .section-num {
-            font-family: 'Clash Display', sans-serif;
-            font-size: 11px; font-weight: 700;
-            letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(15,76,129,0.85);
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        /* ── SCROLL TO TOP ── */
-        #scroll-top {
-            position: fixed; bottom: 32px; right: 32px;
-            width: 46px; height: 46px;
-            background: rgba(15,76,129,0.08);
-            border: 1px solid rgba(15,76,129,0.25);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            color: #0F4C81; cursor: pointer;
-            opacity: 0; pointer-events: none;
-            transition: all 0.35s ease;
-            z-index: 200;
-            backdrop-filter: blur(8px);
-        }
-        #scroll-top.is-visible { opacity: 1; pointer-events: auto; }
-        #scroll-top:hover { background: rgba(15,76,129,0.16); transform: translateY(-4px); }
-
-        /* ── GLOW BUTTON ── */
-        .btn-glow { transition: background 0.2s ease; }
-
-        /* ── FORM ── */
-        .form-field {
-            width: 100%;
-            background: #FFFFFF;
-            border: 1px solid #D8DEE8;
-            border-radius: 12px; padding: 14px 16px;
-            font-size: 14px; color: #1A2233;
-            font-family: 'General Sans', sans-serif;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            outline: none;
-        }
-        .form-field::placeholder { color: rgba(90,100,120,0.6); }
-        .form-field:focus {
-            border-color: rgba(15,76,129,0.55);
-            box-shadow: 0 0 0 3px rgba(15,76,129,0.12);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/styles.css">
 
     <!-- ─── JSON-LD SCHEMA ─── -->
     <script type="application/ld+json">
@@ -870,11 +407,11 @@
                 <div>
                     <span class="section-num">03 · Projets</span>
                     <h2 class="font-display text-3xl lg:text-4xl font-bold mb-3">Projets Réalisés</h2>
-                    <p class="text-secondary max-w-md text-base">Réalisations professionnelles en digitalisation industrielle, méthodes et pilotage par la donnée.</p>
+                    <p class="text-secondary max-w-md text-base">Réalisations professionnelles en digitalisation industrielle, méthodes et pilotage par la donnée. Le détail complet, avec les décisions techniques, est sur la page projets.</p>
                 </div>
-                <a href="https://github.com/amouzougit" target="_blank" rel="noopener noreferrer"
-                   class="text-accent hover:text-ink transition-colors flex items-center gap-2 text-sm font-semibold shrink-0 focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1" aria-label="Voir mon GitHub (nouvelle fenêtre)">
-                    Voir mon GitHub <i class="ph ph-arrow-up-right" aria-hidden="true"></i>
+                <a href="/projets.html"
+                   class="text-accent hover:text-ink transition-colors flex items-center gap-2 text-sm font-semibold shrink-0 focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">
+                    Voir les 6 projets en détail <i class="ph ph-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
 
@@ -892,7 +429,7 @@
                         <p class="text-sm text-secondary mb-4 leading-relaxed">Modélisation des données de l'ERP, requêtes SQL optimisées et dashboards Metabase sur trois processus métiers : Offre, Achats, SSE. Suivi du carnet de commandes, du taux de transformation des offres et de la rentabilité des affaires, sans ressaisie.</p>
                         <div class="impact-badge mb-4">10+ indicateurs de pilotage sur 3 processus métiers</div>
                         <div class="flex items-center gap-5 pt-4 border-t border-line">
-                            <span class="text-secondary text-xs">Déployé en production chez BH2M, code propriétaire</span>
+                            <a href="/projets.html#bi-dolibarr" class="text-accent hover:text-ink text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1" aria-label="Détail du projet Pilotage BI temps réel sur ERP Dolibarr">Voir le détail <i class="ph ph-arrow-right text-base" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </article>
@@ -910,7 +447,7 @@
                         <p class="text-sm text-secondary mb-4 leading-relaxed">Chatbot développé de bout en bout : Flask, API REST, Retrieval-Augmented Generation et base vectorielle Pinecone, connecté à une base de connaissances propriétaire. Refonte applicative associée en Angular et Spring Boot.</p>
                         <div class="impact-badge mb-4">500+ utilisateurs finaux · 40% de code dupliqué en moins</div>
                         <div class="flex items-center gap-5 pt-4 border-t border-line">
-                            <span class="text-secondary text-xs">Mission en remote pour un client au Canada, base de connaissances propriétaire</span>
+                            <a href="/projets.html#chatbot-rag" class="text-accent hover:text-ink text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1" aria-label="Détail du projet Chatbot GenAI en production">Voir le détail <i class="ph ph-arrow-right text-base" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </article>
@@ -928,43 +465,19 @@
                         <p class="text-sm text-secondary mb-4 leading-relaxed">Pipeline ELT conteneurisé : orchestration Airflow, transformations dbt, entrepôt PostgreSQL, intégration d'APIs temps réel et data marts analytiques. Contrôles qualité dbt et tests unitaires pytest, monitoring et alertes.</p>
                         <div class="impact-badge mb-4">600k+ lignes traitées par mois · Contrôles qualité automatisés</div>
                         <div class="flex items-center gap-5 pt-4 border-t border-line">
-                            <a href="https://github.com/amouzougit/urban-mobility-analytics" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-ink text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1" aria-label="Code source du projet Pipeline de données industriel, Airflow et dbt"><i class="ph ph-github-logo text-base" aria-hidden="true"></i> Voir le code</a>
+                            <a href="/projets.html#pipeline-elt" class="text-accent hover:text-ink text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1" aria-label="Détail du projet Pipeline de données industriel">Voir le détail <i class="ph ph-arrow-right text-base" aria-hidden="true"></i></a>
+                            <a href="https://github.com/amouzougit/urban-mobility-analytics" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1" aria-label="Code source du projet Pipeline de données industriel (nouvelle fenêtre)"><i class="ph ph-github-logo text-base" aria-hidden="true"></i> Code</a>
                         </div>
                     </div>
                 </article>
-                <article class="project-card glass-card rounded-2xl overflow-hidden">
-                    <div class="h-1 w-full bg-accent" aria-hidden="true"></div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-1.5 mb-3">
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Supply chain</span>
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Analyse de coûts</span>
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Gestion des risques</span>
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Planification industrielle</span>
-                        </div>
-                        <h3 class="font-display text-lg font-bold mb-2 text-ink">Projet logistique international : optimisation supply chain</h3>
-                        <p class="text-sm text-secondary mb-4 leading-relaxed">Analyse des coûts, des risques et planification industrielle dans un contexte international. Projet mené dans le cadre du Master A2I à l'UTBM.</p>
-                        <div class="flex items-center gap-5 pt-4 border-t border-line">
-                            <span class="text-secondary text-xs">Projet académique · UTBM · Oct. 2025 - Fév. 2026</span>
-                        </div>
-                    </div>
-                </article>
-                <article class="project-card glass-card rounded-2xl overflow-hidden">
-                    <div class="h-1 w-full bg-accent" aria-hidden="true"></div>
-                    <div class="p-6">
-                        <div class="flex flex-wrap gap-1.5 mb-3">
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Python</span>
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">SimPy</span>
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Simulation à événements discrets</span>
-                        <span class="text-[10px] font-bold px-2 py-1 rounded-md bg-accent/8 text-accent border border-accent/15">Jumeau numérique</span>
-                        </div>
-                        <h3 class="font-display text-lg font-bold mb-2 text-ink">Digital Supply Chain Twin, Python et SimPy</h3>
-                        <p class="text-sm text-secondary mb-4 leading-relaxed">Jumeau numérique de chaîne logistique en simulation à événements discrets. Analyse de la propagation des ruptures et des indicateurs TTR et TTS, pour éclairer la planification industrielle.</p>
-                        <div class="flex items-center gap-5 pt-4 border-t border-line">
-                            <span class="text-secondary text-xs">Projet académique · UTBM · Oct. 2025 - Jan. 2026</span>
-                            <a href="https://github.com/amouzougit/SC_Resilience_Twin" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-ink text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1" aria-label="Code source du projet Digital Supply Chain Twin"><i class="ph ph-github-logo text-base" aria-hidden="true"></i> Voir le code</a>
-                        </div>
-                    </div>
-                </article>
+            </div>
+
+            <!-- Les 2 projets academiques UTBM ne sont plus sur l'accueil : ils sont sur projets.html. -->
+            <div class="mt-12 text-center">
+                <a href="/projets.html" class="px-8 py-4 rounded-full bg-accent text-dark font-bold text-sm btn-glow hover:bg-ink inline-flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                    Voir les 6 projets en détail <i class="ph ph-arrow-right" aria-hidden="true"></i>
+                </a>
+                <p class="text-xs text-secondary mt-4">Contexte, problème, décisions techniques et résultats, projet par projet.</p>
             </div>
         </div>
     </section>

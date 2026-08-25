@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets en détail | Kevo Amouzou, Digitalisation Industrielle & SI</title>
+    <meta name="description" content="Six projets détaillés : contexte, problème, décisions techniques et résultats. Business Intelligence sur ERP Dolibarr, chatbot RAG en production, pipeline ELT Airflow et dbt, simulation de résilience logistique.">
+    <meta name="keywords" content="Kevo Amouzou, projets, Metabase, ERP Dolibarr, SQL, MASE, Business Intelligence industrielle, RAG, Airflow, dbt, SimPy, supply chain, Belfort">
+    <meta property="og:title" content="Projets en détail | Kevo Amouzou">
+    <meta property="og:description" content="Contexte, problème, décisions techniques et résultats. Six projets de digitalisation industrielle, de pilotage par la donnée et de conception applicative.">
+    <meta property="og:image" content="https://keen-selkie-a72fc7.netlify.app/images/kevo.jpeg">
+    <meta property="og:image:alt" content="Kevo Amouzou - Portrait professionnel">
+    <meta property="og:url" content="https://keen-selkie-a72fc7.netlify.app/projets.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Projets en détail | Kevo Amouzou">
+    <meta name="twitter:description" content="Contexte, problème, décisions techniques et résultats sur cinq projets de digitalisation industrielle.">
+    <meta name="twitter:image" content="https://keen-selkie-a72fc7.netlify.app/images/kevo.jpeg">
+    <meta name="theme-color" content="#F7F7F4">
+    <link rel="canonical" href="https://keen-selkie-a72fc7.netlify.app/projets.html">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="./images/icon-192.png">
+    <link rel="apple-touch-icon" href="./images/icon-512.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Kevo Amouzou">
+
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <link rel="stylesheet" href="/styles.css">
+
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+</head>
+
+<body class="antialiased">
+
+    <!-- ─── SCROLL TO TOP ─── -->
+    <button id="scroll-top" aria-label="Retour en haut de la page" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="ph ph-arrow-up text-base" aria-hidden="true"></i>
+    </button>
+
+    <!-- ─────────────── NAV ─────────────── -->
+    <!-- Les liens ramenent sur index.html : cette page est une annexe, pas un site parallele. -->
+    <nav class="fixed w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="/" class="font-display font-bold text-2xl tracking-tight hover:text-accent transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent rounded px-1" aria-label="Accueil">
+                    KEVO<span class="text-accent">.</span>
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="/index.html#about" class="nav-link">À propos</a>
+                    <a href="/index.html#skills" class="nav-link">Compétences</a>
+                    <a href="/projets.html" class="nav-link is-active" aria-current="page">Projets</a>
+                    <a href="/index.html#experience" class="nav-link">Parcours</a>
+                    <a href="/index.html#contact" class="px-5 py-2.5 rounded-full border border-line bg-white hover:bg-accent hover:text-dark hover:border-accent transition-all text-sm font-bold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                        Me contacter
+                    </a>
+                </div>
+                <button id="menu-toggle" class="md:hidden p-2 text-secondary hover:text-ink focus:outline-none focus:ring-2 focus:ring-accent rounded" aria-expanded="false" aria-controls="mobile-menu" aria-label="Basculer le menu">
+                    <i class="ph ph-list text-2xl" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" hidden class="mobile-menu md:hidden border-t border-line px-6 py-6 flex flex-col gap-5">
+            <a href="/index.html#about" class="text-sm font-medium text-secondary hover:text-ink focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">À propos</a>
+            <a href="/index.html#skills" class="text-sm font-medium text-secondary hover:text-ink focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Compétences</a>
+            <a href="/projets.html" class="text-sm font-medium text-ink focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1" aria-current="page">Projets</a>
+            <a href="/index.html#experience" class="text-sm font-medium text-secondary hover:text-ink focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Parcours</a>
+            <a href="/index.html#contact" class="text-sm font-bold text-accent focus:outline-none focus:ring-2 focus:ring-accent rounded px-2 py-1">Me contacter →</a>
+        </div>
+    </nav>
+
+    <!-- ─────────────── EN-TETE ─────────────── -->
+    <header class="pt-20">
+        <div class="max-w-4xl mx-auto px-6 py-16">
+            <a href="/" class="text-sm text-secondary hover:text-accent transition-colors inline-flex items-center gap-2 mb-8 focus:outline-none focus:ring-2 focus:ring-accent rounded px-1 py-1">
+                <i class="ph ph-arrow-left text-base" aria-hidden="true"></i> Retour à l'accueil
+            </a>
+            <span class="section-num">Projets en détail</span>
+            <h1 class="font-display text-4xl lg:text-[64px] font-bold leading-tight mb-6">Ce que j'ai fait,<br>et pourquoi je l'ai fait ainsi</h1>
+            <p class="text-secondary text-base leading-relaxed max-w-2xl mb-4">
+                Six projets, tous décrits selon le même plan : le contexte, le problème réel, ce que j'ai fait,
+                les décisions techniques que j'ai prises et ce qu'elles ont donné. Le bloc des décisions est
+                celui qui compte : il montre le raisonnement, pas seulement la liste des outils.
+            </p>
+            <p class="text-secondary text-sm leading-relaxed max-w-2xl">
+                Chaque projet porte la mention de sa nature, professionnelle, technique ou académique.
+                Rien n'est présenté pour autre chose que ce qu'il est.
+            </p>
+        </div>
+    </header>
+
+    <!-- ─────────────── SOMMAIRE ─────────────── -->
+    <section class="bg-mist py-16" aria-labelledby="sommaire-titre">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 id="sommaire-titre" class="font-display text-xl font-bold mb-6">Sommaire</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                <a href="#bi-dolibarr" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">01</span>
+                    <span class="toc-title">Pilotage de la performance par indicateurs, ERP Dolibarr et Metabase</span>
+                </a>
+                <a href="#chatbot-rag" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">02</span>
+                    <span class="toc-title">Chatbot GenAI en production, architecture RAG</span>
+                </a>
+                <a href="#pipeline-elt" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">03</span>
+                    <span class="toc-title">Pipeline de données industriel, Airflow et dbt</span>
+                </a>
+                <a href="#back-end-metier" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">04</span>
+                    <span class="toc-title">Back-end métier en microservice Java, gestion immobilière</span>
+                </a>
+                <a href="#digital-twin" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">05</span>
+                    <span class="toc-title">Digital Supply Chain Twin, Python et SimPy</span>
+                </a>
+                <a href="#supply-chain" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">06</span>
+                    <span class="toc-title">Projet logistique international, optimisation supply chain</span>
+                </a>
+                <a href="#autres" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">+</span>
+                    <span class="toc-title">Autres réalisations : le reste du code</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────── PROJETS ─────────────── -->
+    <main class="max-w-4xl mx-auto px-6">
+
+        <!-- ══ 01 · BH2M ══ -->
+        <article id="bi-dolibarr" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">01</span>
+                <span class="nature-badge nature-pro">Professionnel</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Pilotage de la performance par indicateurs, ERP Dolibarr et Metabase</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">BH2M, Belfort · Fév. 2026 - Juil. 2026 · Assistant Chef de Projet Digitalisation Industrielle et SI</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">MySQL / MariaDB</span>
+                <span class="skill-tag">Metabase</span>
+                <span class="skill-tag">ERP Dolibarr</span>
+                <span class="skill-tag">DIGIRISK</span>
+                <span class="skill-tag">Référentiel MASE</span>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        BH2M est un bureau d'études en conception et rénovation d'alternateurs hydroélectriques
+                        jusqu'à 400 MW. PME créée en 2021 pour reprendre l'expertise de la division Hydro de
+                        General Electric à Belfort, certifiée ISO 9001 depuis décembre 2023. J'y suis Assistant
+                        Chef de Projet Digitalisation Industrielle et SI, en stage de fin d'études de 6 mois.
+                        Ma mission : concevoir et déployer les tableaux de bord de pilotage connectés à l'ERP
+                        Dolibarr, sur trois processus métiers, Offre commerciale, SSE et Achats.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Les données de gestion vivaient dans l'ERP, mais les indicateurs de pilotage se
+                        construisaient à côté, dans des fichiers alimentés à la main. Pas de source unique :
+                        selon le fichier ouvert, deux personnes pouvaient donner deux réponses différentes
+                        à la même question.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+
+                    <div class="mb-6">
+                        <span class="detail-sub">Processus Offre commerciale</span>
+                        <ul class="space-y-2 list-arrow">
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Suivi des offres fermes par trimestre et par type de projet, en montant et en volume.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Suivi des commandes clients par trimestre, en montant et en nombre.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Backlog des offres fermes en attente de décision, avec snapshots automatiques.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Calcul du taux horaire vendu, montant facturé rapporté aux heures vendues, avec
+                                suivi trimestriel et moyenne glissante sur 12 mois. Industrialisation d'un calcul
+                                de rentabilité jusque-là réalisé manuellement.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="detail-sub">Processus SSE, référentiel MASE</span>
+                        <ul class="space-y-2 list-arrow">
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Modélisation d'une source de données unique croisant les tâches DIGIRISK,
+                                les tickets SSE et les déclarations.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Répartition des tickets par famille et par catégorie.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Indicateur de tickets ouverts sur 12 mois glissants, calé sur le calendrier
+                                fiscal MASE, de juillet à juin.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Distinction méthodologique entre accidents déclarés, situations dangereuses
+                                signalées et actions correctives associées, alignée sur le référentiel MASE.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <span class="detail-sub">Processus Achats</span>
+                        <ul class="space-y-2 list-arrow">
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Cartes de pilotage : commandes en cours, commandes en retard, montant engagé.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Tableau de bord synthétique sur l'année fiscale, d'octobre à septembre.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Analyse fournisseurs : top 10, délais de livraison prévus, performance achats
+                                par portefeuille.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Alignement des statuts de commande sur la nomenclature exacte de Dolibarr.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Décisions techniques</span>
+                    <div class="space-y-5">
+                        <div class="decision">
+                            <span class="decision-title">Une source de données unique pour le SSE, plutôt que trois requêtes séparées.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Croiser DIGIRISK, les tickets et les déclarations dans un même modèle. Sans cela,
+                                chaque graphique raconte sa propre histoire et le pilotage devient indéfendable
+                                en audit.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Des fenêtres glissantes calées sur les calendriers fiscaux réels, pas sur l'année civile.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Le SSE se pilote sur le calendrier MASE, de juillet à juin, les achats sur
+                                l'année fiscale, d'octobre à septembre. Un indicateur juste posé sur le mauvais
+                                calendrier est un indicateur inutilisable en revue de direction.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Fidélité stricte à la sémantique de l'ERP.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Nomenclature exacte des statuts Dolibarr, et séparation nette entre date de
+                                livraison prévue et date réelle. Un indicateur qui réinterprète sa source finit
+                                toujours par mentir, et personne n'a à maintenir une table de correspondance
+                                parallèle quand l'ERP évolue.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que ça démontre</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Traduire un besoin métier exprimé à l'oral ou sur papier en spécification technique.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            SQL avancé : sous-requêtes corrélées, fenêtres temporelles glissantes, agrégations
+                            multi-niveaux.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Fiabiliser une donnée : repérer un indicateur trompeur avant qu'il ne serve à décider.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Choisir la représentation selon le message à faire passer, pas selon l'habitude.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Intégrer un référentiel réglementaire, ici MASE, directement dans le pilotage.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Résultat</span>
+                    <div class="impact-badge mb-4">10+ indicateurs de pilotage sur 3 processus métiers</div>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Indicateurs alimentés directement par l'ERP, sans ressaisie. Déployé en production
+                        chez BH2M, code propriétaire.
+                    </p>
+                </div>
+
+                <div class="transpo-box">
+                    <span class="detail-label">Transposable à</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        La même démarche s'applique sur SAP ou Oracle Fusion, et sur des processus Production,
+                        Maintenance ou Qualité. Le référentiel change, la méthode non.
+                    </p>
+                </div>
+
+                <p class="confid-note">
+                    Aucune donnée, aucun montant, aucun volume et aucun nom de client ou de fournisseur de BH2M
+                    ne figure sur cette page. Seule la méthode de travail est décrite.
+                </p>
+            </div>
+        </article>
+
+        <!-- ══ 02 · CHATBOT RAG ══ -->
+        <article id="chatbot-rag" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">02</span>
+                <span class="nature-badge nature-pro">Professionnel</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Chatbot GenAI en production, architecture RAG</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">Client international, remote · Oct. 2025 - Jan. 2026 · Ingénieur R&amp;D IA</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">GenAI</span>
+                <span class="skill-tag">RAG</span>
+                <span class="skill-tag">Flask</span>
+                <span class="skill-tag">Pinecone</span>
+                <span class="skill-tag">API REST</span>
+                <span class="skill-tag">Angular</span>
+                <span class="skill-tag">Spring Boot</span>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Mission d'Ingénieur R&amp;D IA en remote pour un client international, sur une base de
+                        connaissances propriétaire.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        L'information utile était dispersée dans une base de connaissances interne volumineuse
+                        et cherchée manuellement. Un modèle de langage seul ne répond pas au besoin : il ne
+                        connaît pas les documents internes et produit des réponses plausibles mais fausses.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Développé le chatbot de bout en bout : backend Flask, API REST, interface de dialogue.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Mis en place une architecture RAG, Retrieval-Augmented Generation, adossée à la base
+                            de connaissances propriétaire.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Indexé le corpus dans une base vectorielle Pinecone.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Mené la refonte applicative associée en Angular et Spring Boot.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Décisions techniques</span>
+                    <div class="space-y-5">
+                        <div class="decision">
+                            <span class="decision-title">RAG plutôt que fine-tuning d'un modèle.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Le corpus évolue, et le RAG permet de citer la source de chaque réponse, ce qu'un
+                                modèle affiné ne sait pas faire.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Base vectorielle managée Pinecone.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Pas d'infrastructure de recherche vectorielle à exploiter : la mission portait sur
+                                le produit, pas sur l'hébergement.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">API REST plutôt qu'une intégration directe.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Le chatbot reste découplé des applications qui le consomment, donc réutilisable
+                                ailleurs sans réécriture.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Résultat</span>
+                    <div class="impact-badge mb-4">500+ utilisateurs finaux · 40% de code dupliqué en moins · +35% de performances</div>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Chatbot en production. La refonte applicative associée a réduit le code dupliqué de 40%
+                        et amélioré les performances de 35%. Base de connaissances propriétaire, code non public.
+                    </p>
+                </div>
+
+                <div class="transpo-box">
+                    <span class="detail-label">Transposable à</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        La même architecture s'applique à une documentation technique industrielle, un référentiel
+                        qualité ou un corpus de procédures : partout où la réponse existe déjà mais où personne
+                        ne la retrouve.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══ 03 · PIPELINE ELT ══ -->
+        <article id="pipeline-elt" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">03</span>
+                <span class="nature-badge nature-tech">Réalisation technique</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Pipeline de données industriel, Airflow et dbt</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">Projet personnel · Code source public</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">Airflow</span>
+                <span class="skill-tag">dbt</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">pytest</span>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Projet personnel <span class="font-mono text-xs">urban-mobility-analytics</span>, conçu
+                        comme un pipeline de données industriel complet, de l'ingestion à la restitution analytique.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Intégrer des APIs temps réel, garantir la qualité des données livrées et servir des data
+                        marts analytiques, de façon reproductible et rejouable, sans intervention manuelle entre
+                        deux étapes.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Construit un pipeline ELT conteneurisé de bout en bout.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Orchestré les traitements avec Airflow : dépendances, planification, reprise sur erreur.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Écrit les transformations en dbt vers un entrepôt PostgreSQL.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Intégré des APIs temps réel et modélisé des data marts analytiques.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Mis en place des contrôles qualité dbt, des tests unitaires pytest, du monitoring
+                            et des alertes.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Décisions techniques</span>
+                    <div class="space-y-5">
+                        <div class="decision">
+                            <span class="decision-title">ELT plutôt qu'ETL.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Les transformations vivent dans dbt, versionnées dans Git, relisibles et rejouables
+                                sur l'historique. Un ETL en boîte noire ne permet ni l'un ni l'autre.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Docker sur toute la chaîne.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Le pipeline se relance à l'identique sur n'importe quelle machine. C'est la
+                                condition d'un passage en production, pas un confort de développement.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Tests dbt et pytest en amont de la restitution.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Mieux vaut un pipeline qui s'arrête qu'un tableau de bord qui affiche des chiffres
+                                faux sans prévenir personne.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Résultat</span>
+                    <div class="impact-badge mb-4">600k+ lignes traitées par mois · Contrôles qualité automatisés</div>
+                    <p class="text-sm text-secondary leading-relaxed mb-4">
+                        Pipeline complet, testé et conteneurisé. Le code est public et lisible.
+                    </p>
+                    <a href="https://github.com/amouzougit/urban-mobility-analytics" target="_blank" rel="noopener noreferrer"
+                       class="text-accent hover:text-ink text-sm inline-flex items-center gap-2 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-1 py-1"
+                       aria-label="Code source du pipeline de données industriel (nouvelle fenêtre)">
+                        <i class="ph ph-github-logo text-base" aria-hidden="true"></i> Voir le code sur GitHub
+                    </a>
+                </div>
+
+                <div class="transpo-box">
+                    <span class="detail-label">Transposable à</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        La même chaîne alimente un entrepôt industriel depuis un ERP, un MES ou des capteurs
+                        d'atelier. La source change, l'orchestration, les tests et la modélisation restent.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══ 04 · GESTION IMMOBILIERE ══ -->
+        <article id="back-end-metier" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">04</span>
+                <span class="nature-badge nature-tech">Réalisation technique</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Back-end métier en microservice Java, gestion immobilière</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">Projet personnel · Code source public</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">Maven</span>
+                <span class="skill-tag">API REST</span>
+                <span class="skill-tag">Architecture en couches</span>
+                <span class="skill-tag">Intégration de service tiers</span>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Application de gestion de biens immobiliers construite comme un microservice Java.
+                        Elle couvre quatre domaines métier : les utilisateurs, les publications, les opérations
+                        d'achat et de location, et la vérification de personnes avec envoi de SMS.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Quatre domaines métier dans une même application, c'est le scénario classique du back-end
+                        qui devient un bloc unique où plus personne n'ose toucher quoi que ce soit. La difficulté
+                        n'est pas d'écrire les fonctionnalités, c'est de les séparer assez nettement pour qu'elles
+                        évoluent sans se gêner.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Modélisé le domaine avant d'écrire le code, diagramme de classes à l'appui.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Découpé les contrôleurs par domaine métier : utilisateurs, immobilier, achat et
+                            location, publication.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Séparé les interfaces de service de leurs implémentations, et isolé l'accès aux
+                            données dans une couche DAO dédiée.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Intégré un fournisseur SMS tiers pour la vérification de personnes.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Fourni le wrapper Maven et les tests, pour que le projet se compile et se vérifie
+                            sur n'importe quel poste.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Décisions techniques</span>
+                    <div class="space-y-5">
+                        <div class="decision">
+                            <span class="decision-title">Découpage par domaine métier plutôt que par type technique.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Un dossier par domaine, pas un dossier « tous les contrôleurs ». Chaque domaine
+                                évolue sans obliger à relire les trois autres. C'est le même réflexe que sur les
+                                tableaux de bord BH2M : un espace par processus plutôt qu'un écran fourre-tout.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Interfaces de service séparées des implémentations.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                On remplace une implémentation sans toucher aux appelants, et on teste avec des
+                                doublures plutôt qu'avec la vraie base de données.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Secrets du fournisseur SMS dans la configuration, jamais dans le code.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Une clé d'API commitée dans Git y reste, même après suppression du fichier.
+                                La configuration est le seul endroit acceptable.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Wrapper Maven versionné avec le projet.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Tout le monde compile avec la même version de Maven, y compris une machine qui ne
+                                l'a pas installé. Même raisonnement que Docker sur le pipeline de données.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que ça démontre</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Concevoir avant de coder : modèle de domaine, puis structure, puis implémentation.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Découper une application en domaines métier, la compétence qui sert ensuite à
+                            cartographier un système d'information.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Séparer les couches pour rendre le code testable et remplaçable.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Intégrer un service tiers et gérer ses secrets proprement.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Résultat</span>
+                    <p class="text-sm text-secondary leading-relaxed mb-4">
+                        Application complète et structurée, du modèle de domaine aux tests. Le code est public
+                        et lisible.
+                    </p>
+                    <a href="https://github.com/amouzougit/Projet-Professionnel-Gestion-_Immobiliere" target="_blank" rel="noopener noreferrer"
+                       class="text-accent hover:text-ink text-sm inline-flex items-center gap-2 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-1 py-1"
+                       aria-label="Code source du back-end métier de gestion immobilière (nouvelle fenêtre)">
+                        <i class="ph ph-github-logo text-base" aria-hidden="true"></i> Voir le code sur GitHub
+                    </a>
+                </div>
+
+                <div class="transpo-box">
+                    <span class="detail-label">Transposable à</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        La même structure porte un back-office industriel : gestion d'équipements, de demandes
+                        d'intervention, de non-conformités. Le domaine change, le découpage tient. Et intégrer un
+                        fournisseur SMS, c'est mécaniquement la même chose qu'intégrer un ERP ou un MES par API.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══ 05 · DIGITAL TWIN ══ -->
+        <article id="digital-twin" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">05</span>
+                <span class="nature-badge nature-acad">Académique</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Digital Supply Chain Twin, Python et SimPy</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">UTBM, Master 2 Affaires Industrielles Internationales · Oct. 2025 - Jan. 2026</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SimPy</span>
+                <span class="skill-tag">Simulation à événements discrets</span>
+                <span class="skill-tag">Jumeau numérique</span>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Projet du Master 2 Affaires Industrielles Internationales à l'UTBM, sur la résilience
+                        des chaînes logistiques.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Une entreprise ne peut pas provoquer une rupture d'approvisionnement pour mesurer ce
+                        qu'elle coûte. Il faut donc un modèle sur lequel on peut casser des choses sans
+                        conséquence.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Modélisé une chaîne logistique en simulation à événements discrets, avec Python et SimPy.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Simulé des ruptures et analysé leur propagation le long de la chaîne.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Calculé les indicateurs TTR, Time To Recover, et TTS, Time To Survive.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Traduit les résultats en implications concrètes pour la planification industrielle.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Décisions techniques</span>
+                    <div class="space-y-5">
+                        <div class="decision">
+                            <span class="decision-title">Simulation à événements discrets plutôt qu'un modèle analytique.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Seule la simulation montre la propagation d'une rupture dans le temps. Un modèle
+                                fermé donne un résultat moyen qui masque justement l'effet que l'on cherche à mesurer.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Indicateurs TTR et TTS.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Ce sont les métriques de référence de la littérature sur la résilience : les
+                                résultats sont comparables et défendables face à quelqu'un du métier.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Résultat</span>
+                    <p class="text-sm text-secondary leading-relaxed mb-4">
+                        Un jumeau numérique permettant de comparer des scénarios de rupture avant de figer un
+                        plan industriel.
+                    </p>
+                    <a href="https://github.com/amouzougit/SC_Resilience_Twin" target="_blank" rel="noopener noreferrer"
+                       class="text-accent hover:text-ink text-sm inline-flex items-center gap-2 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-1 py-1"
+                       aria-label="Code source du Digital Supply Chain Twin (nouvelle fenêtre)">
+                        <i class="ph ph-github-logo text-base" aria-hidden="true"></i> Voir le code sur GitHub
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══ 06 · SUPPLY CHAIN ══ -->
+        <article id="supply-chain" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">06</span>
+                <span class="nature-badge nature-acad">Académique</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Projet logistique international, optimisation supply chain</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">UTBM, Master 2 Affaires Industrielles Internationales · Oct. 2025 - Fév. 2026</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">Supply chain</span>
+                <span class="skill-tag">Analyse de coûts</span>
+                <span class="skill-tag">Gestion des risques</span>
+                <span class="skill-tag">Planification industrielle</span>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Projet du Master 2 Affaires Industrielles Internationales à l'UTBM, sur une chaîne
+                        d'approvisionnement en contexte international.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Arbitrer entre coût, délai et exposition au risque sur une chaîne d'approvisionnement
+                        multi-pays, où le trajet le moins cher n'est jamais le plus sûr.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Analysé la structure de coûts de la chaîne.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Identifié et hiérarchisé les risques.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Construit la planification industrielle associée.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══ AUTRES REALISATIONS ══ -->
+        <!-- Format court volontaire : ces projets partagent la forme des projets detailles
+             ci-dessus. Les redetailler ferait de la page un inventaire au lieu d'un argument. -->
+        <section id="autres" class="project-detail" aria-labelledby="autres-titre">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">Autres réalisations</span>
+            </div>
+            <h2 id="autres-titre" class="font-display text-3xl font-bold mb-3">Le reste du code</h2>
+            <p class="text-sm text-secondary leading-relaxed max-w-2xl mb-8">
+                Projets plus courts, décrits en quelques lignes plutôt qu'au format complet.
+                Le code est public, c'est lui qui parle.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <article class="glass-card rounded-2xl overflow-hidden">
+                    <div class="h-1 w-full bg-accent" aria-hidden="true"></div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-1.5 mb-3">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">Spring Security</span>
+                            <span class="skill-tag">JWT</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">OpenAPI</span>
+                        </div>
+                        <h3 class="font-display text-lg font-bold mb-2 text-ink">OffreAPI, API REST sécurisée de gestion d'offres</h3>
+                        <p class="text-sm text-secondary mb-4 leading-relaxed">
+                            API REST dont les endpoints sont protégés par Spring Security et des jetons JWT,
+                            avec persistance MongoDB, validation des entrées, notifications par email et
+                            tests unitaires.
+                        </p>
+                        <p class="text-sm text-secondary mb-4 leading-relaxed">
+                            Deux choix qui comptent : l'authentification est traitée comme une couche à part,
+                            pas comme un contrôle dispersé dans les contrôleurs ; et la documentation OpenAPI
+                            est générée depuis le code, donc une autre équipe peut consommer l'API sans
+                            réunion et sans qu'elle se périme.
+                        </p>
+                        <div class="flex items-center gap-5 pt-4 border-t border-line">
+                            <a href="https://github.com/amouzougit/PROJECT-API" target="_blank" rel="noopener noreferrer"
+                               class="text-accent hover:text-ink text-xs flex items-center gap-1.5 font-semibold transition-colors focus:outline-none focus:ring-1 focus:ring-accent rounded px-1 py-1"
+                               aria-label="Code source d'OffreAPI (nouvelle fenêtre)">
+                                <i class="ph ph-github-logo text-base" aria-hidden="true"></i> Voir le code
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ─────────────── CTA ─────────────── -->
+    <section class="bg-mist py-24 mt-12">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <span class="section-num">Suite</span>
+            <h2 class="font-display text-3xl font-bold mb-4">Une question sur l'un de ces projets ?</h2>
+            <p class="text-secondary text-base leading-relaxed mb-8">
+                Je détaille volontiers la démarche, les requêtes ou les arbitrages. Je suis disponible en CDI,
+                sur des postes d'ingénieur digitalisation industrielle, méthodes et amélioration continue,
+                ou data et pilotage industriel.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="/index.html#contact" class="px-8 py-4 rounded-full bg-accent text-dark font-bold text-sm btn-glow hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                    Me contacter
+                </a>
+                <a href="/CV_Kevo_Amouzou_Industriel.pdf" target="_blank" rel="noopener noreferrer"
+                   class="px-8 py-4 rounded-full border border-line bg-white hover:bg-mist transition-all font-bold text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                   aria-label="Télécharger mon CV au format PDF (nouvelle fenêtre)">
+                    Télécharger mon CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────────── FOOTER ─────────────── -->
+    <footer class="py-10 border-t border-line">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <span class="font-display font-bold text-lg">KEVO<span class="text-accent">.</span></span>
+            <p class="text-xs text-secondary">© 2026 Kevo Amouzou · Ingénieur Digitalisation Industrielle &amp; SI · Belfort, France</p>
+            <div class="flex gap-4">
+                <a href="https://www.linkedin.com/in/kevo-amouzou" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent transition-colors" aria-label="LinkedIn"><i class="ph ph-linkedin-logo text-base"></i></a>
+                <a href="https://github.com/amouzougit" target="_blank" rel="noopener noreferrer" class="text-secondary hover:text-accent transition-colors" aria-label="GitHub"><i class="ph ph-github-logo text-base"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ── SCROLL TO TOP ──
+        (function () {
+            const btn = document.getElementById('scroll-top');
+            if (!btn) return;
+            window.addEventListener('scroll', () => {
+                btn.classList.toggle('is-visible', window.scrollY > 500);
+            }, { passive: true });
+        })();
+
+        // ── MENU MOBILE ──
+        (function () {
+            const btn  = document.getElementById('menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            if (!btn || !menu) return;
+
+            const setOpen = (open) => {
+                menu.hidden = !open;
+                btn.setAttribute('aria-expanded', String(open));
+                btn.querySelector('i').className = open ? 'ph ph-x text-2xl' : 'ph ph-list text-2xl';
+            };
+
+            btn.addEventListener('click', () => setOpen(menu.hidden));
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !menu.hidden) { setOpen(false); btn.focus(); }
+            });
+        })();
+    </script>
+
+    <!-- ─── SERVICE WORKER ─── -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {});
+            });
+        }
+    </script>
+
+</body>
+</html>

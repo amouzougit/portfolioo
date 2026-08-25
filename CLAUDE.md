@@ -43,9 +43,11 @@ comme du tir à vue. « Énergie » est légitime, la mission BH2M est de l'ing�
 Site statique, sans build, sans dépendances à installer.
 
 ```
-index.html                      tout le site : HTML, CSS inline, JS inline, projets en HTML statique
-sw.js                           service worker (HTML et CV en network-first, autres ressources
-                                en stale-while-revalidate)
+index.html                      accueil : HTML et JS inline, 3 cartes projets en apercu
+projets.html                    page projets detaillee : 5 projets, une ancre par projet
+styles.css                      style unique du site, partage par index.html et projets.html
+sw.js                           service worker (HTML, CV et styles.css en network-first,
+                                autres ressources en stale-while-revalidate)
 manifest.json                   PWA
 robots.txt, sitemap.xml         indexation
 _redirects                      Netlify : CLAUDE.md, SESSIONS.md et README.md renvoient vers /
@@ -62,8 +64,16 @@ Chargé par CDN : Phosphor Icons (unpkg), polices Fontshare. Formulaire de conta
 endpoint `mjknokbg`.
 
 Aucun framework JavaScript. Tailwind CDN, Alpine.js, GSAP et ScrollTrigger ont été retirés en
-session 002 : le CSS est écrit à la main dans `index.html` et le JS se limite à trois blocs
-(bouton retour en haut, lien de navigation actif, menu mobile). Ne pas les réintroduire.
+session 002 : le CSS est écrit à la main et le JS se limite à quelques blocs (bouton retour en
+haut, lien de navigation actif, menu mobile, envoi du formulaire). Ne pas les réintroduire.
+
+Le CSS a été sorti de `index.html` vers `styles.css` en session 007, quand `projets.html` est
+apparue. Source unique : une couleur, un composant ou une classe utilitaire ne se modifie qu'à
+un seul endroit. Ne pas remettre de bloc `<style>` dans `index.html` ni dans `projets.html`.
+`merci.html` fait exception et garde son style propre : page autonome, hors parcours de lecture.
+
+`styles.css` est dans `ALWAYS_FRESH` de `sw.js`. Il porte tout le style du site : une version
+périmée servie à côté d'un HTML frais afficherait une page nue.
 
 ## Règles de contenu, non négociables
 
@@ -113,14 +123,17 @@ suivant un déploiement.
 Vérifications avant de pousser :
 
 ```bash
-grep -c "—" index.html README.md            # doit renvoyer 0 pour les deux
-python3 -c "import re;[print(f,len(re.findall('[\U0001F300-\U0001FAFF]',open(f,encoding='utf-8').read()))) for f in ['index.html','README.md']]"   # doit renvoyer 0
+grep -c "—" index.html projets.html styles.css README.md   # doit renvoyer 0 partout
+python3 -c "import re;[print(f,len(re.findall('[\U0001F300-\U0001FAFF]',open(f,encoding='utf-8').read()))) for f in ['index.html','projets.html','README.md']]"   # doit renvoyer 0
 ```
 
 Contrôler aussi :
 
-- les 5 ancres `#about`, `#skills`, `#projects`, `#experience`, `#contact` ;
-- l'affichage des 3 cartes projets ;
+- les 5 ancres `#about`, `#skills`, `#projects`, `#experience`, `#contact` sur `index.html` ;
+- les 5 ancres `#bi-dolibarr`, `#chatbot-rag`, `#pipeline-elt`, `#digital-twin`,
+  `#supply-chain` sur `projets.html` ;
+- l'affichage des 3 cartes projets sur l'accueil et des 5 projets détaillés sur `projets.html` ;
+- que `styles.css` est bien chargé sur les deux pages, aucun bloc `<style>` inline ;
 - la numérotation des sections, `01 · Résultats`, `02 · Compétences`, `03 · Projets`, dans cet
   ordre d'apparition ;
 - l'absence d'erreur console.
