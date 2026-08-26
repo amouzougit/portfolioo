@@ -2,7 +2,7 @@
 
 Ingénieur Digitalisation Industrielle et SI. Site statique publié sur Netlify.
 
-Production : https://keen-selkie-a72fc7.netlify.app/
+Production : https://kevo-amouzou.pages.dev/
 
 ## Profil
 

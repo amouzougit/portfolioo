@@ -9,8 +9,11 @@ Portfolio professionnel de Kevo Amouzou, utilisé activement pour une recherche 
 Ce n'est pas un projet d'expérimentation : chaque phrase publiée peut être lue par un recruteur
 et confrontée au CV et au profil LinkedIn.
 
-- Production : https://keen-selkie-a72fc7.netlify.app/
-- Déploiement : Netlify, branche `main` du dépôt github.com/amouzougit/portfolioo
+- Production : https://kevo-amouzou.pages.dev/
+- Déploiement : Cloudflare Pages, branche `main` du dépôt github.com/amouzougit/portfolioo
+- Ancienne production : https://keen-selkie-a72fc7.netlify.app/ toujours en ligne mais figée
+  au 16 août 2026. L'équipe Netlify `school` plafonne à 20 déploiements par cycle de
+  facturation, plafond atteint. Site conservé le temps de la bascule, à ne plus alimenter.
 - Domaine cible `kevoamouzou.com` : non enregistré à ce jour, ne pas y faire pointer d'URL
 
 ## Objectif
@@ -107,9 +110,28 @@ flux se décompressent et que le nombre de lignes de texte est inchangé.
 # aperçu local
 python3 -m http.server 8899 --bind 127.0.0.1   # puis http://127.0.0.1:8899/index.html
 
-# déploiement : pousser sur main déclenche Netlify
+# aperçu de ce qui sera reellement publie
+./build.sh && cd dist && python3 -m http.server 8898 --bind 127.0.0.1
+
+# déploiement : pousser sur main déclenche Cloudflare Pages
 git push origin main
 ```
+
+Réglages Cloudflare Pages, à ne pas modifier sans lire ce qui suit :
+
+| Champ | Valeur |
+|---|---|
+| Build command | `./build.sh` |
+| Build output directory | `dist` |
+| Branche de production | `main` |
+
+`build.sh` copie une **liste explicite** de fichiers vers `dist/`. Tout ce qui n'y figure
+pas n'est jamais publié. C'est ce qui protège `CLAUDE.md`, `SESSIONS.md` et `README.md` :
+Cloudflare Pages ne connaît pas le `!` de la syntaxe `_redirects` de Netlify, qui force une
+redirection sur un fichier existant. Sans cette liste, le journal de travail serait lisible
+publiquement. Ajouter un fichier au site implique donc de l'ajouter à `build.sh`.
+
+Un `git push` déclenche un déploiement. Grouper les commits et pousser une seule fois.
 
 Incrémenter `CACHE_VERSION` dans `sw.js` après toute modification d'un fichier listé dans
 `PRECACHE`. Ce n'est plus une condition de fraîcheur depuis la session 003, seulement une

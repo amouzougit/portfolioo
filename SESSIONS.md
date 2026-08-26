@@ -5,6 +5,53 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 008 · 26 août 2026 · Bascule vers Cloudflare Pages
+
+**Objectif**
+
+Remettre le site en ligne : Netlify ne déploie plus.
+
+**Diagnostic**
+
+Le site était figé au 16 août, commit `772541a`. Huit commits jamais publiés, dont les trois
+sur Loxya antérieurs à la session 007. Cause : l'équipe Netlify `school` a épuisé ses crédits.
+20 déploiements de production consomment 300 crédits, soit 15 crédits chacun, et c'est tout
+le budget du cycle. Les sites publiés restent en ligne, les nouveaux déploiements sont
+suspendus jusqu'au 4 septembre 2026.
+
+Ce n'était ni un bug, ni le lien Git : GitHub avait bien tout, `raw.githubusercontent.com`
+servait `projets.html` en 200.
+
+**Fait**
+
+- URL de production basculée sur `https://kevo-amouzou.pages.dev` : 15 occurrences dans
+  `index.html` (7), `projets.html` (4), `sitemap.xml` (2), `README.md` et `CLAUDE.md`.
+  Concerne canonical, og:url, og:image, twitter:image, JSON-LD et le champ `_next` de Formspree.
+- `build.sh` créé, avec une liste explicite des fichiers à publier vers `dist/`.
+- `dist/` ajouté au `.gitignore`.
+- Site Netlify conservé en ligne sur demande de Kevo, figé au 16 août, à ne plus alimenter.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Hébergeur | Cloudflare Pages. Pas pour les 9 jours d'attente mais pour le plafond de 20 déploiements par cycle, qui se serait represente a chaque fois. 500 builds par mois côté Cloudflare |
+| Nom du projet | `kevo-amouzou` et non `portfolioo` : l'URL sera lue par des recruteurs, `portfolioo.pages.dev` ressemble à une faute de frappe |
+| Publication | Liste explicite dans `build.sh` plutôt que `_redirects`. Cloudflare ignore le `!` de Netlify, et un `SESSIONS.md` public exposerait les notes internes |
+| Netlify | Laissé en ligne, non coupé |
+
+**Ouvert**
+
+- Créer le projet Cloudflare Pages sous le nom exact `kevo-amouzou`, sinon les URL absolues
+  du site pointeront à côté. Build command `./build.sh`, output directory `dist`.
+- Mettre à jour le lien du portfolio sur LinkedIn. Il n'est pas sur le CV, donc c'est le seul
+  endroit à corriger côté candidature.
+- Le CV ne porte ni l'URL du portfolio ni celle de GitHub. Un recruteur qui ne lit que le PDF
+  n'atteint jamais les trois dépôts publics mis en avant sur la page projets.
+- Un `git push` égale un déploiement, quel que soit l'hébergeur. Grouper les commits.
+
+---
+
 ## Session 007 · 25 août 2026 · Page projets détaillée, orientée recruteurs
 
 **Objectif**
