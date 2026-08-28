@@ -42,7 +42,10 @@ servait `projets.html` en 200.
 
 **Ouvert**
 
-- Portrait agrandi de 380 à 440 px sur desktop. Le fichier fait 1358 x 1599 px, la densité
+- Portrait porté à 500 px, via `width: min(500px, 100%)` et `aspect-ratio: 1 / 1` plutôt
+  qu'une largeur fixe : à 1024 px de viewport, seuil de passage en deux colonnes, la colonne
+  droite ne fait que 480 px et un carré rigide de 500 px déborderait. Densité restante 2,72x.
+- Portrait agrandi de 380 à 440 px sur desktop, puis à 500 px. Le fichier fait 1358 x 1599 px, la densité
   disponible passe de 3,57x à 3,09x : toujours largement au-dessus du Retina. Recadrage
   carré conservé volontairement, le fichier source a beaucoup de vide au-dessus de la tête
   et `object-cover` le supprime. Passer au ratio portrait natif aurait réintroduit ce vide.

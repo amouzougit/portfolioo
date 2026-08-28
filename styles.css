@@ -264,7 +264,10 @@
     .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
     .lg\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
     .lg\:text-\[64px\] { font-size: 64px; }
-    .portrait-hero { width: 440px; height: 440px; }
+    /* min() plutot qu'une largeur fixe : a 1024px de viewport, seuil de passage
+       en deux colonnes, la colonne droite ne fait que 480px. Un carre rigide de
+       500px deborderait. aspect-ratio garde le cadrage carre a toute largeur. */
+    .portrait-hero { width: min(500px, 100%); height: auto; aspect-ratio: 1 / 1; }
 }
 
 /* ── BASE ── */
