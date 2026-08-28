@@ -101,8 +101,25 @@ lu par un recruteur. Les règles de contenu ci-dessus s'y appliquent intégralem
 
 Le CV est un PDF mPDF à xref classique, encodage Identity où le CID vaut le point de code Unicode.
 Le modifier suppose de réencoder le texte glyphe par glyphe dans le flux de page, de recompresser
-le flux, de mettre `/Length` à jour et de reconstruire la table xref. Vérifier ensuite que les
-flux se décompressent et que le nombre de lignes de texte est inchangé.
+le flux, de mettre `/Length` à jour et de décaler la table xref. Script de référence, session 008 :
+`.archive/patch_cv.py`.
+
+Trois pièges, tous rencontrés :
+
+1. **Les objets ne sont pas rangés par numéro.** Le flux de page appartient à l'objet 4, qui se
+   trouve à l'offset 87, alors que l'objet 3 est à l'offset 9. Une expression du type
+   `\n3 0 obj(.{0,400}?)stream` enjambe l'objet 3 et attrape le flux de l'objet 4. Cibler
+   l'objet qui contient réellement `Td` et `Tj` après décompression.
+2. **Seuls les offsets situés après l'objet modifié se décalent.** L'objet 4 porte le flux mais
+   commence avant lui : son propre offset ne bouge pas.
+3. **Le layout est figé.** Les valeurs des compétences démarrent à x=195.59, la marge droite est
+   à 549.92, soit 354.33 points de budget en F1 9pt. Calculer la largeur du texte avec la table
+   `/W` de la police avant d'allonger une ligne, sinon elle sort de la page sans prévenir.
+
+Vérifier ensuite : tous les flux se décompressent, chaque entrée xref pointe bien sur
+`N 0 obj`, `startxref` tombe sur `xref`, le nombre de lignes de texte est inchangé, et le PDF
+s'ouvre dans un vrai lecteur. Comparer systématiquement avec la version d'avant, certaines
+anomalies préexistent.
 
 ## Workflow
 
