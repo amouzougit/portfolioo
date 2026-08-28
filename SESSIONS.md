@@ -50,11 +50,14 @@ servait `projets.html` en 200.
   les projets 02 et 04 et par OffreAPI, et Angular et Spring Boot figurent déjà au CV, mais
   aucun n'était revendiqué en compétence. Le site montrait sans dire. MongoDB reste le seul
   des quatre absent du CV.
-- Niveau réel sur SAP à préciser. Placé en compétence, pas en expérience : la ligne BH2M
-  continue de dire « démarche transposable à un environnement SAP », ce qui reste exact.
-  Si la pratique est réelle et non académique, la formulation peut être renforcée.
-- Six Sigma : préciser s'il existe une certification, Yellow ou Green Belt. Si oui, sa place
-  est dans le bloc Certifications, pas parmi les méthodes.
+- SAP : pratique académique, confirmé par Kevo. Affiché « SAP, notions » et non « SAP » tout
+  court. Le laisser nu à côté d'ERP Dolibarr et Oracle Fusion Cloud, tous deux réellement
+  déployés, laissait croire à une expérience équivalente sur l'item le plus vérifié en
+  entretien dans l'industrie française. La ligne BH2M continue de dire « démarche
+  transposable à un environnement SAP », ce qui reste exact.
+- Six Sigma : aucune certification, laissé parmi les méthodes à côté de PDCA, A3, 5S, AMDEC
+  et VSM, où aucune certification n'est attendue. Même registre que Lean, déjà au CV sans
+  certification. Ne pas le déplacer dans le bloc Certifications.
 - `Primavera P6` retiré des mots-clés : il n'était sur aucun autre support.
 - Créer le projet Cloudflare Pages sous le nom exact `kevo-amouzou`, sinon les URL absolues
   du site pointeront à côté. Build command `./build.sh`, output directory `dist`.
