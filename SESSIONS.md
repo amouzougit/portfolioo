@@ -42,6 +42,14 @@ servait `projets.html` en 200.
 
 **Ouvert**
 
+- Portrait agrandi de 380 à 440 px sur desktop. Le fichier fait 1358 x 1599 px, la densité
+  disponible passe de 3,57x à 3,09x : toujours largement au-dessus du Retina. Recadrage
+  carré conservé volontairement, le fichier source a beaucoup de vide au-dessus de la tête
+  et `object-cover` le supprime. Passer au ratio portrait natif aurait réintroduit ce vide.
+- Attributs `width` et `height` de l'image corrigés : ils annonçaient 380x447 alors que le
+  rendu est carré, le navigateur réservait donc un espace au mauvais ratio avant chargement.
+- Classe `.lg:w-[380px]` remplacée par `.portrait-hero` : un nom de classe contenant une
+  valeur en dur devient faux dès qu'on change cette valeur.
 - CV mis à jour : Six Sigma, AMDEC et VSM sur la ligne Méthodes, Power Automate et
   SAP (notions) sur la ligne Digitalisation, MongoDB sur la ligne Data. Le PDF a été
   repatché à la main, voir la section Modification du CV du CLAUDE.md.

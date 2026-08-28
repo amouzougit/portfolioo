@@ -264,8 +264,7 @@
     .lg\:px-8 { padding-left: 2rem; padding-right: 2rem; }
     .lg\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
     .lg\:text-\[64px\] { font-size: 64px; }
-    .lg\:w-\[380px\] { width: 380px; }
-    .lg\:h-\[380px\] { height: 380px; }
+    .portrait-hero { width: 440px; height: 440px; }
 }
 
 /* ── BASE ── */
