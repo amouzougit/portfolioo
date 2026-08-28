@@ -42,6 +42,16 @@ servait `projets.html` en 200.
 
 **Ouvert**
 
+- **Le CV doit être mis à jour avec SAP, AMDEC, VSM, Six Sigma et Power Automate.** Ils sont
+  désormais sur le site mais absents de `CV_Kevo_Amouzou_Industriel.pdf`. Un site qui promet
+  plus que le CV se lit comme du remplissage : c'est exactement ce que la règle de cohérence
+  du CLAUDE.md cherche à éviter. Kanban était déjà présent sur le site.
+- Niveau réel sur SAP à préciser. Placé en compétence, pas en expérience : la ligne BH2M
+  continue de dire « démarche transposable à un environnement SAP », ce qui reste exact.
+  Si la pratique est réelle et non académique, la formulation peut être renforcée.
+- Six Sigma : préciser s'il existe une certification, Yellow ou Green Belt. Si oui, sa place
+  est dans le bloc Certifications, pas parmi les méthodes.
+- `Primavera P6` retiré des mots-clés : il n'était sur aucun autre support.
 - Créer le projet Cloudflare Pages sous le nom exact `kevo-amouzou`, sinon les URL absolues
   du site pointeront à côté. Build command `./build.sh`, output directory `dist`.
 - Mettre à jour le lien du portfolio sur LinkedIn. Il n'est pas sur le CV, donc c'est le seul
