@@ -42,6 +42,15 @@ servait `projets.html` en 200.
 
 **Ouvert**
 
+- Accroche du hero réordonnée : valeur, puis preuve, puis diplôme. Elle ouvrait sur « Double
+  formation UTBM », c'est-à-dire sur l'élément le moins différenciant du profil, dans la
+  phrase la plus lue de la page. Elle ouvre désormais sur « Je digitalise les opérations
+  industrielles ». Mêmes faits, aucun ajout, seul l'ordre change.
+- « Mission chez BH2M, février à juillet 2026 » devient « Six mois sur le terrain chez BH2M,
+  de février à juillet 2026 » : la mission est terminée depuis fin juillet, la formulation au
+  passé dit une expérience acquise plutôt qu'un poste en cours mal daté.
+- « dashboards » conservé et non traduit en « tableaux de bord » : c'est le mot du CV, qui
+  écrit « connexion ERP-dashboards ». Cohérence avant élégance.
 - Portrait porté à 500 px, via `width: min(500px, 100%)` et `aspect-ratio: 1 / 1` plutôt
   qu'une largeur fixe : à 1024 px de viewport, seuil de passage en deux colonnes, la colonne
   droite ne fait que 480 px et un carré rigide de 500 px déborderait. Densité restante 2,72x.
