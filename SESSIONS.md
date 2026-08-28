@@ -42,10 +42,14 @@ servait `projets.html` en 200.
 
 **Ouvert**
 
-- **Le CV doit être mis à jour avec SAP, AMDEC, VSM, Six Sigma et Power Automate.** Ils sont
+- **Le CV doit être mis à jour avec SAP, AMDEC, VSM, Six Sigma, Power Automate et MongoDB.** Ils sont
   désormais sur le site mais absents de `CV_Kevo_Amouzou_Industriel.pdf`. Un site qui promet
   plus que le CV se lit comme du remplissage : c'est exactement ce que la règle de cohérence
   du CLAUDE.md cherche à éviter. Kanban était déjà présent sur le site.
+- Java, Spring Boot, Angular et MongoDB ajoutés aux compétences. Ils étaient démontrés par
+  les projets 02 et 04 et par OffreAPI, et Angular et Spring Boot figurent déjà au CV, mais
+  aucun n'était revendiqué en compétence. Le site montrait sans dire. MongoDB reste le seul
+  des quatre absent du CV.
 - Niveau réel sur SAP à préciser. Placé en compétence, pas en expérience : la ligne BH2M
   continue de dire « démarche transposable à un environnement SAP », ce qui reste exact.
   Si la pratique est réelle et non académique, la formulation peut être renforcée.
