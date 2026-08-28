@@ -16,13 +16,13 @@
  * Incrementer CACHE_VERSION apres toute modification d'un fichier de PRECACHE.
  */
 
-const CACHE_VERSION = 'v18';
+const CACHE_VERSION = 'v19';
 const CACHE_NAME = `kevo-portfolio-${CACHE_VERSION}`;
 
 const PRECACHE = [
     '/',
     '/index.html',
-    '/projets.html',
+    '/projets',
     '/styles.css',
     '/images/kevo.jpeg',
     '/CV_Kevo_Amouzou_Industriel.pdf'
