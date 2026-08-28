@@ -42,6 +42,16 @@ servait `projets.html` en 200.
 
 **Ouvert**
 
+- **Ajout du portfolio et de GitHub au CV : tenté, annulé.** Les polices du PDF sont des
+  sous-ensembles. La ligne italique du bandeau ne contient ni `k`, ni `z`, ni `g`, donc
+  `kevo-amouzou.pages.dev` s'y affiche `□evo-amou□ou.pa□es.dev`. La ligne de contact, elle,
+  porte ces glyphes mais n'a que 78 pt de marge pour une URL qui en demande 123. Toutes les
+  variantes qui tiennent imposent de perdre « France » après Belfort ou de resserrer les
+  séparateurs d'une ligne sur deux, ce qui désaccorde le bandeau. Kevo a demandé de ne pas
+  abîmer le CV : rien n'a été modifié.
+- Solution propre si le besoin revient : régénérer le CV depuis son outil source, où les
+  polices embarqueront les glyphes nécessaires, et y placer portfolio et GitHub dès la
+  composition. Ne pas retenter le patch binaire pour cet ajout.
 - Accroche du hero réordonnée : valeur, puis preuve, puis diplôme. Elle ouvrait sur « Double
   formation UTBM », c'est-à-dire sur l'élément le moins différenciant du profil, dans la
   phrase la plus lue de la page. Elle ouvre désormais sur « Je digitalise les opérations

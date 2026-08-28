@@ -112,7 +112,15 @@ Trois pièges, tous rencontrés :
    l'objet qui contient réellement `Td` et `Tj` après décompression.
 2. **Seuls les offsets situés après l'objet modifié se décalent.** L'objet 4 porte le flux mais
    commence avant lui : son propre offset ne bouge pas.
-3. **Le layout est figé.** Les valeurs des compétences démarrent à x=195.59, la marge droite est
+3. **Les polices sont des sous-ensembles.** Seuls les contours des glyphes réellement
+   utilisés sont embarqués. La table `/W` déclare pourtant des largeurs pour bien plus de
+   caractères : elle ne prouve **pas** qu'un glyphe est affichable. Ajouter une lettre absente
+   de la ligne d'origine produit un carré vide à l'écran, alors que le calcul de largeur
+   passe. Vérifier quels caractères la police porte déjà, en listant ceux du texte existant
+   rendu avec cette police, et confirmer par un rendu réel. Exemple rencontré : la ligne
+   italique `Permis B | Mobilite : France entiere | Teletravail hybride possible` ne contient
+   ni `k`, ni `z`, ni `g`. Y écrire `kevo-amouzou.pages.dev` affiche `□evo-amou□ou.pa□es.dev`.
+4. **Le layout est figé.** Les valeurs des compétences démarrent à x=195.59, la marge droite est
    à 549.92, soit 354.33 points de budget en F1 9pt. Calculer la largeur du texte avec la table
    `/W` de la police avant d'allonger une ligne, sinon elle sort de la page sans prévenir.
 
