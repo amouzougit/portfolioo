@@ -195,8 +195,11 @@ Contrôler aussi :
   `#back-end-metier`, `#digital-twin`, `#supply-chain` sur `projets.html` ;
 - l'affichage des 4 cartes projets sur l'accueil et des 7 projets détaillés sur `projets.html` ;
 - que `styles.css` est bien chargé sur les deux pages, aucun bloc `<style>` inline ;
-- la numérotation des sections, `01 · Résultats`, `02 · Compétences`, `03 · Projets`, dans cet
-  ordre d'apparition ;
+- la numérotation : **aucune sur l'accueil**, dont les sections ne forment pas une séquence,
+  et `01` à `07` sur `projets.html`, qui est une vraie liste ordonnée. Une numérotation qui
+  s'arrête à 03 sur 6 sections annonce une suite qui n'existe pas ;
+- les chiffres en chasse fixe, classe `.num` : ce sont des mesures, pas de la marque.
+  `tabular-nums` remplace le calage au `min-width` du sommaire ;
 - l'absence d'erreur console ;
 - que `/index.html`, `/projets.html` et `/merci.html` se chargent en production **avec le
   service worker actif**, et pas seulement en `curl` : la redirection 308 ne casse que la

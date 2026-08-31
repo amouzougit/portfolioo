@@ -5,6 +5,71 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 011 · 31 août 2026 · Passe de design, corrections structurelles
+
+**Objectif**
+
+Kevo demande un regard de design sur l'ensemble du site. Audit rendu, puis mise en oeuvre du
+périmètre qu'il a retenu : les corrections structurelles. Palette et polices inchangées.
+
+**Diagnostic, cinq points**
+
+1. **Le hero enterrait sa thèse.** Le portrait était en `order-1` en dessous de 1024 px.
+   Mesuré à 778 px de large : image à y=160, `h1` à y=574, pli à y=579. Le premier écran était
+   intégralement une photo. Sur un laptop en fenêtre partagée, un recruteur voyait un visage
+   et aucun argument.
+2. **La numérotation annonçait une séquence inexistante.** `01 · Résultats`,
+   `02 · Compétences`, `03 · Projets`, puis rien sur Parcours, Postes recherchés et Contact.
+   Trois sections numérotées sur six.
+3. **Aucune hiérarchie.** Cinq sections en `py-24`, même largeur, un seul fond alterné.
+4. **La typo ne travaillait pas.** Clash Display 64px gras comme unique geste. `font-mono`
+   défini et utilisé 4 fois en tout.
+5. **Le meilleur élément était invisible depuis l'accueil.** Les schémas SVG de `projets.html`
+   sont ce que le site a de plus spécifique, l'accueil n'en montre aucun.
+
+**Fait**
+
+- Hero : `order-2 lg:order-1` et `order-1 lg:order-2` supprimés. Le texte était déjà premier
+  dans le DOM, ce sont ces classes qui le renvoyaient sous la photo. Résultat mesuré, même
+  viewport de 778 px : `h1` à y=222, au-dessus du pli, portrait descendu à y=1122. Desktop
+  vérifié en simulant la grille à 2 colonnes : texte à gauche, portrait à droite, inchangé.
+- Numérotation retirée des trois eyebrows de l'accueil, les libellés restent. `projets.html`
+  garde `01` à `07` : c'est une vraie liste ordonnée.
+- `#projects` passe de `py-24` à `py-32`, classe `.py-32` ajoutée. Le coeur de la page respire
+  plus que le reste.
+- Classe `.num` : chiffres en chasse fixe système avec `tabular-nums`. Appliquée aux trois
+  chiffres du hero, aux 7 numéros d'article et à `.toc-num`. Aucune police supplémentaire
+  chargée, la pile est celle du système.
+
+**Régression introduite puis corrigée**
+
+En passant `.toc-num` en chasse fixe, le `min-width: 22px` qui calait le sommaire a été retiré,
+puisque les chiffres tabulaires règlent la cause. Mais la ligne « + Autres réalisations » ne
+porte pas un chiffre : elle s'est décalée de 7 px. Deux itérations mesurées, `2ch` puis
+`calc(2ch + 2px)` pour tenir compte du `letter-spacing`. Vérifié : le sommaire ne présente plus
+que deux valeurs de x, les deux colonnes, et le `+` tombe exactement sur les chiffres.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Périmètre | Corrections structurelles seules. Le schéma en hero et le changement de police d'affichage ont été proposés et écartés pour cette passe |
+| Numérotation | Retirée de l'accueil, conservée sur `projets.html`. Une numérotation marque une séquence, pas une décoration |
+| Chiffres | En chasse fixe : ce sont des mesures, pas de la marque. Et `tabular-nums` règle la cause du calage du sommaire au lieu du symptôme |
+| Photo | Conservée, descendue sous l'argument. Le portrait n'est pas la thèse |
+
+**Ouvert**
+
+- Le geste fort reste à faire : un schéma de process en hero, dans le langage graphique de
+  `projets.html`, tracé une fois au chargement, `prefers-reduced-motion` respecté. Le portrait
+  descendrait dans Parcours.
+- Clash Display sur fond crème est l'un des looks par défaut les plus répandus. Sortir de ce
+  défaut suppose de changer la police d'affichage, écarté pour cette passe.
+- Les trois points de la session 009 restent ouverts : Batica absent du CV et de LinkedIn,
+  `README.md` qui ne le mentionne pas, nombre de tests mobiles non affiché.
+
+---
+
 ## Session 010 · 31 août 2026 · ERR_FAILED sur les liens en .html
 
 **Objectif**

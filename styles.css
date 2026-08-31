@@ -100,6 +100,7 @@
 .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
 .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+.py-32 { padding-top: 8rem; padding-bottom: 8rem; }
 .pt-4 { padding-top: 1rem; }
 .pt-6 { padding-top: 1.5rem; }
 .pt-20 { padding-top: 5rem; }
@@ -502,16 +503,30 @@ body {
     border-color: rgba(15,76,129,0.35);
     transform: translateY(-1px);
 }
+/* ── CHIFFRES ──
+   Les chiffres sont des mesures, pas de la marque : ils passent en chasse
+   fixe, avec des figures tabulaires. Clash Display n'a pas de chiffres de
+   meme chasse, "01" mesure 16,5px et "06" 20px, ce qui obligeait a caler le
+   sommaire au min-width. tabular-nums regle la cause au lieu du symptome.
+   Aucune police supplementaire n'est chargee : la pile est celle du systeme. */
+.num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+}
+
 .toc-num {
-    font-family: 'Clash Display', sans-serif;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-variant-numeric: tabular-nums;
     font-size: 11px; font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: rgba(15,76,129,0.85);
     flex-shrink: 0;
-    /* Largeur fixe : les chiffres de Clash Display n'ont pas tous la meme
-       chasse, "01" mesure 16,5px et "06" 20px. Sans min-width, chaque titre
-       demarre a un x different et le sommaire parait bancal. */
-    min-width: 22px;
+    /* Cale la ligne "+ Autres realisations" sur les entrees numerotees.
+       2ch = exactement deux caracteres en chasse fixe, plus les 2px que
+       letter-spacing ajoute derriere chacun d'eux. Exprime dans l'unite de la
+       police plutot qu'en pixels devines : les chiffres, eux, sont tabulaires. */
+    min-width: calc(2ch + 2px);
 }
 .toc-title { font-size: 0.875rem; font-weight: 600; color: #1A2233; }
 
