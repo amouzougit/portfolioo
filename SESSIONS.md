@@ -5,6 +5,65 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 009 · 31 août 2026 · Batica ajouté aux projets
+
+**Objectif**
+
+Ajouter Batica au portfolio : plateforme personnelle de suivi de chantier à distance pour la
+diaspora africaine, déployée sur Vercel et EAS.
+
+**Fait**
+
+- `projets.html` : 7e bloc `project-detail`, ancre `#batica`, inséré en position 04, juste après
+  le pipeline ELT. L'ordre du site est par nature, 01-02 professionnel, 03-04 technique,
+  05-07 académique. Les trois projets UTBM ont donc été renumérotés 04-06 vers 05-07,
+  dans les articles, dans le sommaire et dans les commentaires de section.
+- En-tête de `projets.html` : « Six projets » devient « Sept projets ».
+- Schéma SVG dessiné à la main, `st6` / `sd6` / marqueur `a6` : la chaîne de preuve du jalon
+  jusqu'à la décision de payer, avec le paiement explicitement hors plateforme.
+- `index.html` : carte Batica pleine largeur en tête de la grille projets, avec un lien
+  « Voir la plateforme » vers `https://kevo-control.vercel.app/`. « Voir les 6 projets en
+  détail » devient « 7 », deux occurrences.
+- `styles.css` : `.project-featured` et `.project-featured-body` ajoutés. La grille de l'accueil
+  est à 3 colonnes ; une 4e carte ordinaire y aurait laissé une carte orpheline sur une
+  deuxième ligne. La carte mise en avant occupe donc toute la largeur, en `grid-column: 1 / -1`,
+  et son contenu se scinde en 1.7fr / 1fr au-delà de 1024 px.
+- `sw.js` : `CACHE_VERSION` passé de `v23` à `v24`.
+- `CLAUDE.md` corrigé : il annonçait encore 5 projets et 3 cartes, et sa liste d'ancres était
+  incomplète. Elle omettait déjà `#back-end-metier`, ajouté en session 007.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Chiffres Batica | « 5 rôles, 29 tables, 108 policies RLS » conservés. Ils décrivent un projet personnel vérifiable en ligne, pas un résultat employeur. La règle 1 vise la cohérence avec le CV sur les chiffres professionnels |
+| Statut affiché | « Plateforme déployée », et il est écrit noir sur blanc qu'aucun chantier réel n'y est suivi. Pas d'utilisateurs, pas de volumes, pas de clients |
+| Nature | `nature-tech`, « Réalisation technique », comme le pipeline ELT. Ni professionnel, ni académique |
+| Placement | Position 04 et non 07 : l'ordre par nature prime sur l'ordre chronologique |
+| Carte d'accueil | Pleine largeur plutôt qu'une 4e carte dans la grille à 3 colonnes |
+| Nombre de tests | Non affiché. Le chiffre était tronqué dans la description fournie, il n'a pas été inventé |
+
+**Vérifié**
+
+- Rendu réel sous Chrome sur `dist/` : 4 cartes sur l'accueil, Batica sur toute la largeur de
+  la grille et les 3 autres alignées sur la rangée suivante, colonnes internes 361 / 213 px.
+- Les 15 textes du schéma SVG tiennent dans leurs cadres, marge minimale de 8 px, aucun
+  débordement du `viewBox` ni de la boîte de défilement.
+- Zéro tiret cadratin, zéro emoji, aucun bloc `<style>` inline, 7 ancres présentes,
+  aucune erreur console sur les deux pages.
+
+**Ouvert**
+
+- Batica ne figure pas sur `CV_Kevo_Amouzou_Industriel.pdf` ni, a priori, sur LinkedIn.
+  Un recruteur qui lit le site y trouve un projet que le CV ignore. À arbitrer.
+- Deux détails techniques restent hors du site faute d'information complète : le nombre de
+  tests mobiles et la fin de la phrase sur les 108 policies.
+- `README.md` ne mentionne pas Batica.
+- L'écart « +15 dashboards Metabase » de la session 004 est réglé, l'accueil affiche
+  désormais « 10+ indicateurs de pilotage sur 3 processus métiers ».
+
+---
+
 ## Session 008 · 26 août 2026 · Bascule vers Cloudflare Pages
 
 **Objectif**

@@ -82,7 +82,7 @@
             <span class="section-num">Projets en détail</span>
             <h1 class="font-display text-4xl lg:text-[64px] font-bold leading-tight mb-6">Ce que j'ai fait,<br>et pourquoi je l'ai fait ainsi</h1>
             <p class="text-secondary text-base leading-relaxed max-w-2xl mb-4">
-                Six projets, tous décrits selon le même plan : le contexte, le problème réel, ce que j'ai fait,
+                Sept projets, tous décrits selon le même plan : le contexte, le problème réel, ce que j'ai fait,
                 les décisions techniques que j'ai prises et ce qu'elles ont donné. Le bloc des décisions est
                 celui qui compte : il montre le raisonnement, pas seulement la liste des outils.
             </p>
@@ -110,16 +110,20 @@
                     <span class="toc-num">03</span>
                     <span class="toc-title">Pipeline de données industriel, Airflow et dbt</span>
                 </a>
-                <a href="#back-end-metier" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                <a href="#batica" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
                     <span class="toc-num">04</span>
+                    <span class="toc-title">Batica, preuve de chantier vérifiable pour un financement à distance</span>
+                </a>
+                <a href="#back-end-metier" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
+                    <span class="toc-num">05</span>
                     <span class="toc-title">Back-end métier en microservice Java, gestion immobilière</span>
                 </a>
                 <a href="#digital-twin" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
-                    <span class="toc-num">05</span>
+                    <span class="toc-num">06</span>
                     <span class="toc-title">Digital Supply Chain Twin, Python et SimPy</span>
                 </a>
                 <a href="#supply-chain" class="toc-link focus:outline-none focus:ring-2 focus:ring-accent">
-                    <span class="toc-num">06</span>
+                    <span class="toc-num">07</span>
                     <span class="toc-title">Projet logistique international, optimisation supply chain</span>
                 </a>
                 <a href="#autres" class="toc-link pleine-largeur focus:outline-none focus:ring-2 focus:ring-accent">
@@ -588,10 +592,252 @@
             </div>
         </article>
 
-        <!-- ══ 04 · GESTION IMMOBILIERE ══ -->
-        <article id="back-end-metier" class="project-detail">
+        <!-- ══ 04 · BATICA ══ -->
+        <article id="batica" class="project-detail">
             <div class="flex flex-wrap items-center gap-3 mb-3">
                 <span class="section-num" style="margin-bottom:0">04</span>
+                <span class="nature-badge nature-tech">Réalisation technique</span>
+            </div>
+            <h2 class="font-display text-3xl font-bold mb-3">Batica, preuve de chantier vérifiable pour un financement à distance</h2>
+            <p class="text-sm text-ink/70 font-medium mb-6">Projet personnel · Plateforme web et mobile déployée</p>
+
+            <p class="accroche">Payer un chantier à 5 000 km sur la foi d'une photo WhatsApp, ou payer sur une preuve qui dit d'où elle vient, quand elle a été prise et à quel jalon elle correspond.</p>
+
+            <div class="flex flex-wrap gap-1.5 mb-8">
+                <span class="skill-tag">Next.js 16</span>
+                <span class="skill-tag">React 19</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">Expo, React Native</span>
+                <span class="skill-tag">Supabase</span>
+                <span class="skill-tag">PostgreSQL</span>
+                <span class="skill-tag">Row Level Security</span>
+                <span class="skill-tag">Tailwind</span>
+                <span class="skill-tag">GitHub Actions</span>
+            </div>
+
+            <div class="schema-wrap">
+                <svg class="schema" viewBox="0 0 800 268" role="img" aria-labelledby="st6 sd6">
+                    <title id="st6">Chaîne de preuve Batica, du jalon à la décision de payer</title>
+                    <desc id="sd6">Le client découpe le chantier en jalons. Le fournisseur scanne un QR affiché sur site puis prend une photo géolocalisée depuis l'application mobile. Le système croise la position GPS, l'horodatage EXIF, l'empreinte de l'image et la validité du QR pour produire un score de fraude. Le chef de chantier valide la conformité physique, puis le client décide de payer ou non. Le paiement lui-même reste hors de la plateforme.</desc>
+                    <defs><marker id="a6" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <rect class="n" x="6" y="14" width="177" height="54" rx="10"/><text class="lbl" x="94.5" y="37" text-anchor="middle">Jalon</text><text class="lbl" x="94.5" y="52" text-anchor="middle">défini par le client</text>
+                    <path class="fl" d="M183,41 H209" marker-end="url(#a6)"/>
+                    <rect class="n" x="209" y="14" width="177" height="54" rx="10"/><text class="lbl" x="297.5" y="37" text-anchor="middle">QR sur site</text><text class="lbl" x="297.5" y="52" text-anchor="middle">scanné à la livraison</text>
+                    <path class="fl" d="M386,41 H412" marker-end="url(#a6)"/>
+                    <rect class="n" x="412" y="14" width="177" height="54" rx="10"/><text class="lbl" x="500.5" y="37" text-anchor="middle">Photo géolocalisée</text><text class="lbl" x="500.5" y="52" text-anchor="middle">par le fournisseur</text>
+                    <path class="fl" d="M589,41 H615" marker-end="url(#a6)"/>
+                    <rect class="n" x="615" y="14" width="177" height="54" rx="10"/><text class="lbl" x="703.5" y="37" text-anchor="middle">Croisement</text><text class="lbl" x="703.5" y="52" text-anchor="middle">GPS, EXIF, empreinte</text>
+                    <path class="fl" d="M703.5,68 V106 H94.5 V140" marker-end="url(#a6)"/>
+                    <rect class="n" x="6" y="140" width="245" height="54" rx="10"/><text class="lbl" x="128.5" y="163" text-anchor="middle">Score de fraude</text><text class="lbl" x="128.5" y="178" text-anchor="middle">calculé automatiquement</text>
+                    <path class="fl" d="M251,167 H277" marker-end="url(#a6)"/>
+                    <rect class="n" x="277" y="140" width="245" height="54" rx="10"/><text class="lbl" x="399.5" y="163" text-anchor="middle">Chef de chantier</text><text class="lbl" x="399.5" y="178" text-anchor="middle">conformité physique</text>
+                    <path class="fl" d="M522,167 H548" marker-end="url(#a6)"/>
+                    <rect class="na" x="548" y="140" width="245" height="54" rx="10"/><text class="acc" x="670.5" y="163" text-anchor="middle">Décision du client</text><text class="acc" x="670.5" y="178" text-anchor="middle">payer ou non</text>
+                    <path class="dash" d="M6,232 H794"/>
+                    <text class="sub" x="400" y="252" text-anchor="middle">Le paiement reste hors plateforme : Wave, Orange Money, MoMo ou virement. Batica ne touche jamais aux fonds.</text>
+                </svg>
+                <p class="schema-cap">La plateforme s'arrête volontairement avant l'argent. Elle produit la preuve et la rend lisible ; la décision de payer, et le paiement lui-même, restent chez celui qui finance.</p>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <span class="detail-label">Contexte</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Projet personnel. Une plateforme de suivi de chantier destinée à la diaspora africaine :
+                        on vit en France, on finance la construction d'une maison au Togo, et on libère les fonds
+                        au fil des jalons sans pouvoir se rendre sur place. Cinq rôles cohabitent, client,
+                        fournisseur, chef de chantier, agent d'inspection et administrateur, chacun avec son
+                        parcours web et mobile.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Le problème</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        Une photo envoyée par WhatsApp ne prouve rien. Elle ne dit ni où elle a été prise, ni
+                        quand, ni à quel jalon elle correspond, ni si elle a déjà servi une première fois. Celui
+                        qui finance décide donc à l'aveugle, à 5 000 km. Le réflexe attendu serait de sécuriser
+                        l'argent en le faisant transiter par la plateforme. J'ai pris le problème dans l'autre
+                        sens : produire la preuve, et laisser la décision de payer à celui qui finance.
+                    </p>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que j'ai fait</span>
+
+                    <div class="mb-6">
+                        <span class="detail-sub">La chaîne de preuve</span>
+                        <ul class="space-y-2 list-arrow">
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Découpage du chantier en jalons par le client, chaque jalon portant sa propre
+                                condition de livraison.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                QR affiché sur le chantier, scanné par le fournisseur au moment de la livraison.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Photo prise depuis l'application mobile, avec position GPS et horodatage.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Croisement de la position GPS, de l'horodatage EXIF, de l'empreinte de l'image et
+                                de la validité du QR pour produire un score de fraude.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Validation de la conformité physique par le chef de chantier, tenue séparée du
+                                contrôle automatique : une preuve authentique peut porter sur des travaux non conformes.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="detail-sub">Les cinq parcours, web et mobile</span>
+                        <ul class="space-y-2 list-arrow">
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Web en Next.js 16 : App Router, Server Components et Server Actions, avec un
+                                middleware qui route chaque utilisateur selon son rôle.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Mobile en Expo et React Native avec expo-router : appareil photo, localisation,
+                                stockage sécurisé et manipulation d'image.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Authentification Supabase Auth, partagée par les deux clients.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <span class="detail-sub">L'industrialisation</span>
+                        <ul class="space-y-2 list-arrow">
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Base PostgreSQL sur Supabase : 29 tables et 108 policies Row Level Security.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Stockage des photos en buckets privés, lecture par URL signée uniquement.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Observabilité Sentry et PostHog, tests Jest et Testing Library côté mobile,
+                                tests de bout en bout.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                CI GitHub Actions : typage web, typage mobile, lint, tests de bout en bout,
+                                contrôle de dérive de schéma et rejeu des migrations sur une base éphémère.
+                            </li>
+                            <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                                <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                                Déploiement continu, Vercel pour le web et EAS pour le mobile.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Décisions techniques</span>
+                    <div class="space-y-5">
+                        <div class="decision">
+                            <span class="decision-title">Ne jamais toucher à l'argent.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Le paiement reste sur Wave, Orange Money, MoMo ou un virement. C'est d'abord un
+                                choix produit : la plateforme vend de la certitude, pas un compte de plus. C'est
+                                aussi ce qui la tient à l'écart du statut d'établissement de paiement, et donc
+                                d'un agrément que l'on ne porte pas seul.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Les autorisations en base, pas dans l'application.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                108 policies Row Level Security portent la règle d'accès dans PostgreSQL. Avec
+                                cinq rôles et deux clients, web et mobile, une règle écrite dans le code
+                                applicatif aurait dû être écrite deux fois, et aurait donc fini par diverger.
+                                Écrite en base, elle s'applique quel que soit le chemin d'entrée.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Buckets privés et URL signées.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                Une preuve n'a de valeur que si elle n'est pas consultable par n'importe qui.
+                                Aucune photo n'est servie en lecture publique ; chaque accès passe par une URL
+                                signée, à durée de vie limitée.
+                            </p>
+                        </div>
+                        <div class="decision">
+                            <span class="decision-title">Le schéma vérifié à chaque commit.</span>
+                            <p class="text-sm text-secondary leading-relaxed">
+                                La CI contrôle la dérive de schéma et rejoue les migrations sur une base
+                                éphémère. Quand la sécurité vit dans la base, une migration qui passe en local
+                                et casse en production ouvre un trou d'autorisation, pas seulement un bug.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="detail-label">Ce que ça démontre</span>
+                    <ul class="space-y-2 list-arrow">
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Concevoir une chaîne de traçabilité complète, de la saisie sur le terrain à la
+                            décision de celui qui paie.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Modéliser des droits d'accès pour cinq rôles distincts et les tenir à un seul endroit.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Faire tenir ensemble une contrainte réglementaire et une décision d'architecture,
+                            au lieu de les traiter séparément.
+                        </li>
+                        <li class="flex items-start gap-2 text-sm text-secondary leading-relaxed">
+                            <span class="text-accent font-bold mt-0.5 shrink-0" aria-hidden="true">→</span>
+                            Livrer et maintenir deux clients, web et mobile, sur un même modèle de données.
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="detail-label">Résultat</span>
+                    <div class="impact-badge mb-4">5 rôles · 29 tables · 108 policies Row Level Security</div>
+                    <p class="text-sm text-secondary leading-relaxed mb-4">
+                        Plateforme déployée, web sur Vercel et mobile sur EAS, avec les cinq parcours en place.
+                        Aucun chantier réel n'y est suivi à ce jour : c'est un projet personnel, pas un produit
+                        en exploitation.
+                    </p>
+                    <a href="https://kevo-control.vercel.app/" target="_blank" rel="noopener noreferrer"
+                       class="text-accent hover:text-ink text-sm inline-flex items-center gap-2 font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-accent rounded px-1 py-1"
+                       aria-label="Voir la plateforme Batica en ligne (nouvelle fenêtre)">
+                        <i class="ph ph-arrow-square-out text-base" aria-hidden="true"></i> Voir la plateforme
+                    </a>
+                </div>
+
+                <div class="transpo-box">
+                    <span class="detail-label">Transposable à</span>
+                    <p class="text-sm text-secondary leading-relaxed">
+                        La même chaîne sert une réception de matériel en usine, une validation de jalon sur un
+                        chantier industriel ou un contrôle qualité par photo horodatée. Le terrain change, le
+                        principe reste : une preuve rattachée à un lieu, à une date et à une étape, contrôlée
+                        automatiquement puis validée par un humain.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══ 05 · GESTION IMMOBILIERE ══ -->
+        <article id="back-end-metier" class="project-detail">
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+                <span class="section-num" style="margin-bottom:0">05</span>
                 <span class="nature-badge nature-acad">Académique</span>
             </div>
             <h2 class="font-display text-3xl font-bold mb-3">Back-end métier en microservice Java, gestion immobilière</h2>
@@ -750,10 +996,10 @@
             </div>
         </article>
 
-        <!-- ══ 05 · DIGITAL TWIN ══ -->
+        <!-- ══ 06 · DIGITAL TWIN ══ -->
         <article id="digital-twin" class="project-detail">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="section-num" style="margin-bottom:0">05</span>
+                <span class="section-num" style="margin-bottom:0">06</span>
                 <span class="nature-badge nature-acad">Académique</span>
             </div>
             <h2 class="font-display text-3xl font-bold mb-3">Digital Supply Chain Twin, Python et SimPy</h2>
@@ -853,10 +1099,10 @@
             </div>
         </article>
 
-        <!-- ══ 06 · SUPPLY CHAIN ══ -->
+        <!-- ══ 07 · SUPPLY CHAIN ══ -->
         <article id="supply-chain" class="project-detail">
             <div class="flex flex-wrap items-center gap-3 mb-3">
-                <span class="section-num" style="margin-bottom:0">06</span>
+                <span class="section-num" style="margin-bottom:0">07</span>
                 <span class="nature-badge nature-acad">Académique</span>
             </div>
             <h2 class="font-display text-3xl font-bold mb-3">Projet logistique international, optimisation supply chain</h2>

@@ -46,8 +46,9 @@ comme du tir à vue. « Énergie » est légitime, la mission BH2M est de l'ing�
 Site statique, sans build, sans dépendances à installer.
 
 ```
-index.html                      accueil : HTML et JS inline, 3 cartes projets en apercu
-projets.html                    page projets detaillee : 5 projets, une ancre par projet
+index.html                      accueil : HTML et JS inline, 4 cartes projets en apercu,
+                                dont Batica en carte pleine largeur (.project-featured)
+projets.html                    page projets detaillee : 7 projets, une ancre par projet
 styles.css                      style unique du site, partage par index.html et projets.html
 sw.js                           service worker (HTML, CV et styles.css en network-first,
                                 autres ressources en stale-while-revalidate)
@@ -177,9 +178,9 @@ python3 -c "import re;[print(f,len(re.findall('[\U0001F300-\U0001FAFF]',open(f,e
 Contrôler aussi :
 
 - les 5 ancres `#about`, `#skills`, `#projects`, `#experience`, `#contact` sur `index.html` ;
-- les 5 ancres `#bi-dolibarr`, `#chatbot-rag`, `#pipeline-elt`, `#digital-twin`,
-  `#supply-chain` sur `projets.html` ;
-- l'affichage des 3 cartes projets sur l'accueil et des 5 projets détaillés sur `projets.html` ;
+- les 7 ancres `#bi-dolibarr`, `#chatbot-rag`, `#pipeline-elt`, `#batica`,
+  `#back-end-metier`, `#digital-twin`, `#supply-chain` sur `projets.html` ;
+- l'affichage des 4 cartes projets sur l'accueil et des 7 projets détaillés sur `projets.html` ;
 - que `styles.css` est bien chargé sur les deux pages, aucun bloc `<style>` inline ;
 - la numérotation des sections, `01 · Résultats`, `02 · Compétences`, `03 · Projets`, dans cet
   ordre d'apparition ;

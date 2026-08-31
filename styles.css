@@ -413,6 +413,20 @@ body {
     font-size: 11px; color: #0F4C81; font-weight: 600;
 }
 
+/* ── CARTE PROJET EN TETE DE GRILLE ──
+   La grille des projets de l'accueil est a 3 colonnes. Une 4e carte y laisserait
+   une carte seule sur une deuxieme ligne. La carte mise en avant occupe donc
+   toute la largeur, et les 3 autres gardent leur rangee intacte. */
+.project-featured { grid-column: 1 / -1; }
+.project-featured-body { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+@media (min-width: 1024px) {
+    .project-featured-body {
+        grid-template-columns: 1.7fr 1fr;
+        gap: 2.5rem;
+        align-items: start;
+    }
+}
+
 /* ── MOBILE NAV ── */
 .mobile-menu { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); }
 
