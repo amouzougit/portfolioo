@@ -16,7 +16,7 @@
  * Incrementer CACHE_VERSION apres toute modification d'un fichier de PRECACHE.
  */
 
-const CACHE_VERSION = 'v24';
+const CACHE_VERSION = 'v25';
 const CACHE_NAME = `kevo-portfolio-${CACHE_VERSION}`;
 
 const PRECACHE = [
@@ -65,11 +65,25 @@ self.addEventListener('activate', (event) => {
 function networkFirst(request) {
     return fetch(request.url, { cache: 'reload', credentials: 'same-origin' })
         .then((response) => {
-            if (response && response.ok) {
-                const copy = response.clone();
+            // Un service worker n'a pas le droit de renvoyer une reponse redirigee a
+            // une requete de navigation : la specification en fait une erreur reseau,
+            // que Chrome affiche en ERR_FAILED, page blanche a l'appui. Or Cloudflare
+            // Pages redirige en 308 tout chemin en .html vers sa version sans
+            // extension, /index.html vers / par exemple. Un signet, un lien externe ou
+            // une URL tapee a la main suffisent donc a casser la page. On reconstruit
+            // une reponse identique mais sans marque de redirection.
+            const clean = response && response.redirected
+                ? new Response(response.body, {
+                      status: response.status,
+                      statusText: response.statusText,
+                      headers: response.headers
+                  })
+                : response;
+            if (clean && clean.ok) {
+                const copy = clean.clone();
                 caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
             }
-            return response;
+            return clean;
         })
         .catch(() => caches.match(request)
             .then((cached) => cached || caches.match('/index.html'))
