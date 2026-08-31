@@ -5,6 +5,77 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 010 · 31 août 2026 · ERR_FAILED sur les liens en .html
+
+**Objectif**
+
+Kevo signale `ERR_FAILED` sur `https://kevo-amouzou.pages.dev/index.html#experience`.
+
+**Diagnostic**
+
+Reproduit dans Chrome, puis contre-épreuve : service worker désenregistré et caches vidés,
+la même URL se charge normalement. Le service worker était donc en cause, pas Cloudflare seul.
+
+La chaîne complète :
+
+1. Cloudflare Pages redirige en 308 tout chemin en `.html` vers sa version sans extension.
+   Vérifié sur `/index.html`, `/projets.html`, `/merci.html` et `/404.html`, les quatre.
+2. `sw.js` intercepte toutes les navigations et renvoie la réponse suivie de
+   `fetch(url, { cache: 'reload' })`, donc une réponse dont `redirected` vaut `true`.
+3. Un service worker n'a pas le droit de renvoyer une réponse redirigée à une requête de
+   navigation. La spécification en fait une erreur réseau. Chrome l'affiche en `ERR_FAILED`.
+
+Cassé depuis la bascule Cloudflare de la session 008, le 26 août, pas depuis Batica. Les
+liens `/index.html#...` datent de la session 007, la redirection 308 de la session 008.
+Le bump de `CACHE_VERSION` en session 009 a seulement rafraîchi le service worker.
+
+Portée réelle, plus large que le symptôme signalé : les 9 liens concernés sont la navigation
+principale, le menu mobile et le pied de page de `projets.html`. Tout le chemin de retour vers
+l'accueil était mort pour un visiteur déjà venu.
+
+**Fait**
+
+- `projets.html` : les 9 liens `/index.html#x` deviennent `/#x`.
+- `sw.js` : `networkFirst` reconstruit une réponse sans marque de redirection quand la réponse
+  reçue est redirigée. Signets, liens externes et URL tapées à la main sont couverts.
+- `CACHE_VERSION` passé de `v24` à `v25`.
+- `CLAUDE.md` : le piège est documenté dans la section Cloudflare, une commande de contrôle des
+  liens en `.html` est ajoutée aux vérifications avant push, et le contrôle de production
+  précise qu'il faut tester avec le service worker actif, pas seulement en `curl`.
+
+**Hypothèse fausse écartée en cours de route**
+
+`cache.add('/index.html')` échouerait sur une réponse redirigée, rendant le précache inopérant.
+Testé en conditions réelles : l'appel passe. Le précache n'était pas en cause et reste inchangé.
+
+**Vérifié en production, service worker actif**
+
+| Cas | Avant | Après |
+|---|---|---|
+| `/index.html#experience` | ERR_FAILED | charge, ancre présente |
+| `/projets.html` | ERR_FAILED | charge, Batica présent |
+| `/merci.html` | ERR_FAILED | charge |
+| Clic « Parcours » depuis `/projets` | ERR_FAILED | mène à `/#experience` |
+
+Zéro erreur console sur les deux pages. `liens vers /index.html` : 0.
+
+**Décisions**
+
+| Sujet | Décision |
+|---|---|
+| Deux corrections plutôt qu'une | Les liens propres suppriment la cause, le filet dans `sw.js` couvre ce qu'on ne contrôle pas : signets, liens externes, URL tapées |
+| Précache | Laissé tel quel, l'hypothèse qui le mettait en cause a été testée et invalidée |
+| Vérification de production | Ne plus se contenter de `curl` : la redirection 308 ne casse que la navigation du navigateur, `curl` renvoie 200 sans rien voir |
+
+**Ouvert**
+
+- Les trois points de la session 009 restent ouverts : Batica absent du CV et de LinkedIn,
+  `README.md` qui ne le mentionne pas, nombre de tests mobiles non affiché.
+- Le site Netlify figé au 16 août n'a pas ce défaut, il ne redirige pas les chemins `.html`.
+  Sans importance tant qu'il n'est plus alimenté.
+
+---
+
 ## Session 009 · 31 août 2026 · Batica ajouté aux projets
 
 **Objectif**

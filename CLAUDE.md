@@ -159,6 +159,18 @@ publiquement. Ajouter un fichier au site implique donc de l'ajouter à `build.sh
 
 Un `git push` déclenche un déploiement. Grouper les commits et pousser une seule fois.
 
+**Ne jamais faire pointer un lien interne sur un chemin en `.html`.** Cloudflare Pages
+redirige en 308 tout chemin en `.html` vers sa version sans extension : `/index.html` vers `/`,
+`/projets.html` vers `/projets`. Or le service worker intercepte les navigations, et un
+service worker n'a pas le droit de renvoyer une réponse redirigée à une navigation : la
+spécification en fait une erreur réseau, que Chrome affiche en `ERR_FAILED`, page blanche à
+l'appui. Écrire `/`, `/#contact`, `/projets`, `/projets#batica`. Jamais `/index.html#contact`.
+
+`sw.js` reconstruit désormais une réponse sans marque de redirection, ce qui protège les
+signets, les liens externes et les URL tapées à la main. Cela ne dispense pas d'écrire des
+liens internes propres : le filet ne doit pas devenir la règle. Piège rencontré en
+session 010, cassé depuis la bascule Cloudflare de la session 008.
+
 Incrémenter `CACHE_VERSION` dans `sw.js` après toute modification d'un fichier listé dans
 `PRECACHE`. Ce n'est plus une condition de fraîcheur depuis la session 003, seulement une
 purge propre : `index.html` et le CV sont en network-first, `images/kevo.jpeg` en
@@ -173,6 +185,7 @@ Vérifications avant de pousser :
 ```bash
 grep -c "—" index.html projets.html styles.css README.md   # doit renvoyer 0 partout
 python3 -c "import re;[print(f,len(re.findall('[\U0001F300-\U0001FAFF]',open(f,encoding='utf-8').read()))) for f in ['index.html','projets.html','README.md']]"   # doit renvoyer 0
+grep -c 'href="/[A-Za-z0-9_-]*\.html' index.html projets.html merci.html 404.html   # doit renvoyer 0 partout
 ```
 
 Contrôler aussi :
@@ -184,7 +197,10 @@ Contrôler aussi :
 - que `styles.css` est bien chargé sur les deux pages, aucun bloc `<style>` inline ;
 - la numérotation des sections, `01 · Résultats`, `02 · Compétences`, `03 · Projets`, dans cet
   ordre d'apparition ;
-- l'absence d'erreur console.
+- l'absence d'erreur console ;
+- que `/index.html`, `/projets.html` et `/merci.html` se chargent en production **avec le
+  service worker actif**, et pas seulement en `curl` : la redirection 308 ne casse que la
+  navigation du navigateur.
 
 ## Journal des sessions
 
