@@ -26,7 +26,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Kevo Amouzou">
 
-    <link rel="preload" as="image" href="./images/kevo.jpeg" fetchpriority="high">
 
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
@@ -202,15 +201,28 @@
 
             </div>
 
-            <!-- Photo -->
+            <!-- Schema de process : ce que je construis, dans le langage graphique
+                 de projets.html. Il remplace le portrait, descendu dans Parcours :
+                 le premier ecran doit porter l'argument, pas le visage. -->
             <div class="hero-img flex justify-center lg:justify-end">
-                <div class="relative w-72 h-72 portrait-hero">
-                    <div class="absolute inset-0 bg-accent rounded-full blur-[110px] opacity-10"></div>
-                    <img src="./images/kevo.jpeg"
-                          alt="Kevo Amouzou - Portrait professionnel, Ingénieur Digitalisation Industrielle et SI"
-                         width="500" height="500"
-                         class="relative z-10 w-full h-full object-cover rounded-[2rem] border border-line shadow-2xl transition-all duration-700"
-                         fetchpriority="high" decoding="async">
+                <div class="schema-wrap" style="margin-bottom:0;max-width:500px;width:100%">
+                    <svg class="schema hero-schema" viewBox="0 0 400 460" role="img" aria-labelledby="sth sdh">
+                        <title id="sth">De la donnée relevée sur le terrain à la décision, et retour</title>
+                        <desc id="sdh">Chaîne verticale en cinq étapes : relevé terrain, puis ERP, MES ou GMAO, puis modélisation SQL, puis tableau de bord, puis décision. Une boucle en pointillés ramène la décision vers le relevé terrain : c'est l'amélioration continue.</desc>
+                        <defs><marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                        <g class="step"><rect class="n" x="76" y="8" width="300" height="64" rx="12"/><text class="lbl" x="226" y="46" text-anchor="middle">Relevé terrain</text></g>
+                        <g class="step"><rect class="n" x="76" y="96" width="300" height="64" rx="12"/><text class="lbl" x="226" y="134" text-anchor="middle">ERP, MES, GMAO</text></g>
+                        <g class="step"><rect class="n" x="76" y="184" width="300" height="64" rx="12"/><text class="lbl" x="226" y="222" text-anchor="middle">Modélisation SQL</text></g>
+                        <g class="step"><rect class="n" x="76" y="272" width="300" height="64" rx="12"/><text class="lbl" x="226" y="310" text-anchor="middle">Tableau de bord</text></g>
+                        <g class="step"><rect class="na" x="76" y="360" width="300" height="64" rx="12"/><text class="acc" x="226" y="398" text-anchor="middle" style="font-size:15px">Décision</text></g>
+                        <path class="fl" d="M226,72 V96" marker-end="url(#ah)"/>
+                        <path class="fl" d="M226,160 V184" marker-end="url(#ah)"/>
+                        <path class="fl" d="M226,248 V272" marker-end="url(#ah)"/>
+                        <path class="fl" d="M226,336 V360" marker-end="url(#ah)"/>
+                        <path class="loop" d="M76,392 H34 V40 H76" marker-end="url(#ah)"/>
+                        <text class="loop-lbl" x="20" y="216" text-anchor="middle" transform="rotate(-90 20 216)">amélioration continue</text>
+                    </svg>
+                    <p class="schema-cap">De la donnée relevée sur le terrain jusqu'à la décision qu'elle permet, et le retour de cette décision sur le process. C'est la chaîne que je construis.</p>
                 </div>
             </div>
 
@@ -518,7 +530,8 @@
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="font-display text-3xl lg:text-4xl font-bold mb-20 text-center">Mon Parcours</h2>
 
-            <div class="max-w-3xl">
+            <div class="parcours-grid">
+              <div class="max-w-3xl">
                 <div class="relative border-l border-line ml-5 pl-10 space-y-12">
 
                 <!-- BH2M -->
@@ -616,6 +629,15 @@
                 </div>
 
                 </div>
+              </div>
+
+              <figure class="portrait-parcours">
+                  <img src="./images/kevo.jpeg"
+                       alt="Kevo Amouzou, portrait professionnel"
+                       width="500" height="500"
+                       loading="lazy" decoding="async">
+                  <figcaption>Kevo Amouzou, Belfort. Disponible en CDI, France entière.</figcaption>
+              </figure>
             </div>
         </div>
     </section>

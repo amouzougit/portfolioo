@@ -414,6 +414,23 @@ body {
     font-size: 11px; color: #0F4C81; font-weight: 600;
 }
 
+/* ── PARCOURS ──
+   Le portrait a quitte le hero pour ici : un visage a sa place a cote d'un
+   parcours, pas devant l'argument. La colonne de droite etait vide, le bloc
+   timeline etant plafonne a max-w-3xl dans un conteneur max-w-6xl. */
+.parcours-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start; }
+@media (min-width: 1024px) {
+    .parcours-grid { grid-template-columns: minmax(0, 1fr) 240px; gap: 4rem; }
+}
+.portrait-parcours img {
+    width: 100%; height: auto; display: block;
+    border-radius: 1.25rem;
+    border: 1px solid #E4E7EC;
+}
+.portrait-parcours figcaption {
+    font-size: 12px; color: #5A6478; line-height: 1.5; margin-top: 12px;
+}
+
 /* ── CARTE PROJET EN TETE DE GRILLE ──
    La grille des projets de l'accueil est a 3 colonnes. Une 4e carte y laisserait
    une carte seule sur une deuxieme ligne. La carte mise en avant occupe donc
@@ -629,6 +646,55 @@ body {
 .schema .fl { stroke: #98A1B2; stroke-width: 1.5; fill: none; }
 .schema .dash { stroke: #C7CDD8; stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
 .schema-cap { font-size: 12px; color: #5A6478; line-height: 1.5; margin-top: 12px; }
+
+/* ── SCHEMA DU HERO ──
+   Le seul mouvement du site, et il est place la ou il dit quelque chose : la
+   chaine s'assemble dans l'ordre ou on la lit, une fois, au chargement, puis
+   ne bouge plus. Une page qui s'anime partout ne dit plus ou regarder.
+   Le schema reprend le langage graphique de projets.html : meme trait, memes
+   boites, meme fleche. L'accueil annonce ainsi ce que la page projets detaille. */
+.hero-schema { min-width: 0; width: 100%; max-width: 420px; margin: 0 auto; }
+.hero-schema .lbl { font-size: 15px; }
+.hero-schema .loop {
+    stroke: #98A1B2; stroke-width: 1.5; fill: none; stroke-dasharray: 5 5;
+}
+.hero-schema .loop-lbl { fill: #98A1B2; font-size: 11px; letter-spacing: 0.5px; }
+
+@keyframes schemaIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.hero-schema .step,
+.hero-schema .fl,
+.hero-schema .loop,
+.hero-schema .loop-lbl {
+    opacity: 0;
+    animation: schemaIn 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
+}
+.hero-schema .step:nth-of-type(1) { animation-delay: 0.10s; }
+.hero-schema .step:nth-of-type(2) { animation-delay: 0.26s; }
+.hero-schema .step:nth-of-type(3) { animation-delay: 0.42s; }
+.hero-schema .step:nth-of-type(4) { animation-delay: 0.58s; }
+.hero-schema .step:nth-of-type(5) { animation-delay: 0.74s; }
+.hero-schema .fl:nth-of-type(1) { animation-delay: 0.20s; }
+.hero-schema .fl:nth-of-type(2) { animation-delay: 0.36s; }
+.hero-schema .fl:nth-of-type(3) { animation-delay: 0.52s; }
+.hero-schema .fl:nth-of-type(4) { animation-delay: 0.68s; }
+.hero-schema .loop,
+.hero-schema .loop-lbl { animation-delay: 0.92s; }
+
+/* La boucle est le sujet du schema : elle reste lisible sans animation. */
+@media (prefers-reduced-motion: reduce) {
+    .hero-schema .step,
+    .hero-schema .fl,
+    .hero-schema .loop,
+    .hero-schema .loop-lbl {
+        opacity: 1;
+        animation: none;
+    }
+}
+
 
 /* Accroche : la phrase a retenir si le lecteur ne lit rien d'autre du projet.
    Placee juste sous le titre, avant les tags. */

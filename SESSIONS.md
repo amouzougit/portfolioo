@@ -5,6 +5,66 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 012 · 1er septembre 2026 · Le schéma de process prend le hero
+
+**Objectif**
+
+« Fais ce qui est bon. » Le geste laissé ouvert en session 011 est fait : le schéma de process
+remplace le portrait dans le hero. Un seul geste fort, la police d'affichage n'est pas touchée.
+
+**Fait**
+
+- Schéma vertical en cinq étapes dans le hero, langage graphique de `projets.html`, mêmes
+  classes SVG : relevé terrain, ERP MES GMAO, modélisation SQL, tableau de bord, décision.
+  Une boucle en pointillés ramène la décision vers le terrain, libellée « amélioration
+  continue ». La boucle est le sujet du schéma : c'est la seule forme qu'on retient, et le
+  PDCA figure au CV.
+- Animation : la chaîne s'assemble une fois au chargement, dans l'ordre de lecture, délais
+  échelonnés de 0,10 s à 0,92 s. `prefers-reduced-motion: reduce` fige tout à l'état final.
+  C'est le seul mouvement du site, ailleurs rien ne s'anime.
+- Portrait descendu dans Parcours, classe `.parcours-grid`, colonne de droite de 240 px à
+  partir de 1024 px. La colonne était vide, la timeline étant plafonnée à `max-w-3xl` dans un
+  conteneur `max-w-6xl`.
+- Conséquence LCP assumée : le portrait n'étant plus au-dessus du pli, le `<link rel="preload">`
+  et `fetchpriority="high"` sont retirés, `loading="lazy"` est remis. La décision inverse
+  datait de la session 004, quand le portrait était l'élément LCP. Le LCP est désormais le `h1`.
+
+**Deux défauts trouvés en mesurant, pas en supposant**
+
+1. `min-width: 600px` de `.schema` écrasait le `min-width: 0` de `.hero-schema` : le bloc
+   hero-schema était déclaré **avant** `.schema` dans la feuille. Le SVG sortait à 600 px dans
+   un conteneur de 500. Corrigé en déplaçant le bloc après `.schema` plutôt qu'en gonflant la
+   spécificité : l'ordre de déclaration est plus lisible qu'une surenchère de sélecteurs.
+2. Les libellés flottaient dans des boîtes deux fois trop larges, 127 px de texte dans 336 px.
+   `viewBox` resserré de 460 à 400 de large, boîtes de 336 à 300. Marges mesurées après :
+   87 px minimum, symétriques.
+
+**Vérifié**
+
+- Rendu 420 x 483, aucun débordement du conteneur, boucle entièrement dans le `viewBox`.
+- Les 11 éléments animés atteignent tous l'opacité 1 une fois l'animation terminée.
+- Desktop simulé : hero texte à gauche et schéma à droite, Parcours timeline à gauche
+  et portrait à droite, côte à côte.
+- `h1` à y=222 pour un pli à 579 : la thèse reste au-dessus du pli.
+- SVG valide en XML, zéro erreur console, `CACHE_VERSION` en `v27`.
+
+**Note d'environnement**
+
+Les animations paraissaient bloquées à l'opacité 0. `getAnimations()` a montré
+`playState: running` avec `currentTime: 0` : Chrome gèle la timeline des onglets non actifs.
+Artefact du banc de test, pas un défaut du site. Vérifier une animation depuis cet
+environnement suppose d'appeler `finish()` avant de lire l'état.
+
+**Ouvert**
+
+- Clash Display sur fond crème reste l'un des looks par défaut les plus répandus. Sortir de ce
+  défaut suppose de changer la police d'affichage, toujours pas fait, et c'est le dernier point
+  qui sépare ce site d'une identité vraiment propre.
+- Les trois points de la session 009 restent ouverts : Batica absent du CV et de LinkedIn,
+  `README.md` qui ne le mentionne pas, nombre de tests mobiles non affiché.
+
+---
+
 ## Session 011 · 31 août 2026 · Passe de design, corrections structurelles
 
 **Objectif**
