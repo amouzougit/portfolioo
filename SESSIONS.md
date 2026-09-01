@@ -75,6 +75,60 @@ devient sans objet. `CLAUDE.md` est complété des pièges 5 à 8.
 
 ---
 
+## Session 018 · 1er septembre 2026 · Le site montre enfin quelque chose
+
+**Objectif**
+
+Kevo trouve le site « trop statique ».
+
+**Requalification du problème**
+
+Mesuré avant de répondre : **une seule image sur tout le site**, le portrait, et **zéro sur
+la page projets**. Sept projets décrits, six schémas dessinés à la main, aucune capture de ce
+qui a été construit. Le problème n'est donc pas le manque de mouvement, c'est que **le site
+raconte et ne montre jamais**. Ajouter des animations au scroll aurait fait bouger du texte
+sans rien prouver.
+
+Contrainte : les captures de BH2M sont exclues, la page projets promet qu'aucune donnée client
+n'y figure et c'est ce qui la rend crédible. Batica en revanche est un projet personnel,
+public, sans donnée client.
+
+**Fait**
+
+- Capture de la page d'accueil publique de Batica intégrée dans le bloc `#batica`, après le
+  schéma. Recadrée sous le bandeau Chrome, redimensionnée à 1400 px, JPEG progressif de 66 Ko.
+- Composant `.capture` : même cadre que `.schema-wrap`, pour que la preuve dessinée et la
+  preuve photographiée se lisent comme deux formes du même geste.
+- Légende honnête : c'est la page d'accueil publique, pas un écran applicatif, et la mention
+  « plateforme en bêta, aucun chantier réel suivi » est rappelée.
+
+**Images générées : demandées, testées, écartées**
+
+Kevo a demandé des illustrations générées pour les autres projets. Refusé une première fois au
+motif de la règle 6, puis testé à sa demande. **Le résultat était meilleur que prévu** : trait
+technique plat, fond sur `#EFF1EF`, trait sur `#2E4C5C`, un seul accent sur `#9E5819`, aucun
+texte. La comparaison avec le piège Power BI était trop dure : une illustration
+non figurative n'affirme aucune compétence.
+
+Écartées quand même, et Kevo a laissé la décision : **chaque projet détaillé a déjà son schéma
+dessiné à la main**. Le schéma dit « voici mon architecture », l'illustration dit « voici une
+image de données ». Mises côte à côte, la générique affaiblit la spécifique, le lecteur en
+déduisant que la première est illustrative elle aussi.
+
+**Deux constats sur Batica, transmis à Kevo**
+
+- La page publique est servie **en anglais par défaut**, alors qu'elle est liée depuis un
+  portfolio francophone. Un sélecteur `FR` existe.
+- Le badge « Bêta » est affiché, ce qui colle exactement à ce que le portfolio annonce.
+
+**Limite d'outillage rencontrée**
+
+Impossible de capturer Batica moi-même : l'extension n'a pas la permission d'exécuter du
+JavaScript sur `kevo-control.vercel.app`, et le défilement en dépend. Seule une capture du haut
+de page a été obtenue, vide. C'est Kevo qui a fourni l'image exploitable.
+
+---
+
 ## Session 016 · 1er septembre 2026 · Le badge de disponibilité retiré
 
 **Objectif**

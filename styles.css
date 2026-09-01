@@ -398,6 +398,28 @@ body {
     z-index: 1;
     pointer-events: none;
 }
+/* ── CAPTURES ──
+   Le site decrivait beaucoup et ne montrait rien : une seule image sur les
+   deux pages, le portrait. Une capture d'un produit reellement livre vaut
+   mieux qu'un paragraphe de plus. Meme cadre que les schemas, pour que la
+   preuve dessinee et la preuve photographiee se lisent comme deux formes du
+   meme geste. Interdiction inchangee sur les images de banque d'images et
+   les illustrations generees : ici on ne montre que ce qui existe. */
+.capture {
+    background: #FFFFFF;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 12px 12px 10px;
+    margin: 0 0 2rem;
+}
+.capture img {
+    width: 100%; height: auto; display: block;
+    border-radius: 3px;
+}
+.capture figcaption {
+    font-size: 12px; color: var(--secondary); line-height: 1.5; margin-top: 12px;
+}
+
 /* ── LIGNE DE COTE ──
    L'element signature. Le meme trait qui dimensionne une piece sur un plan
    technique relie ici deux idees en affichant la valeur mesuree entre elles.
