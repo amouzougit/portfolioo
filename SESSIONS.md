@@ -5,6 +5,40 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 014 · 1er septembre 2026 · Portrait du parcours, taille et colonne vide
+
+**Objectif**
+
+Kevo trouve le portrait trop petit dans Parcours, capture à l'appui.
+
+**Diagnostic**
+
+Il l'était, mais le problème principal était ailleurs. Mesuré : la timeline fait 2585 px de
+haut, le portrait 300 px. **88 % de la colonne de droite était vide**, sur toute la hauteur
+de la section. Agrandir la photo n'aurait traité que la moitié du défaut.
+
+**Fait**
+
+- Colonne portrait élargie de 240 à 300 px.
+- Portrait en `position: sticky; top: 6rem` au-delà de 1024 px : il accompagne la lecture du
+  parcours au lieu de la quitter au premier écran.
+- `CACHE_VERSION` en `v29`.
+
+**Vérifié**
+
+Position mesurée à 0, 25, 50, 75 et 95 % de la section : le portrait se cale à 96 px du haut
+et reste visible sur toute la traversée.
+
+**Note d'environnement, deuxième piège du banc de test**
+
+`scrollTo` ne faisait rien et toutes les mesures sortaient identiques. Deux causes cumulées :
+`requestAnimationFrame` ne se déclenche pas dans un onglet inactif, et le
+`html { scroll-behavior: smooth }` du site rend `scrollTo` asynchrone, donc jamais exécuté
+dans un onglet gelé. Mesurer un défilement depuis cet environnement suppose de forcer
+`scroll-behavior: auto` et de ne pas attendre de frame.
+
+---
+
 ## Session 013 · 1er septembre 2026 · Cotation industrielle, changement d'identité
 
 **Objectif**
