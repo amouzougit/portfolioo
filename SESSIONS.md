@@ -26,8 +26,23 @@ de la section. Agrandir la photo n'aurait traité que la moitié du défaut.
 
 **Vérifié**
 
-Position mesurée à 0, 25, 50, 75 et 95 % de la section : le portrait se cale à 96 px du haut
-et reste visible sur toute la traversée.
+- Position mesurée à 0, 25, 50, 75 et 95 % de la section : le portrait se cale à 96 px du haut
+  et reste visible sur toute la traversée.
+- Production confrontée au build local, ligne à ligne : les deux servent
+  `grid-template-columns: minmax(0, 1fr) 300px` en ligne 476 et `position: sticky; top: 6rem`
+  en ligne 480 de `styles.css`.
+- Deuxième fausse alerte de la journée sur le cache de bordure : un premier contrôle donnait
+  0 pour les deux règles alors que `sw.js` annonçait déjà `v29`. `styles.css` était encore
+  servi depuis le cache. Le piège est documenté dans `CLAUDE.md` depuis la session 013, il
+  reste facile d'y retomber : `sw.js` et `styles.css` ne basculent pas au même instant.
+
+**État de la direction après quatre sessions de design**
+
+Sessions 011 à 014 prises ensemble, la direction « cotation industrielle » est intégralement
+en place : palette à cinq couleurs et deux statuts, Cabinet Grotesk, General Sans et
+JetBrains Mono, coins cassés, trame millimétrée, ligne de cote sur ses trois emplacements,
+tracé du schéma au chargement. Le seul écart volontaire avec la proposition d'origine reste
+le portrait, gardé hors du hero.
 
 **Note d'environnement, deuxième piège du banc de test**
 
