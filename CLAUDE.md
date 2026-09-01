@@ -132,9 +132,21 @@ Trois pièges, tous rencontrés :
    rendu avec cette police, et confirmer par un rendu réel. Exemple rencontré : la ligne
    italique `Permis B | Mobilite : France entiere | Teletravail hybride possible` ne contient
    ni `k`, ni `z`, ni `g`. Y écrire `kevo-amouzou.pages.dev` affiche `□evo-amou□ou.pa□es.dev`.
-4. **Le layout est figé.** Les valeurs des compétences démarrent à x=195.59, la marge droite est
-   à 549.92, soit 354.33 points de budget en F1 9pt. Calculer la largeur du texte avec la table
-   `/W` de la police avant d'allonger une ligne, sinon elle sort de la page sans prévenir.
+4. **Le layout est figé.** La marge droite est à 549.92, le texte démarre à x=48.19.
+5. **Ne pas borner un flux par `find('endstream')`.** L'appel dépasse la vraie fin et attrape
+   celle d'un objet plus loin : l'essai du 1er septembre a ainsi avalé les objets 1, 5, 6 et 7.
+   Borner par le `/Length` déclaré dans l'en-tête de l'objet.
+6. **Ne pas décaler les offsets xref à la main.** Régénérer la table entière en rescannant le
+   fichier reconstruit, `^(\d+) 0 obj`, rend le piège n°2 sans objet.
+7. **Le calcul de largeur par la table `/W` est faux.** Mesuré le 1er septembre : le modèle
+   donnait 375 pt pour une ligne qui en fait 473. Sous-estimation d'environ 30 %, cause non
+   identifiée, ni `Tz` ni `Tc` ni `Tw` sur la ligne concernée. **Mesurer le rendu, pas le
+   modèle** : `qlmanage -t -s 2000 -o dossier fichier.pdf` puis relever l'extension d'encre
+   au pixel sur la ligne visée. Le moteur de rendu est le seul juge fiable.
+8. **Placer un texte long sur la ligne italique plutôt que sur la ligne de contact.**
+   Celle-ci finit à 473 pt sur 550 disponibles, il n'y tient que 77 pt. La ligne italique
+   s'arrête à 332 pt et laisse 217 pt. L'URL du portfolio y a été posée en F1, en romain :
+   le sous-ensemble F3 oblique n'a que 38 caractères et ne porte pas `k`, `z` ni `g`.
 
 Vérifier ensuite : tous les flux se décompressent, chaque entrée xref pointe bien sur
 `N 0 obj`, `startxref` tombe sur `xref`, le nombre de lignes de texte est inchangé, et le PDF

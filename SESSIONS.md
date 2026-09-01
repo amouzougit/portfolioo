@@ -5,6 +5,76 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 017 · 1er septembre 2026 · L'URL du portfolio ajoutée au CV
+
+**Objectif**
+
+Le CV ne portait pas l'adresse du site. Un recruteur qui reçoit le PDF par mail, sans passer
+par LinkedIn, ne trouvait jamais le portfolio.
+
+**Résultat**
+
+`kevo-amouzou.pages.dev` figure désormais **en fin de ligne italique**, en F1 romain :
+
+```
+Belfort, France  |  +33 7 80 86 65 75  |  kevoamouzou@gmail.com  |  linkedin.com/in/kevo-amouzou
+Permis B  |  Mobilite : France entiere  |  Teletravail hybride possible  |  kevo-amouzou.pages.dev
+```
+
+La ligne de contact n'est pas touchée. Les deux lignes s'équilibrent, et l'URL en romain au
+milieu d'un italique se distingue naturellement.
+
+**Quatre pièges rencontrés, dont trois inédits**
+
+1. **Piège n°1 de `CLAUDE.md`, tombé dedans malgré la lecture.** L'expression
+   `^(\d+) 0 obj\s*(<<.*?>>)\s*stream` a enjambé l'objet 3 pour attraper le flux de l'objet 4.
+   Solution : partir du mot-clé `stream` et remonter vers l'objet qui le précède.
+2. **Inédit : `find('\nendstream')` dépasse la vraie fin du flux.** Il a atterri sur le
+   `endstream` de l'objet 7, avalant les objets 1, 5, 6 et 7 dans la tranche remplacée. Le
+   contrôle de complétude de la table xref l'a arrêté avant tout dégât. Borner par `/Length`.
+3. **Inédit : le calcul de largeur par la table `/W` est faux d'environ 30 %.** Le modèle
+   donnait 375 pt pour une ligne qui en mesure 473 au rendu. Ni `Tz`, ni `Tc`, ni `Tw` sur
+   cette ligne, cause non identifiée. **Le moteur de rendu est le seul juge fiable** :
+   `qlmanage -t` puis mesure de l'extension d'encre au pixel.
+4. **Conséquence : la ligne de contact ne pouvait pas accueillir l'URL.** Elle finit à 473 pt
+   sur 550, il n'y restait que 77 pt pour un ajout qui en fait 121. Cinq variantes ont été
+   fabriquées et mesurées au rendu : la seule qui tenait imposait de perdre « , France » et de
+   resserrer tous les séparateurs, pour 10 pt de marge. La ligne italique, elle, s'arrête à
+   332 pt et laisse 217 pt : l'URL y tient avec **96 pt de marge**, sans rien sacrifier.
+
+**Glyphes vérifiés avant d'écrire**
+
+Le sous-ensemble F3 oblique ne porte que 38 caractères. Les 24 caractères de
+`  |  kevo-amouzou.pages.dev` ont été confrontés au sous-ensemble **F1**, reconstitué en
+listant tous les caractères réellement rendus avec cette police dans le document : aucun
+manquant. D'où le choix du romain, qui est aussi le meilleur choix typographique pour une URL.
+
+**Vérifié**
+
+| Contrôle | Original | Nouveau |
+|---|---|---|
+| Flux décompressés | 7 ok, 13 en échec | identique, donc préexistant |
+| Entrées xref valides | 27/27 | 27/27 |
+| `startxref` pointe sur | `xref` | `xref` |
+| Lignes de texte | 59 | 60 |
+
+Une seule ligne ajoutée, `  |  kevo-amouzou.pages.dev`, aucune perdue. Rendu contrôlé à l'œil
+sur l'image produite par Quick Look : aucun carré vide, espacement conforme au reste de la ligne.
+
+**Méthode retenue**
+
+La table xref n'est plus décalée à la main : elle est **régénérée entièrement** en rescannant
+le fichier reconstruit. Le piège n°2 de `CLAUDE.md`, les offsets qui ne bougent pas tous,
+devient sans objet. `CLAUDE.md` est complété des pièges 5 à 8.
+
+**Ouvert**
+
+- `README.md` ne mentionne toujours ni Batica ni la direction visuelle.
+- Reste à vérifier, par Kevo seul : que LinkedIn dit la même chose que le CV sur l'intitulé
+  BH2M, les dates des deux expériences et le niveau d'anglais B2.
+
+---
+
 ## Session 016 · 1er septembre 2026 · Le badge de disponibilité retiré
 
 **Objectif**
