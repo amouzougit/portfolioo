@@ -5,6 +5,55 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 016 · 1er septembre 2026 · Le badge de disponibilité retiré
+
+**Objectif**
+
+Kevo propose de retirer le badge « Disponible immédiatement · CDI · France entière » du hero.
+
+**Pourquoi c'était juste**
+
+Le badge ne disait rien que la page ne dise déjà, souvent **sur le même écran** :
+
+| Information | Déjà présente |
+|---|---|
+| CDI | ligne « CDI visés », juste en dessous |
+| France entière | ligne sous les chiffres, « Permis B, mobilité France entière » |
+| Disponible immédiatement | titre de la section Postes recherchés, et bloc Contact |
+
+À quoi s'ajoutent deux arguments de forme. C'était le dernier élément en forme de pilule après
+le passage aux coins cassés. Et son point vert portait `animate-pulse`, **la seule autre
+animation du site** : la retirer rend enfin vraie l'affirmation selon laquelle le tracé du
+schéma est le seul mouvement de la page.
+
+**Fait**
+
+- Badge supprimé. Le `h1` devient le premier élément du hero et remonte de y=222 à **y=160**.
+- Aucune information perdue : la ligne devient « CDI visés, disponible immédiatement : ».
+- CSS mort supprimé dans la foulée : `.animate-pulse`, `@keyframes pulse`, et les quatre
+  utilitaires `emerald` qui n'avaient plus aucun porteur.
+
+**Vérifié**
+
+- `h1` premier enfant du hero, à y=160. Zéro `animate-pulse` restant. 5 cotes toujours en place.
+- Audit de contraste : 244 éléments, zéro échec.
+- `CACHE_VERSION` en `v32`.
+
+**Note sur le cache, troisième occurrence**
+
+La capture envoyée par Kevo montrait la `v30` : la boucle était corrigée mais les trois chiffres
+étaient encore dans leurs tuiles, alors que la production servait bien la `v31`. Le service
+worker et le cache navigateur retardent d'une version. Toujours demander un rechargement forcé
+avant de juger une capture, et vérifier quelle version elle montre avant de conclure.
+
+**Premier défaut visuel confirmé de mes yeux**
+
+La capture a aussi permis de valider le correctif de rotation de la session 015 : la boucle
+affiche bien « AMÉLIORATION CONTINUE » à la verticale. Premier contrôle de rendu réel de la
+série, tous les autres ayant été des mesures.
+
+---
+
 ## Session 015 · 1er septembre 2026 · Revue de l'exécution, les chiffres portent la cote
 
 **Objectif**
