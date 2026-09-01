@@ -217,6 +217,10 @@ Contrôler aussi :
   timeline du parcours, les schémas de `projets.html`. Posée ailleurs elle redevient l'ornement
   qu'elle remplace ;
 - les contrastes : audit sur le rendu, pas sur la palette théorique. Zéro échec attendu ;
+- **contourner le cache de bordure quand on vérifie la production.** Cloudflare Pages sert
+  encore l'ancien HTML quelques instants après un déploiement, alors que `sw.js` est déjà à
+  jour : un contrôle en `curl` nu donne des compteurs faux et fait croire à une régression.
+  Utiliser `curl -H 'Cache-Control: no-cache' "https://kevo-amouzou.pages.dev/?cb=$RANDOM"` ;
 - l'absence d'erreur console ;
 - que `/index.html`, `/projets.html` et `/merci.html` se chargent en production **avec le
   service worker actif**, et pas seulement en `curl` : la redirection 308 ne casse que la
