@@ -5,6 +5,77 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 015 · 1er septembre 2026 · Revue de l'exécution, les chiffres portent la cote
+
+**Objectif**
+
+Claude Design a relu l'exécution de sa propre direction. Cinq points, une priorité désignée.
+Application de la priorité.
+
+**Le défaut trouvé par Kevo avant tout le reste**
+
+Sur sa capture, le libellé de la boucle du hero affichait « ATION CONTINUE », à l'horizontale
+et tronqué. Le texte porte `transform="rotate(-90 22 214)"` en attribut SVG, mais partageait
+la keyframe `coteApparait` avec le reste du schéma, et celle-ci se termine sur
+`transform: none`. **Un transform CSS l'emporte toujours sur l'attribut de présentation.**
+L'animation redressait donc le texte en fin de course, et centré sur x=22 il sortait du
+`viewBox` par la gauche. Corrigé par une keyframe `coteFondu`, opacité seule, réservée au
+libellé. Mesuré après : matrice de rotation appliquée, rendu 14 x 141 px donc vertical, texte
+complet, aucun chevauchement avec la boucle ni avec les boîtes.
+
+Règle retenue : **ne jamais animer `transform` sur un élément SVG qui porte déjà un attribut
+`transform`.**
+
+**La priorité de la revue, appliquée**
+
+Les trois chiffres sous le hero, 10+, 80%, 500+, étaient dans des tuiles teintées avec bordure
+et coin arrondi : le gabarit « gros chiffre, légende dessous » de n'importe quelle page de
+présentation. C'était le premier bloc sous le hero, dans les dix secondes qui décident.
+
+Les tuiles sont supprimées, `.stat-card` avec. Les trois chiffres portent désormais la cote,
+modificateur `.cote-valeur` : valeur à 20px à l'encre, trait au bleu de tracé, légende à 12px.
+Aucune boîte, aucun fond, la page reste nue autour du trait.
+
+Effet secondaire visé par la revue et obtenu : la cote ne se lisait comme un système qu'à
+partir du Parcours. Elle apparaît maintenant **quatre fois dans le hero lui-même**, la boucle
+plus les trois chiffres. Un lecteur qui ne descend pas la voit quand même comme un système.
+Le compte par section ne bouge pas : 2 sections sur 7 en portent, `#about` et `#experience`,
+plus les schémas de `projets.html`. La discipline de la relecture tient.
+
+**Défaut d'ordre de déclaration, deuxième de la journée**
+
+`.cote-valeur` était déclaré avant `.cote` : à spécificité égale, la base écrasait son
+modificateur, la valeur sortait à 12px en bleu au lieu de 20px à l'encre. Bloc déplacé juste
+après sa base plutôt que passé en `.cote.cote-valeur`. Même arbitrage qu'en session 013 pour
+`.hero-schema` : l'ordre se relit, la surenchère de sélecteurs non.
+
+**Vérifié**
+
+- Valeur à 20px, encre `#161D1B` à 15,09:1. Trait au bleu de tracé à 8,03:1.
+- Trois colonnes égales de 198px.
+- Audit de contraste sur le rendu : 245 éléments, **zéro échec**.
+- `CACHE_VERSION` en `v31`.
+
+**Points de la revue non traités, volontairement**
+
+- **La section Compétences reste un mur de tags.** La revue la désigne comme le vrai risque de
+  métronome et le passage que le recruteur saute. C'est le prochain chantier, et il demande une
+  restructuration, pas un réglage.
+- **Le schéma du hero sur mobile.** Il retombe sous le texte en pleine largeur, environ 494px
+  de haut. La revue suggère une version compressée plutôt qu'un simple empilement.
+- **Les deux colonnes de texte du hero qui se concurrencent.** Jugement visuel, non vérifiable
+  depuis ce poste : ni la revue ni moi n'avons de rendu pixel. À trancher sur capture.
+
+**Limite de méthode, à garder en tête**
+
+Les deux défauts visuels de la journée, le portrait trop petit et ce libellé redressé, ont été
+trouvés par Kevo sur des captures. Aucun contrôle numérique ne les avait vus : opacité,
+`stroke-dashoffset` et marges de boîte étaient tous verts. Les captures de l'extension
+reviennent désynchronisées sur ce poste. Distinguer désormais **mesuré** de **vu**, et
+demander une capture pour tout jugement de rendu.
+
+---
+
 ## Session 014 · 1er septembre 2026 · Portrait du parcours, taille et colonne vide
 
 **Objectif**

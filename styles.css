@@ -361,24 +361,6 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: #2E4C5C; }
 
 /* ── STAT CARDS ── */
-.stat-card {
-    background: rgba(46,76,92,0.05);
-    border: 1px solid rgba(46,76,92,0.16);
-    border-radius: 5px;
-    padding: 16px 12px;
-    text-align: center;
-    transition: all 0.3s ease;
-    position: relative; overflow: hidden;
-}
-.stat-card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: rgba(46,76,92,0.05);
-    opacity: 0; transition: opacity 0.3s;
-}
-.stat-card:hover { border-color: rgba(46,76,92,0.4); transform: translateY(-3px); }
-.stat-card:hover::before { opacity: 1; }
-
 /* ── CERTIF ORACLE ── */
 .cert-badge {
     background: rgba(158,88,25,0.05);
@@ -458,6 +440,30 @@ body {
 
 .cote-conforme { color: var(--conforme); }
 .cote-ecart    { color: var(--ecart); }
+
+/* ── CHIFFRES DE RESULTATS ──
+   Ils portent la cote, ils ne sont plus dans une tuile. Le gabarit
+   "gros chiffre sur fond teinte, legende dessous" est le motif le plus
+   generique d'une page de presentation, et c'etait le premier bloc sous le
+   hero, dans les dix secondes qui decident. Pose la, la cote se lit comme un
+   systeme des le premier ecran au lieu d'une illustration croisee une seule
+   fois avant le Parcours. Aucune boite, aucun fond : la page reste nue
+   autour du trait. */
+.cote-valeur {
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 10px;
+}
+/* La valeur est a l'encre, le trait au bleu de trace : sur un plan, la cote
+   se dessine, la mesure s'ecrit. */
+.cote-valeur::before,
+.cote-valeur::after { color: var(--accent); }
+
+.stat-legende {
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--secondary);
+}
 
 /* ── IMPACT BADGE ── */
 .impact-badge {
