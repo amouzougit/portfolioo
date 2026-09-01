@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://keen-selkie-a72fc7.netlify.app/sitemap.xml
+Sitemap: https://kevo-amouzou.pages.dev/sitemap.xml
