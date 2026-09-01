@@ -8,12 +8,19 @@
 
 /* ══ UTILITAIRES ══ (remplace Tailwind CDN, uniquement les classes utilisees) */
 :root {
-    --accent: #0F4C81;
-    --ink: #1A2233;
-    --secondary: #5A6478;
-    --line: #E4E7EC;
-    --mist: #EFEFEA;
-    --page: #F7F7F4;
+    /* Cotation industrielle. Cinq couleurs, deux statuts seulement, comme sur
+       une fiche de controle : conforme ou ecart. Contrastes verifies sur le
+       fond papier : encre 15,09:1, trace 8,03:1, secondaire 6,39:1,
+       conforme 5,41:1, ecart 4,79:1. L'ambre d'origine, #B5651D, tombait a
+       3,82:1 et a ete assombri a teinte et saturation constantes. */
+    --accent: #2E4C5C;        /* bleu de trace : lignes de cote, liens, structure */
+    --ink: #161D1B;           /* encre */
+    --secondary: #4B5A55;     /* encre secondaire */
+    --conforme: #2F6D4F;      /* jalon valide, resultat atteint */
+    --ecart: #9E5819;         /* non-conformite, jalon en attente */
+    --line: #D5DAD5;
+    --mist: #E7EAE7;
+    --page: #EFF1EF;
     --ring-color: var(--accent);
     --ring-offset: 0px;
     --ring-offset-color: var(--page);
@@ -129,15 +136,16 @@
 
 /* typographie */
 .antialiased { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-.font-display { font-family: 'Clash Display', sans-serif; }
-.font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.font-display { font-family: 'Cabinet Grotesk', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
 .font-medium { font-weight: 500; }
 .font-semibold { font-weight: 600; }
 .font-bold { font-weight: 700; }
+.font-extrabold { font-weight: 800; }
 .text-\[10px\] { font-size: 10px; }
 .text-xs { font-size: .75rem; line-height: 1rem; }
 .text-sm { font-size: .875rem; line-height: 1.25rem; }
-.text-base { font-size: 1rem; line-height: 1.5rem; }
+.text-base { font-size: 1.0625rem; line-height: 1.6; }
 .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
 .text-2xl { font-size: 1.5rem; line-height: 2rem; }
 .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
@@ -145,7 +153,7 @@
 .text-center { text-align: center; }
 .leading-tight { line-height: 1.25; }
 .leading-relaxed { line-height: 1.625; }
-.leading-\[1\.08\] { line-height: 1.08; }
+.leading-\[1\.08\] { line-height: 1.125; }
 .tracking-tight { letter-spacing: -0.025em; }
 .tracking-wide { letter-spacing: 0.025em; }
 .tracking-wider { letter-spacing: 0.05em; }
@@ -156,28 +164,28 @@
 
 /* couleurs de texte */
 .text-ink { color: var(--ink); }
-.text-ink\/70 { color: rgba(26,34,51,0.7); }
+.text-ink\/70 { color: rgba(22,29,27,0.7); }
 .text-secondary { color: var(--secondary); }
 .text-accent { color: var(--accent); }
 .text-dark { color: var(--page); }
-.text-blue-700 { color: #1D4ED8; }
-.text-purple-700 { color: #6D28D9; }
-.text-cyan-700 { color: #0E7490; }
-.text-emerald-700 { color: #047857; }
+.text-blue-700 { color: #2E4C5C; }
+.text-purple-700 { color: #2E4C5C; }
+.text-cyan-700 { color: #2E4C5C; }
+.text-emerald-700 { color: #2F6D4F; }
 
 /* fonds */
 .bg-white { background-color: #FFFFFF; }
 .bg-mist { background-color: var(--mist); }
 .bg-accent { background-color: var(--accent); }
-.bg-accent\/5 { background-color: rgba(15,76,129,0.05); }
-.bg-accent\/8 { background-color: rgba(15,76,129,0.08); }
-.bg-accent\/10 { background-color: rgba(15,76,129,0.10); }
-.bg-secondary\/30 { background-color: rgba(90,100,120,0.30); }
-.bg-emerald-500 { background-color: #10B981; }
-.bg-emerald-500\/8 { background-color: rgba(16,185,129,0.08); }
-.bg-blue-500\/10 { background-color: rgba(59,130,246,0.10); }
-.bg-purple-500\/10 { background-color: rgba(168,85,247,0.10); }
-.bg-cyan-500\/10 { background-color: rgba(6,182,212,0.10); }
+.bg-accent\/5 { background-color: rgba(46,76,92,0.05); }
+.bg-accent\/8 { background-color: rgba(46,76,92,0.08); }
+.bg-accent\/10 { background-color: rgba(46,76,92,0.10); }
+.bg-secondary\/30 { background-color: rgba(75,90,85,0.30); }
+.bg-emerald-500 { background-color: #2F6D4F; }
+.bg-emerald-500\/8 { background-color: rgba(47,109,79,0.08); }
+.bg-blue-500\/10 { background-color: rgba(46,76,92,0.10); }
+.bg-purple-500\/10 { background-color: rgba(46,76,92,0.10); }
+.bg-cyan-500\/10 { background-color: rgba(46,76,92,0.10); }
 
 /* bordures */
 .border { border: 1px solid var(--line); }
@@ -187,28 +195,28 @@
 .border-l-4 { border-left-width: 4px; border-left-style: solid; }
 .border-line { border-color: var(--line); }
 .border-accent { border-color: var(--accent); }
-.border-accent\/15 { border-color: rgba(15,76,129,0.15); }
-.border-emerald-500\/30 { border-color: rgba(16,185,129,0.30); }
-.border-blue-500\/20 { border-color: rgba(59,130,246,0.20); }
-.border-purple-500\/20 { border-color: rgba(168,85,247,0.20); }
-.border-cyan-500\/20 { border-color: rgba(6,182,212,0.20); }
-.border-l-blue-500 { border-left-color: #3B82F6; }
-.border-l-purple-500 { border-left-color: #A855F7; }
-.border-l-cyan-500 { border-left-color: #06B6D4; }
-.rounded { border-radius: .25rem; }
-.rounded-md { border-radius: .375rem; }
-.rounded-lg { border-radius: .5rem; }
-.rounded-xl { border-radius: .75rem; }
-.rounded-2xl { border-radius: 1rem; }
-.rounded-3xl { border-radius: 1.5rem; }
-.rounded-\[2rem\] { border-radius: 2rem; }
+.border-accent\/15 { border-color: rgba(46,76,92,0.15); }
+.border-emerald-500\/30 { border-color: rgba(47,109,79,0.30); }
+.border-blue-500\/20 { border-color: rgba(46,76,92,0.20); }
+.border-purple-500\/20 { border-color: rgba(46,76,92,0.20); }
+.border-cyan-500\/20 { border-color: rgba(46,76,92,0.20); }
+.border-l-blue-500 { border-left-color: #2E4C5C; }
+.border-l-purple-500 { border-left-color: #2E4C5C; }
+.border-l-cyan-500 { border-left-color: #2E4C5C; }
+.rounded { border-radius: 3px; }
+.rounded-md { border-radius: 3px; }
+.rounded-lg { border-radius: 4px; }
+.rounded-xl { border-radius: 5px; }
+.rounded-2xl { border-radius: 5px; }
+.rounded-3xl { border-radius: 5px; }
+.rounded-\[2rem\] { border-radius: 6px; }
 .rounded-full { border-radius: 9999px; }
 .ring-2 { box-shadow: 0 0 0 2px var(--page); }
 .ring-dark { box-shadow: 0 0 0 2px var(--page); }
 
 /* effets */
 .object-cover { object-fit: cover; }
-.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(20,35,65,0.25); }
+.shadow-2xl { box-shadow: 0 25px 50px -12px rgba(22,29,27,0.25); }
 .opacity-10 { opacity: 0.1; }
 .blur-\[110px\] { filter: blur(110px); }
 .resize-none { resize: none; }
@@ -242,7 +250,7 @@
 /* interlignage : declare apres les tailles pour primer, comme dans Tailwind */
 .leading-tight { line-height: 1.25; }
 .leading-relaxed { line-height: 1.625; }
-.leading-\[1\.08\] { line-height: 1.08; }
+.leading-\[1\.08\] { line-height: 1.125; }
 
 /* points de rupture */
 @media (min-width: 640px) {
@@ -289,25 +297,33 @@ button { cursor: pointer; }
 b, strong { font-weight: 600; }
 table { border-collapse: collapse; }
 
+/* Papier technique. La trame millimetree donne au fond la texture d'une
+   feuille de controle sans jamais devenir un motif : a 2,8% elle se devine
+   plutot qu'elle ne se voit. Les sections en .bg-mist la recouvrent, ce qui
+   alterne page tramee et page nue. */
 body {
-    background-color: #F7F7F4;
-    color: #1A2233;
+    background-color: var(--page);
+    background-image:
+        linear-gradient(rgba(22,29,27,0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22,29,27,0.028) 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--ink);
     overflow-x: hidden;
     font-family: 'General Sans', sans-serif;
 }
 
 /* ── NAV ── */
 .glass-nav {
-    background: rgba(247, 247, 244, 0.92);
+    background: rgba(239, 241, 239, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid #E4E7EC;
+    border-bottom: 1px solid #D5DAD5;
 }
 .nav-link {
     position: relative;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #5A6478;
+    color: #4B5A55;
     transition: color 0.2s;
     padding: 4px 8px;
     border-radius: 4px;
@@ -317,38 +333,38 @@ body {
     position: absolute;
     bottom: -2px; left: 8px;
     width: 0; height: 1.5px;
-    background: #0F4C81;
+    background: #2E4C5C;
     transition: width 0.3s ease;
 }
-.nav-link:hover, .nav-link.is-active { color: #1A2233; }
+.nav-link:hover, .nav-link.is-active { color: #161D1B; }
 .nav-link.is-active::after, .nav-link:hover::after { width: calc(100% - 16px); }
 
 /* ── CARDS ── */
 .glass-card {
     background: #FFFFFF;
-    border: 1px solid #E4E7EC;
+    border: 1px solid #D5DAD5;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .glass-card:hover {
-    border-color: #CFD6E0;
-    box-shadow: 0 6px 16px -8px rgba(20,35,65,0.18);
+    border-color: #C6CCC6;
+    box-shadow: 0 6px 16px -8px rgba(22,29,27,0.18);
     transform: translateY(-2px);
 }
 
 /* ── GRADIENT TEXTE ── */
-.text-accent-gradient { color: #0F4C81; }
+.text-accent-gradient { color: #2E4C5C; }
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #ECECE6; }
-::-webkit-scrollbar-thumb { background: #C7CEDA; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #0F4C81; }
+::-webkit-scrollbar-track { background: #E2E5E2; }
+::-webkit-scrollbar-thumb { background: #C6CCC6; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #2E4C5C; }
 
 /* ── STAT CARDS ── */
 .stat-card {
-    background: rgba(15,76,129,0.05);
-    border: 1px solid rgba(15,76,129,0.16);
-    border-radius: 16px;
+    background: rgba(46,76,92,0.05);
+    border: 1px solid rgba(46,76,92,0.16);
+    border-radius: 5px;
     padding: 16px 12px;
     text-align: center;
     transition: all 0.3s ease;
@@ -357,43 +373,43 @@ body {
 .stat-card::before {
     content: '';
     position: absolute; inset: 0;
-    background: rgba(15,76,129,0.05);
+    background: rgba(46,76,92,0.05);
     opacity: 0; transition: opacity 0.3s;
 }
-.stat-card:hover { border-color: rgba(15,76,129,0.4); transform: translateY(-3px); }
+.stat-card:hover { border-color: rgba(46,76,92,0.4); transform: translateY(-3px); }
 .stat-card:hover::before { opacity: 1; }
 
 /* ── CERTIF ORACLE ── */
 .cert-badge {
-    background: rgba(220,38,38,0.05);
-    border: 1px solid rgba(220,38,38,0.22);
-    border-radius: 14px; padding: 14px 16px;
+    background: rgba(158,88,25,0.05);
+    border: 1px solid rgba(158,88,25,0.22);
+    border-radius: 5px; padding: 14px 16px;
     display: flex; align-items: center; gap: 12px;
     transition: all 0.3s ease;
 }
 .cert-badge:hover {
-    border-color: rgba(220,38,38,0.45);
-    background: rgba(220,38,38,0.09);
+    border-color: rgba(158,88,25,0.45);
+    background: rgba(158,88,25,0.09);
     transform: translateY(-2px);
 }
 
 /* ── TIMELINE ── */
 .timeline-dot-active {
-    box-shadow: 0 0 0 4px #F7F7F4, 0 0 14px rgba(15,76,129,0.55);
+    box-shadow: 0 0 0 4px #EFF1EF, 0 0 14px rgba(46,76,92,0.55);
 }
 
 /* ── SKILL TAG ── */
 .skill-tag {
-    font-size: 11px; padding: 4px 11px; border-radius: 6px;
-    background: rgba(15,76,129,0.06);
-    border: 1px solid rgba(15,76,129,0.16);
-    color: #33405A;
+    font-size: 11px; padding: 4px 11px; border-radius: 4px;
+    background: rgba(46,76,92,0.06);
+    border: 1px solid rgba(46,76,92,0.16);
+    color: #2A3330;
     display: inline-block; margin: 3px;
     transition: all 0.2s ease;
 }
 .skill-tag:hover {
-    background: rgba(15,76,129,0.12);
-    color: #0F4C81; border-color: rgba(15,76,129,0.35);
+    background: rgba(46,76,92,0.12);
+    color: #2E4C5C; border-color: rgba(46,76,92,0.35);
     transform: translateY(-1px);
 }
 
@@ -401,17 +417,54 @@ body {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 75% 20%, rgba(15,76,129,0.10), transparent 55%),
-                radial-gradient(circle at 20% 85%, rgba(124,58,237,0.08), transparent 55%);
+    background: radial-gradient(circle at 75% 20%, rgba(46,76,92,0.10), transparent 55%),
+                radial-gradient(circle at 20% 85%, rgba(46,76,92,0.08), transparent 55%);
     z-index: 1;
     pointer-events: none;
 }
+/* ── LIGNE DE COTE ──
+   L'element signature. Le meme trait qui dimensionne une piece sur un plan
+   technique relie ici deux idees en affichant la valeur mesuree entre elles.
+   Il remplace tout separateur decoratif.
+
+   Reserve a trois emplacements et pas un de plus : la chaine du hero, la
+   timeline du parcours, et le schema d'architecture d'un projet. Partout
+   ailleurs la page reste nue. C'est le contraste entre zones cotees et zones
+   nues qui porte le point de vue, pas la repetition du motif : pose partout,
+   la cote redeviendrait l'ornement qu'elle pretend remplacer. */
+.cote {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+/* Le trait est peint au centre d'une boite de 9px, l'amorce perpendiculaire
+   est la bordure exterieure de cette meme boite. Deux pseudo-elements
+   suffisent, aucun balisage supplementaire. */
+.cote::before,
+.cote::after {
+    content: '';
+    flex: 1 1 auto;
+    height: 9px;
+    background: linear-gradient(currentColor, currentColor) left center / 100% 1px no-repeat;
+}
+.cote::before { border-left: 1px solid currentColor; }
+.cote::after  { border-right: 1px solid currentColor; }
+
+.cote-conforme { color: var(--conforme); }
+.cote-ecart    { color: var(--ecart); }
+
 /* ── IMPACT BADGE ── */
 .impact-badge {
-    background: rgba(15,76,129,0.06);
-    border: 1px solid rgba(15,76,129,0.16);
-    border-radius: 8px; padding: 6px 10px;
-    font-size: 11px; color: #0F4C81; font-weight: 600;
+    background: rgba(46,76,92,0.06);
+    border: 1px solid rgba(46,76,92,0.16);
+    border-radius: 4px; padding: 6px 10px;
+    font-size: 11px; color: #2E4C5C; font-weight: 600;
 }
 
 /* ── PARCOURS ──
@@ -424,11 +477,11 @@ body {
 }
 .portrait-parcours img {
     width: 100%; height: auto; display: block;
-    border-radius: 1.25rem;
-    border: 1px solid #E4E7EC;
+    border-radius: 5px;
+    border: 1px solid #D5DAD5;
 }
 .portrait-parcours figcaption {
-    font-size: 12px; color: #5A6478; line-height: 1.5; margin-top: 12px;
+    font-size: 12px; color: #4B5A55; line-height: 1.5; margin-top: 12px;
 }
 
 /* ── CARTE PROJET EN TETE DE GRILLE ──
@@ -449,11 +502,14 @@ body {
 .mobile-menu { background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); }
 
 /* ── SECTION NUM ── */
+/* Libelle utilitaire : la police des donnees, pas celle de la marque.
+   12px mono 500, majuscule, 0,04em. Sert aux eyebrows, aux cotes et aux
+   libelles de fiche, jamais a du texte courant. */
 .section-num {
-    font-family: 'Clash Display', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(15,76,129,0.85);
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    color: var(--accent);
     margin-bottom: 12px;
     display: block;
 }
@@ -462,18 +518,18 @@ body {
 #scroll-top {
     position: fixed; bottom: 32px; right: 32px;
     width: 46px; height: 46px;
-    background: rgba(15,76,129,0.08);
-    border: 1px solid rgba(15,76,129,0.25);
+    background: rgba(46,76,92,0.08);
+    border: 1px solid rgba(46,76,92,0.25);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    color: #0F4C81; cursor: pointer;
+    color: #2E4C5C; cursor: pointer;
     opacity: 0; pointer-events: none;
     transition: all 0.35s ease;
     z-index: 200;
     backdrop-filter: blur(8px);
 }
 #scroll-top.is-visible { opacity: 1; pointer-events: auto; }
-#scroll-top:hover { background: rgba(15,76,129,0.16); transform: translateY(-4px); }
+#scroll-top:hover { background: rgba(46,76,92,0.16); transform: translateY(-4px); }
 
 /* ── GLOW BUTTON ── */
 .btn-glow { transition: background 0.2s ease; }
@@ -482,17 +538,17 @@ body {
 .form-field {
     width: 100%;
     background: #FFFFFF;
-    border: 1px solid #D8DEE8;
-    border-radius: 12px; padding: 14px 16px;
-    font-size: 14px; color: #1A2233;
+    border: 1px solid #D5DAD5;
+    border-radius: 5px; padding: 14px 16px;
+    font-size: 14px; color: #161D1B;
     font-family: 'General Sans', sans-serif;
     transition: border-color 0.3s, box-shadow 0.3s;
     outline: none;
 }
-.form-field::placeholder { color: rgba(90,100,120,0.6); }
+.form-field::placeholder { color: rgba(75,90,85,0.6); }
 .form-field:focus {
-    border-color: rgba(15,76,129,0.55);
-    box-shadow: 0 0 0 3px rgba(15,76,129,0.12);
+    border-color: rgba(46,76,92,0.55);
+    box-shadow: 0 0 0 3px rgba(46,76,92,0.12);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -511,33 +567,33 @@ body {
     align-items: baseline;
     gap: 12px;
     padding: 12px 14px;
-    border: 1px solid #E4E7EC;
-    border-radius: 10px;
+    border: 1px solid #D5DAD5;
+    border-radius: 5px;
     background: #FFFFFF;
     transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .toc-link:hover {
-    border-color: rgba(15,76,129,0.35);
+    border-color: rgba(46,76,92,0.35);
     transform: translateY(-1px);
 }
 /* ── CHIFFRES ──
    Les chiffres sont des mesures, pas de la marque : ils passent en chasse
-   fixe, avec des figures tabulaires. Clash Display n'a pas de chiffres de
+   fixe, avec des figures tabulaires. La display n'a pas de chiffres de
    meme chasse, "01" mesure 16,5px et "06" 20px, ce qui obligeait a caler le
    sommaire au min-width. tabular-nums regle la cause au lieu du symptome.
    Aucune police supplementaire n'est chargee : la pile est celle du systeme. */
 .num {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
 }
 
 .toc-num {
-    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
     font-variant-numeric: tabular-nums;
     font-size: 11px; font-weight: 700;
     letter-spacing: 1px;
-    color: rgba(15,76,129,0.85);
+    color: rgba(46,76,92,0.85);
     flex-shrink: 0;
     /* Cale la ligne "+ Autres realisations" sur les entrees numerotees.
        2ch = exactement deux caracteres en chasse fixe, plus les 2px que
@@ -545,7 +601,7 @@ body {
        police plutot qu'en pixels devines : les chiffres, eux, sont tabulaires. */
     min-width: calc(2ch + 2px);
 }
-.toc-title { font-size: 0.875rem; font-weight: 600; color: #1A2233; }
+.toc-title { font-size: 0.875rem; font-weight: 600; color: #161D1B; }
 
 /* Nature du projet : un recruteur doit voir d'un coup d'oeil ce qui est
    professionnel et ce qui est academique. Rien n'est maquille. */
@@ -555,50 +611,50 @@ body {
     padding: 4px 10px; border-radius: 999px;
     display: inline-block;
 }
-.nature-pro  { background: rgba(15,76,129,0.10); color: #0F4C81; border: 1px solid rgba(15,76,129,0.25); }
-.nature-tech { background: rgba(5,150,105,0.08); color: #047857; border: 1px solid rgba(5,150,105,0.25); }
-.nature-acad { background: rgba(90,100,120,0.08); color: #5A6478; border: 1px solid rgba(90,100,120,0.25); }
+.nature-pro  { background: rgba(46,76,92,0.10); color: #2E4C5C; border: 1px solid rgba(46,76,92,0.25); }
+.nature-tech { background: rgba(47,109,79,0.08); color: #2F6D4F; border: 1px solid rgba(47,109,79,0.25); }
+.nature-acad { background: rgba(75,90,85,0.08); color: #4B5A55; border: 1px solid rgba(75,90,85,0.25); }
 
 /* Un projet = une section, separee par un filet. */
 .project-detail { padding-top: 4.5rem; padding-bottom: 1rem; scroll-margin-top: 6rem; }
-.project-detail + .project-detail { border-top: 1px solid #E4E7EC; }
+.project-detail + .project-detail { border-top: 1px solid #D5DAD5; }
 
 /* Intitule de bloc : Contexte, Le probleme, Ce que j'ai fait... */
 .detail-label {
-    font-family: 'Clash Display', sans-serif;
+    font-family: 'Cabinet Grotesk', sans-serif;
     font-size: 11px; font-weight: 700;
     letter-spacing: 2.5px; text-transform: uppercase;
-    color: rgba(15,76,129,0.85);
+    color: rgba(46,76,92,0.85);
     display: block; margin-bottom: 10px;
 }
 .detail-sub {
     font-size: 12px; font-weight: 700;
-    color: #33405A;
+    color: #2A3330;
     display: block; margin-bottom: 8px;
     letter-spacing: 0.02em;
 }
 
 /* Decisions techniques : le bloc qui distingue un ingenieur d'un utilisateur d'outils. */
 .decision {
-    border-left: 2px solid rgba(15,76,129,0.35);
+    border-left: 2px solid rgba(46,76,92,0.35);
     padding-left: 16px;
 }
-.decision-title { font-weight: 600; color: #1A2233; display: block; margin-bottom: 3px; }
+.decision-title { font-weight: 600; color: #161D1B; display: block; margin-bottom: 3px; }
 
 /* Transposabilite : la phrase qui fait projeter le recruteur chez lui. */
 .transpo-box {
-    background: rgba(15,76,129,0.05);
-    border: 1px solid rgba(15,76,129,0.16);
-    border-radius: 12px;
+    background: rgba(46,76,92,0.05);
+    border: 1px solid rgba(46,76,92,0.16);
+    border-radius: 5px;
     padding: 16px 18px;
 }
 
 /* Note de confidentialite : protege Kevo, et signale au recruteur qu'il sait ou est la limite. */
 .confid-note {
-    border-left: 2px solid #E4E7EC;
+    border-left: 2px solid #D5DAD5;
     padding-left: 14px;
     font-size: 12px;
-    color: #5A6478;
+    color: #4B5A55;
     font-style: italic;
 }
 
@@ -628,8 +684,8 @@ body {
    Dessines a la main en SVG : aucune dependance, aucune image a charger. */
 .schema-wrap {
     background: #FFFFFF;
-    border: 1px solid #E4E7EC;
-    border-radius: 14px;
+    border: 1px solid #D5DAD5;
+    border-radius: 5px;
     padding: 20px 18px 14px;
     margin-bottom: 2rem;
     overflow-x: auto;
@@ -638,61 +694,69 @@ body {
    horizontalement dans son cadre, le texte reste lisible. */
 .schema { display: block; min-width: 600px; width: 100%; height: auto; }
 .schema text { font-family: 'General Sans', sans-serif; }
-.schema .n  { fill: #FFFFFF; stroke: #E4E7EC; stroke-width: 1; }
-.schema .na { fill: rgba(15,76,129,0.07); stroke: rgba(15,76,129,0.32); stroke-width: 1; }
-.schema .lbl { fill: #1A2233; font-size: 13px; font-weight: 600; }
-.schema .sub { fill: #5A6478; font-size: 10.5px; }
-.schema .acc { fill: #0F4C81; font-size: 13px; font-weight: 600; }
-.schema .fl { stroke: #98A1B2; stroke-width: 1.5; fill: none; }
-.schema .dash { stroke: #C7CDD8; stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
-.schema-cap { font-size: 12px; color: #5A6478; line-height: 1.5; margin-top: 12px; }
+.schema .n  { fill: #FFFFFF; stroke: #D5DAD5; stroke-width: 1; }
+.schema .na { fill: rgba(46,76,92,0.07); stroke: rgba(46,76,92,0.32); stroke-width: 1; }
+.schema .lbl { fill: #161D1B; font-size: 13px; font-weight: 600; }
+.schema .sub { fill: #4B5A55; font-size: 10.5px; }
+.schema .acc { fill: #2E4C5C; font-size: 13px; font-weight: 600; }
+.schema .fl { stroke: #8A968F; stroke-width: 1.5; fill: none; }
+.schema .dash { stroke: #C6CCC6; stroke-width: 1.2; fill: none; stroke-dasharray: 4 4; }
+.schema-cap { font-size: 12px; color: #4B5A55; line-height: 1.5; margin-top: 12px; }
 
 /* ── SCHEMA DU HERO ──
-   Le seul mouvement du site, et il est place la ou il dit quelque chose : la
-   chaine s'assemble dans l'ordre ou on la lit, une fois, au chargement, puis
-   ne bouge plus. Une page qui s'anime partout ne dit plus ou regarder.
-   Le schema reprend le langage graphique de projets.html : meme trait, memes
-   boites, meme fleche. L'accueil annonce ainsi ce que la page projets detaille. */
+   La chaine de process, dessinee dans le vocabulaire du plan de controle :
+   libelles en mono majuscule, outil annote au diametre, trait plutot que
+   fleche. Elle se trace au chargement, dans l'ordre de lecture, une fois.
+   C'est le seul mouvement du site. */
 .hero-schema { min-width: 0; width: 100%; max-width: 420px; margin: 0 auto; }
-.hero-schema .lbl { font-size: 15px; }
-.hero-schema .loop {
-    stroke: #98A1B2; stroke-width: 1.5; fill: none; stroke-dasharray: 5 5;
+.hero-schema .boite { fill: #FFFFFF; stroke: var(--line); stroke-width: 1; }
+.hero-schema .boite-conforme { fill: rgba(47,109,79,0.06); stroke: rgba(47,109,79,0.35); stroke-width: 1; }
+.hero-schema .etape {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.04em; fill: var(--ink);
 }
-.hero-schema .loop-lbl { fill: #98A1B2; font-size: 11px; letter-spacing: 0.5px; }
+.hero-schema .etape-conforme { fill: var(--conforme); }
+.hero-schema .outil { font-size: 11px; fill: var(--secondary); }
+.hero-schema .trait { stroke: var(--accent); stroke-width: 1.25; fill: none; }
+.hero-schema .loop { stroke: var(--ecart); stroke-width: 1.25; fill: none; stroke-dasharray: 5 4; }
+.hero-schema .amorce { stroke: var(--ecart); stroke-width: 1.25; fill: none; }
+.hero-schema .loop-lbl {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.04em; fill: var(--ecart);
+}
 
-@keyframes schemaIn {
-    from { opacity: 0; transform: translateY(8px); }
+@keyframes coteApparait {
+    from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: none; }
 }
+/* Le trait se tire d'un bout a l'autre, comme un trait de cote qu'on pose. */
+@keyframes coteTrace { to { stroke-dashoffset: 0; } }
 
-.hero-schema .step,
-.hero-schema .fl,
-.hero-schema .loop,
-.hero-schema .loop-lbl {
-    opacity: 0;
-    animation: schemaIn 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
-}
+.hero-schema .step { opacity: 0; animation: coteApparait 0.4s cubic-bezier(0.2,0.7,0.3,1) forwards; }
 .hero-schema .step:nth-of-type(1) { animation-delay: 0.10s; }
-.hero-schema .step:nth-of-type(2) { animation-delay: 0.26s; }
-.hero-schema .step:nth-of-type(3) { animation-delay: 0.42s; }
-.hero-schema .step:nth-of-type(4) { animation-delay: 0.58s; }
-.hero-schema .step:nth-of-type(5) { animation-delay: 0.74s; }
-.hero-schema .fl:nth-of-type(1) { animation-delay: 0.20s; }
-.hero-schema .fl:nth-of-type(2) { animation-delay: 0.36s; }
-.hero-schema .fl:nth-of-type(3) { animation-delay: 0.52s; }
-.hero-schema .fl:nth-of-type(4) { animation-delay: 0.68s; }
-.hero-schema .loop,
-.hero-schema .loop-lbl { animation-delay: 0.92s; }
+.hero-schema .step:nth-of-type(2) { animation-delay: 0.30s; }
+.hero-schema .step:nth-of-type(3) { animation-delay: 0.50s; }
+.hero-schema .step:nth-of-type(4) { animation-delay: 0.70s; }
+.hero-schema .step:nth-of-type(5) { animation-delay: 0.90s; }
 
-/* La boucle est le sujet du schema : elle reste lisible sans animation. */
+.hero-schema .trait { stroke-dasharray: 40; stroke-dashoffset: 40; animation: coteTrace 0.22s linear forwards; }
+.hero-schema .trait:nth-of-type(1) { animation-delay: 0.24s; }
+.hero-schema .trait:nth-of-type(2) { animation-delay: 0.44s; }
+.hero-schema .trait:nth-of-type(3) { animation-delay: 0.64s; }
+.hero-schema .trait:nth-of-type(4) { animation-delay: 0.84s; }
+
+/* La boucle ferme la chaine : elle arrive en dernier, une fois les cinq
+   etapes posees. C'est la forme qu'on doit retenir. */
+.hero-schema .loop,
+.hero-schema .amorce,
+.hero-schema .loop-lbl { opacity: 0; animation: coteApparait 0.5s ease-out 1.12s forwards; }
+
 @media (prefers-reduced-motion: reduce) {
     .hero-schema .step,
-    .hero-schema .fl,
     .hero-schema .loop,
-    .hero-schema .loop-lbl {
-        opacity: 1;
-        animation: none;
-    }
+    .hero-schema .amorce,
+    .hero-schema .loop-lbl { opacity: 1; animation: none; }
+    .hero-schema .trait { stroke-dashoffset: 0; animation: none; }
 }
 
 
@@ -701,7 +765,7 @@ body {
 .accroche {
     font-size: 1.0625rem;
     line-height: 1.6;
-    color: #1A2233;
+    color: #161D1B;
     font-weight: 500;
     max-width: 44rem;
     margin-bottom: 1.75rem;
@@ -714,7 +778,7 @@ body {
         content: "Schéma large : faites-le défiler horizontalement.";
         display: block;
         font-size: 11px;
-        color: #8B94A6;
+        color: #7C877F;
         margin-top: 8px;
     }
 }

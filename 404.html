@@ -5,9 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page introuvable | Kevo Amouzou</title>
     <meta name="robots" content="noindex">
-    <meta name="theme-color" content="#F7F7F4">
+    <meta name="theme-color" content="#EFF1EF">
     <link rel="icon" type="image/png" sizes="192x192" href="./images/icon-192.png">
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+    <!-- Une requete par famille : l'API Fontshare renvoie par moments une
+         reponse tronquee quand plusieurs familles sont demandees dans la meme
+         URL. Verifie le 1er septembre 2026 : l'URL a deux familles du site ne
+         renvoyait que Clash Display, General Sans ne se chargeait pas.
+         Une famille par lien, c'est stable. -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
 </head>
 <body class="antialiased">

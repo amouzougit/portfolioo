@@ -6,10 +6,16 @@
     <title>Message reçu | Kevo Amouzou</title>
     <meta name="description" content="Votre message a bien été transmis à Kevo Amouzou.">
     <meta name="robots" content="noindex, follow">
-    <meta name="theme-color" content="#F7F7F4">
+    <meta name="theme-color" content="#EFF1EF">
     <link rel="icon" type="image/png" sizes="192x192" href="./images/icon-192.png">
     <link rel="apple-touch-icon" href="./images/icon-512.png">
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+    <!-- Une requete par famille : l'API Fontshare renvoie par moments une
+         reponse tronquee quand plusieurs familles sont demandees dans la meme
+         URL. Verifie le 1er septembre 2026 : l'URL a deux familles du site ne
+         renvoyait que Clash Display, General Sans ne se chargeait pas.
+         Une famille par lien, c'est stable. -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after { box-sizing: border-box; }
@@ -19,8 +25,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            background-color: #F7F7F4;
-            color: #1A2233;
+            background-color: #EFF1EF;
+            color: #161D1B;
             font-family: 'General Sans', sans-serif;
             line-height: 1.6;
         }
@@ -32,20 +38,20 @@
             margin: 0 auto;
         }
         footer {
-            border-top: 1px solid #E4E7EC;
+            border-top: 1px solid #D5DAD5;
             font-size: .75rem;
-            color: #5A6478;
+            color: #4B5A55;
             text-align: center;
         }
 
         .logo {
-            font-family: 'Clash Display', sans-serif;
+            font-family: 'Cabinet Grotesk', sans-serif;
             font-weight: 700;
             font-size: 1.125rem;
-            color: #1A2233;
+            color: #161D1B;
             text-decoration: none;
         }
-        .logo span { color: #0F4C81; }
+        .logo span { color: #2E4C5C; }
 
         main {
             flex: 1;
@@ -57,7 +63,7 @@
 
         .card {
             background: #FFFFFF;
-            border: 1px solid #E4E7EC;
+            border: 1px solid #D5DAD5;
             border-radius: 24px;
             padding: 40px 32px;
             max-width: 34rem;
@@ -66,26 +72,26 @@
         }
 
         .eyebrow {
-            font-family: 'Clash Display', sans-serif;
+            font-family: 'Cabinet Grotesk', sans-serif;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: rgba(15,76,129,0.85);
+            color: rgba(46,76,92,0.85);
             display: block;
             margin-bottom: 12px;
         }
 
         h1 {
-            font-family: 'Clash Display', sans-serif;
+            font-family: 'Cabinet Grotesk', sans-serif;
             font-size: 1.75rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             margin: 0 0 12px;
         }
 
-        p { margin: 0 0 16px; color: #5A6478; font-size: .95rem; }
-        p.lead { color: #1A2233; }
+        p { margin: 0 0 16px; color: #4B5A55; font-size: .95rem; }
+        p.lead { color: #161D1B; }
         p:last-of-type { margin-bottom: 0; }
 
         .delai {
@@ -93,9 +99,9 @@
             margin: 4px 0 24px;
             padding: 6px 14px;
             border-radius: 999px;
-            background: rgba(15,76,129,0.06);
-            border: 1px solid rgba(15,76,129,0.15);
-            color: #0F4C81;
+            background: rgba(46,76,92,0.06);
+            border: 1px solid rgba(46,76,92,0.15);
+            color: #2E4C5C;
             font-size: .75rem;
             font-weight: 600;
         }
@@ -119,10 +125,10 @@
             text-decoration: none;
             transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
         }
-        .btn-primary { background: #0F4C81; color: #FFFFFF; }
-        .btn-primary:hover { background: #1A2233; }
-        .btn-secondary { background: #FFFFFF; border: 1px solid #E4E7EC; color: #1A2233; }
-        .btn-secondary:hover { background: #EFEFEA; }
+        .btn-primary { background: #2E4C5C; color: #FFFFFF; }
+        .btn-primary:hover { background: #161D1B; }
+        .btn-secondary { background: #FFFFFF; border: 1px solid #D5DAD5; color: #161D1B; }
+        .btn-secondary:hover { background: #E7EAE7; }
 
         .liens {
             display: flex;
@@ -130,14 +136,14 @@
             gap: 20px;
             justify-content: center;
             padding-top: 20px;
-            border-top: 1px solid #E4E7EC;
+            border-top: 1px solid #D5DAD5;
             font-size: .8125rem;
         }
-        .liens a { color: #5A6478; text-decoration: none; }
-        .liens a:hover { color: #0F4C81; }
+        .liens a { color: #4B5A55; text-decoration: none; }
+        .liens a:hover { color: #2E4C5C; }
 
         a:focus-visible, .btn:focus-visible {
-            outline: 2px solid #0F4C81;
+            outline: 2px solid #2E4C5C;
             outline-offset: 2px;
         }
 

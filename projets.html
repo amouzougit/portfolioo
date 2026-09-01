@@ -17,7 +17,7 @@
     <meta name="twitter:title" content="Projets en détail | Kevo Amouzou">
     <meta name="twitter:description" content="Contexte, problème, décisions techniques et résultats sur cinq projets de digitalisation industrielle.">
     <meta name="twitter:image" content="https://kevo-amouzou.pages.dev/images/kevo.jpeg">
-    <meta name="theme-color" content="#F7F7F4">
+    <meta name="theme-color" content="#EFF1EF">
     <link rel="canonical" href="https://kevo-amouzou.pages.dev/projets">
     <link rel="manifest" href="/manifest.json">
     <link rel="icon" type="image/png" sizes="192x192" href="./images/icon-192.png">
@@ -26,7 +26,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Kevo Amouzou">
 
-    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+    <!-- Une requete par famille : l'API Fontshare renvoie par moments une
+         reponse tronquee quand plusieurs familles sont demandees dans la meme
+         URL. Verifie le 1er septembre 2026 : l'URL a deux familles du site ne
+         renvoyait que Clash Display, General Sans ne se chargeait pas.
+         Une famille par lien, c'est stable. -->
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=jet-brains-mono@500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <link rel="stylesheet" href="/styles.css">
@@ -55,7 +62,7 @@
                     <a href="/#skills" class="nav-link">Compétences</a>
                     <a href="/projets" class="nav-link is-active" aria-current="page">Projets</a>
                     <a href="/#experience" class="nav-link">Parcours</a>
-                    <a href="/#contact" class="px-5 py-2.5 rounded-full border border-line bg-white hover:bg-accent hover:text-dark hover:border-accent transition-all text-sm font-bold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                    <a href="/#contact" class="px-5 py-2.5 rounded-2xl border border-line bg-white hover:bg-accent hover:text-dark hover:border-accent transition-all text-sm font-bold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
                         Me contacter
                     </a>
                 </div>
@@ -161,7 +168,7 @@
                 <svg class="schema" viewBox="0 0 800 220" role="img" aria-labelledby="st1 sd1">
                     <title id="st1">Chaîne de pilotage BH2M, de l'ERP aux tableaux de bord</title>
                     <desc id="sd1">Les données de l'ERP Dolibarr sont modélisées et interrogées en SQL, puis restituées dans Metabase sous forme de trois tableaux de bord, un par processus métier : Offre commerciale, SSE et Achats.</desc>
-                    <defs><marker id="a1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <defs><marker id="a1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A968F"/></marker></defs>
                     <rect class="n" x="6" y="82" width="156" height="56" rx="10"/><text class="lbl" x="84.0" y="114.5" text-anchor="middle">ERP Dolibarr</text><text class="sub" x="84.0" y="152.0" text-anchor="middle">source unique</text><path class="fl" d="M162,110 H196" marker-end="url(#a1)"/><rect class="n" x="196" y="82" width="176" height="56" rx="10"/><text class="lbl" x="284.0" y="107.0" text-anchor="middle">Modélisation</text><text class="lbl" x="284.0" y="122.0" text-anchor="middle">et requêtes SQL</text><path class="fl" d="M372,110 H406" marker-end="url(#a1)"/><rect class="na" x="406" y="82" width="138" height="56" rx="10"/><text class="acc" x="475.0" y="114.5" text-anchor="middle">Metabase</text><path class="fl" d="M544,110 H566 V34 H588" marker-end="url(#a1)"/><path class="fl" d="M544,110 H588" marker-end="url(#a1)"/><path class="fl" d="M544,110 H566 V186 H588" marker-end="url(#a1)"/><rect class="n" x="588" y="10" width="206" height="48" rx="10"/><text class="lbl" x="691.0" y="38.5" text-anchor="middle">Offre commerciale</text><rect class="n" x="588" y="86" width="206" height="48" rx="10"/><text class="lbl" x="691.0" y="114.5" text-anchor="middle">SSE, référentiel MASE</text><rect class="n" x="588" y="162" width="206" height="48" rx="10"/><text class="lbl" x="691.0" y="190.5" text-anchor="middle">Achats</text>
                 </svg>
                 <p class="schema-cap">Une seule source, l'ERP. Un tableau de bord par processus métier plutôt qu'un écran unique : chaque responsable ouvre sa vue et y trouve ses chiffres, pas ceux des autres.</p>
@@ -373,7 +380,7 @@
                 <svg class="schema" viewBox="0 0 800 200" role="img" aria-labelledby="st2 sd2">
                     <title id="st2">Architecture RAG du chatbot</title>
                     <desc id="sd2">La base de connaissances est indexée dans une base vectorielle Pinecone. Une question déclenche d'abord la recherche des passages utiles dans cet index, puis le modèle de langage rédige la réponse à partir de ces seuls passages, en citant sa source.</desc>
-                    <defs><marker id="a2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <defs><marker id="a2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A968F"/></marker></defs>
                     <rect class="n" x="6" y="16" width="152" height="48" rx="10"/><text class="lbl" x="82.0" y="37.0" text-anchor="middle">Base de</text><text class="lbl" x="82.0" y="52.0" text-anchor="middle">connaissances</text><path class="fl" d="M158,40 H186" marker-end="url(#a2)"/><rect class="n" x="186" y="16" width="190" height="48" rx="10"/><text class="lbl" x="281.0" y="37.0" text-anchor="middle">Index vectoriel</text><text class="lbl" x="281.0" y="52.0" text-anchor="middle">Pinecone</text><path class="fl" d="M281,64 V128" marker-end="url(#a2)"/><rect class="n" x="6" y="128" width="152" height="56" rx="10"/><text class="lbl" x="82.0" y="160.5" text-anchor="middle">Question</text><path class="fl" d="M158,156 H186" marker-end="url(#a2)"/><rect class="n" x="186" y="128" width="190" height="56" rx="10"/><text class="lbl" x="281.0" y="153.0" text-anchor="middle">Recherche des</text><text class="lbl" x="281.0" y="168.0" text-anchor="middle">passages utiles</text><path class="fl" d="M376,156 H410" marker-end="url(#a2)"/><rect class="n" x="410" y="128" width="122" height="56" rx="10"/><text class="lbl" x="471.0" y="160.5" text-anchor="middle">LLM</text><path class="fl" d="M532,156 H566" marker-end="url(#a2)"/><rect class="na" x="566" y="128" width="228" height="56" rx="10"/><text class="acc" x="680.0" y="160.5" text-anchor="middle">Réponse, avec sa source</text>
                 </svg>
                 <p class="schema-cap">Le modèle ne repond jamais de mémoire : il ne voit que les passages retrouvés dans la base. C'est ce qui permet de citer la source, et ce qu'un modèle affiné ne sait pas faire.</p>
@@ -491,7 +498,7 @@
                 <svg class="schema" viewBox="0 0 800 175" role="img" aria-labelledby="st3 sd3">
                     <title id="st3">Pipeline ELT, de l'API au data mart</title>
                     <desc id="sd3">Les données des APIs temps réel sont chargées telles quelles dans PostgreSQL par Airflow, puis transformées par dbt en data marts analytiques. Des contrôles qualité dbt et des tests pytest s'exécutent à chaque étape.</desc>
-                    <defs><marker id="a3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <defs><marker id="a3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A968F"/></marker></defs>
                     <rect class="n" x="6" y="44" width="150" height="56" rx="10"/><text class="lbl" x="81.0" y="76.5" text-anchor="middle">APIs temps réel</text><path class="fl" d="M156,72 H186" marker-end="url(#a3)"/><rect class="n" x="186" y="44" width="124" height="56" rx="10"/><text class="lbl" x="248.0" y="76.5" text-anchor="middle">Airflow</text><text class="sub" x="248.0" y="114.0" text-anchor="middle">orchestration</text><path class="fl" d="M310,72 H340" marker-end="url(#a3)"/><rect class="n" x="340" y="44" width="158" height="56" rx="10"/><text class="lbl" x="419.0" y="69.0" text-anchor="middle">PostgreSQL</text><text class="lbl" x="419.0" y="84.0" text-anchor="middle">données brutes</text><path class="fl" d="M498,72 H528" marker-end="url(#a3)"/><rect class="n" x="528" y="44" width="116" height="56" rx="10"/><text class="lbl" x="586.0" y="76.5" text-anchor="middle">dbt</text><text class="sub" x="586.0" y="114.0" text-anchor="middle">transformations</text><path class="fl" d="M644,72 H674" marker-end="url(#a3)"/><rect class="na" x="674" y="44" width="120" height="56" rx="10"/><text class="acc" x="734.0" y="76.5" text-anchor="middle">Data marts</text><path class="dash" d="M6,140 H794"/><text class="sub" x="400" y="160" text-anchor="middle">Contrôles qualité dbt et tests pytest à chaque étape, monitoring et alertes</text>
                 </svg>
                 <p class="schema-cap">ELT et non ETL : les données brutes arrivent d'abord, les transformations vivent ensuite dans dbt, versionnées dans Git et rejouables sur tout l'historique.</p>
@@ -619,7 +626,7 @@
                 <svg class="schema" viewBox="0 0 800 268" role="img" aria-labelledby="st6 sd6">
                     <title id="st6">Chaîne de preuve Batica, du jalon à la décision de payer</title>
                     <desc id="sd6">Le client découpe le chantier en jalons. Le fournisseur scanne un QR affiché sur site puis prend une photo géolocalisée depuis l'application mobile. Le système croise la position GPS, l'horodatage EXIF, l'empreinte de l'image et la validité du QR pour produire un score de fraude. Le chef de chantier valide la conformité physique, puis le client décide de payer ou non. Le paiement lui-même reste hors de la plateforme.</desc>
-                    <defs><marker id="a6" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <defs><marker id="a6" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A968F"/></marker></defs>
                     <rect class="n" x="6" y="14" width="177" height="54" rx="10"/><text class="lbl" x="94.5" y="37" text-anchor="middle">Jalon</text><text class="lbl" x="94.5" y="52" text-anchor="middle">défini par le client</text>
                     <path class="fl" d="M183,41 H209" marker-end="url(#a6)"/>
                     <rect class="n" x="209" y="14" width="177" height="54" rx="10"/><text class="lbl" x="297.5" y="37" text-anchor="middle">QR sur site</text><text class="lbl" x="297.5" y="52" text-anchor="middle">scanné à la livraison</text>
@@ -858,7 +865,7 @@
                 <svg class="schema" viewBox="0 0 800 355" role="img" aria-labelledby="st4 sd4">
                     <title id="st4">Découpage en domaines et en couches du back-end Java</title>
                     <desc id="sd4">Les quatre domaines métier ont chacun leur dossier de contrôleurs. Sous eux, les interfaces de service sont séparées de leurs implémentations, qui passent par une couche DAO dédiée pour atteindre la base de données. Le fournisseur SMS est appelé depuis les implémentations, ses clés restant dans la configuration.</desc>
-                    <defs><marker id="a4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <defs><marker id="a4" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A968F"/></marker></defs>
                     <rect class="n" x="6" y="6" width="148" height="44" rx="10"/><text class="lbl" x="80.0" y="32.5" text-anchor="middle">Utilisateurs</text><rect class="n" x="164" y="6" width="148" height="44" rx="10"/><text class="lbl" x="238.0" y="32.5" text-anchor="middle">Publications</text><rect class="n" x="322" y="6" width="148" height="44" rx="10"/><text class="lbl" x="396.0" y="32.5" text-anchor="middle">Achat, location</text><rect class="n" x="480" y="6" width="148" height="44" rx="10"/><text class="lbl" x="554.0" y="32.5" text-anchor="middle">Vérification</text><text class="sub" x="318" y="70" text-anchor="middle">quatre domaines métier</text><path class="fl" d="M318,78 V96" marker-end="url(#a4)"/><rect class="n" x="6" y="96" width="622" height="46" rx="10"/><text class="lbl" x="317.0" y="123.5" text-anchor="middle">Contrôleurs REST, un dossier par domaine</text><path class="fl" d="M318,142 V162" marker-end="url(#a4)"/><rect class="n" x="6" y="162" width="300" height="46" rx="10"/><text class="lbl" x="156.0" y="189.5" text-anchor="middle">Interfaces de service</text><rect class="n" x="328" y="162" width="300" height="46" rx="10"/><text class="lbl" x="478.0" y="189.5" text-anchor="middle">Implémentations</text><path class="dash" d="M306,185 H328"/><path class="fl" d="M318,208 V228" marker-end="url(#a4)"/><rect class="n" x="6" y="228" width="622" height="46" rx="10"/><text class="lbl" x="317.0" y="255.5" text-anchor="middle">Couche DAO, accès aux données</text><path class="fl" d="M318,274 V294" marker-end="url(#a4)"/><rect class="na" x="6" y="294" width="622" height="46" rx="10"/><text class="acc" x="317.0" y="321.5" text-anchor="middle">Base de données</text><rect class="n" x="660" y="162" width="134" height="46" rx="10"/><text class="lbl" x="727.0" y="189.5" text-anchor="middle">Fournisseur SMS</text><path class="fl" d="M628,185 H656" marker-end="url(#a4)"/><text class="sub" x="727" y="224" text-anchor="middle">clés hors du code</text>
                 </svg>
                 <p class="schema-cap">Un dossier par domaine métier, pas un dossier par type technique : chaque domaine évolue sans obliger à relire les trois autres.</p>
@@ -1018,7 +1025,7 @@
                 <svg class="schema" viewBox="0 0 800 150" role="img" aria-labelledby="st5 sd5">
                     <title id="st5">Mesure de la résilience par simulation</title>
                     <desc id="sd5">Une rupture est injectée dans le modèle de chaîne logistique, la simulation à événements discrets propage ses effets dans le temps, et l'on en tire les indicateurs TTR et TTS qui éclairent le choix du plan industriel.</desc>
-                    <defs><marker id="a5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#98A1B2"/></marker></defs>
+                    <defs><marker id="a5" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8A968F"/></marker></defs>
                     <rect class="n" x="6" y="10" width="176" height="48" rx="10"/><text class="lbl" x="94.0" y="31.0" text-anchor="middle">Modèle de chaîne</text><text class="lbl" x="94.0" y="46.0" text-anchor="middle">logistique</text><rect class="n" x="6" y="90" width="176" height="48" rx="10"/><text class="lbl" x="94.0" y="118.5" text-anchor="middle">Rupture injectée</text><path class="fl" d="M182,34 H210 V74 H238" marker-end="url(#a5)"/><path class="fl" d="M182,114 H210 V74 H238" marker-end="url(#a5)"/><rect class="n" x="238" y="46" width="186" height="56" rx="10"/><text class="lbl" x="331.0" y="71.0" text-anchor="middle">Simulation à</text><text class="lbl" x="331.0" y="86.0" text-anchor="middle">événements discrets</text><path class="fl" d="M424,74 H454" marker-end="url(#a5)"/><rect class="na" x="454" y="46" width="150" height="56" rx="10"/><text class="acc" x="529.0" y="78.5" text-anchor="middle">TTR et TTS</text><path class="fl" d="M604,74 H634" marker-end="url(#a5)"/><rect class="n" x="634" y="46" width="160" height="56" rx="10"/><text class="lbl" x="714.0" y="71.0" text-anchor="middle">Choix de plan</text><text class="lbl" x="714.0" y="86.0" text-anchor="middle">industriel</text>
                 </svg>
                 <p class="schema-cap">On ne peut pas provoquer une vraie rupture d'approvisionnement pour en mesurer le coût. La simulation est le seul endroit où l'on peut casser des choses sans conséquence.</p>
@@ -1216,11 +1223,11 @@
                 ou data et pilotage industriel.
             </p>
             <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-                <a href="/#contact" class="px-8 py-4 rounded-full bg-accent text-dark font-bold text-sm btn-glow hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
+                <a href="/#contact" class="px-8 py-4 rounded-2xl bg-accent text-dark font-bold text-sm btn-glow hover:bg-ink focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-dark">
                     Me contacter
                 </a>
                 <a href="/CV_Kevo_Amouzou_Industriel.pdf" target="_blank" rel="noopener noreferrer"
-                   class="px-8 py-4 rounded-full border border-line bg-white hover:bg-mist transition-all font-bold text-sm focus:outline-none focus:ring-2 focus:ring-accent"
+                   class="px-8 py-4 rounded-2xl border border-line bg-white hover:bg-mist transition-all font-bold text-sm focus:outline-none focus:ring-2 focus:ring-accent"
                    aria-label="Télécharger mon CV au format PDF (nouvelle fenêtre)">
                     Télécharger mon CV
                 </a>

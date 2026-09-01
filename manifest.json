@@ -4,8 +4,8 @@
   "description": "Portfolio professionnel. Digitalisation des opérations industrielles, ERP, données de pilotage, ISO 9001. Double Master UTBM, 3x Oracle Certified.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F7F8FA",
-  "theme_color": "#0B63CE",
+  "background_color": "#EFF1EF",
+  "theme_color": "#2E4C5C",
   "orientation": "portrait-primary",
   "icons": [
     {

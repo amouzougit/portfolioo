@@ -64,7 +64,18 @@ CV_Kevo_Amouzou_Industriel.pdf  CV lié depuis le site, seul CV diffusé
                                 sous git : ils seraient servis en production
 ```
 
-Chargé par CDN : Phosphor Icons (unpkg), polices Fontshare. Formulaire de contact : Formspree,
+Chargé par CDN : Phosphor Icons (unpkg), polices Fontshare.
+
+**Une requête Fontshare par famille, jamais plusieurs familles dans une même URL.**
+L'API renvoie par moments une réponse tronquée quand plusieurs `f[]` sont demandés ensemble.
+Constaté le 1er septembre 2026 : l'URL à deux familles du site ne renvoyait que Clash Display,
+et General Sans ne se chargeait donc pas depuis la session 002. Le texte tombait sur la police
+système sans que rien ne le signale. Ajouter `&cb=1` à l'URL fautive suffisait à faire
+réapparaître la seconde famille, ce qui pointe un cache CDN. Trois liens séparés, c'est stable,
+vérifié trois fois de suite.
+
+Polices : Cabinet Grotesk 700 et 800 en display, General Sans 400 à 600 en texte,
+JetBrains Mono 500 pour les données, les cotes et les libellés utilitaires. Formulaire de contact : Formspree,
 endpoint `mjknokbg`.
 
 Aucun framework JavaScript. Tailwind CDN, Alpine.js, GSAP et ScrollTrigger ont été retirés en
@@ -200,6 +211,12 @@ Contrôler aussi :
   s'arrête à 03 sur 6 sections annonce une suite qui n'existe pas ;
 - les chiffres en chasse fixe, classe `.num` : ce sont des mesures, pas de la marque.
   `tabular-nums` remplace le calage au `min-width` du sommaire ;
+- que les trois familles Fontshare se chargent réellement, une requête par famille :
+  `document.fonts` doit lister Cabinet Grotesk, General Sans et JetBrains Mono en `loaded` ;
+- la ligne de cote sur ses trois emplacements et **pas un de plus** : la boucle du hero, la
+  timeline du parcours, les schémas de `projets.html`. Posée ailleurs elle redevient l'ornement
+  qu'elle remplace ;
+- les contrastes : audit sur le rendu, pas sur la palette théorique. Zéro échec attendu ;
 - l'absence d'erreur console ;
 - que `/index.html`, `/projets.html` et `/merci.html` se chargent en production **avec le
   service worker actif**, et pas seulement en `curl` : la redirection 308 ne casse que la

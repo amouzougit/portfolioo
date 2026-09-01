@@ -5,6 +5,89 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session 013 · 1er septembre 2026 · Cotation industrielle, changement d'identité
+
+**Objectif**
+
+Mise en oeuvre complète de la direction « cotation industrielle » proposée par Claude Design :
+le vocabulaire du plan de contrôle et de la cote technique, plutôt qu'un des trois looks
+générés par défaut. Palette, polices, rayons, trame de fond, élément signature, mouvement.
+
+**Vérifié avant de construire, pas après**
+
+- Contrastes de la palette recalculés un par un. Quatre couleurs sur cinq passent. **L'ambre
+  écart `#B5651D` tombait à 3,82:1**, sous le seuil de 4,5, alors qu'il est destiné à du petit
+  texte. Assombri en `#9E5819`, 4,79:1, à teinte 28° et saturation 0,72 constantes.
+- La proposition annonçait ~4,7:1 pour l'encre secondaire : elle est à 6,39:1. Prudence, pas erreur.
+- Les trois polices sont bien sur Fontshare. JetBrains Mono y est référencée `jet-brains-mono`,
+  pas `jetbrains-mono`.
+
+**Cinq conflits entre la proposition et le site réel, tranchés**
+
+| Proposition | Décision |
+|---|---|
+| Photo dans le hero | Refusée. Sortie du hero en session 012 après mesure, le `h1` passait sous le pli. Reste dans Parcours |
+| « -85% de ressaisie » | Chiffre inventé. Le chiffre réel, au CV, est 80% |
+| Sélecteur FR EN | Aucune version anglaise n'existe |
+| « PROJET 03 » sur l'accueil | Numérotation retirée en session 011, elle annonçait une séquence qui s'arrêtait à 03 sur 6 |
+| Coins 4-6px | Retenue, appliquée partout sauf sur les vrais cercles : pastilles de timeline, point de disponibilité, cibles d'icônes |
+
+**Fait**
+
+- Palette : fond `#EFF1EF`, encre `#161D1B`, encre secondaire `#4B5A55`, bleu de tracé
+  `#2E4C5C`, vert conforme `#2F6D4F`, ambre écart `#9E5819`. Deux statuts seulement.
+  Les accents bleu, violet et cyan des cartes de compétences sont ramenés au bleu de tracé :
+  trois teintes arbitraires, c'était exactement la décoration que la direction dit d'écarter.
+- Polices : Clash Display sort, Cabinet Grotesk 700 et 800 entre. General Sans reste.
+  JetBrains Mono 500 arrive pour les données, les cotes et les libellés.
+- Échelle : `h1` 64px en 800, corps 17px, libellés utilitaires 12px mono majuscule à 0,04em.
+- Rayons resserrés à 3, 4, 5 et 6px. Les boutons pilule et les pastilles de catégorie
+  perdent leur `rounded-full`.
+- Trame millimétrée sur le fond, deux dégradés à 2,8% en pas de 32px. Les sections `bg-mist`
+  la recouvrent, ce qui alterne page tramée et page nue.
+- **Élément signature, la ligne de cote** : trait peint au centre d'une boîte de 9px, amorce
+  perpendiculaire en bordure extérieure. Deux pseudo-éléments, aucun balisage ajouté.
+  Réservée à trois emplacements, conformément à la relecture de la direction, qui vaut mieux
+  que sa proposition initiale : la boucle du hero, la timeline du parcours, les schémas de
+  `projets.html`. Partout ailleurs, aucun séparateur.
+- Schéma du hero réécrit dans le vocabulaire du plan de contrôle : libellés en mono majuscule,
+  outil annoté au diamètre, trait plutôt que flèche, boîte finale en vert conforme, boucle en
+  ambre. Les traits se tirent au chargement, `stroke-dashoffset`, dans l'ordre de lecture.
+- Deux cotes sur la timeline, `6 mois` et `4 mois`, déduites des dates déjà affichées.
+
+**Le défaut le plus important n'était pas dans la direction**
+
+En vérifiant que les trois polices se chargeaient, `document.fonts` n'en listait qu'une.
+L'API Fontshare renvoie une réponse tronquée quand plusieurs familles sont demandées dans la
+même URL. Testé sur l'URL de production elle-même : elle ne renvoyait que Clash Display.
+**General Sans ne se chargeait pas depuis la session 002**, le texte du site tombait sur la
+police système, et rien ne le signalait puisque le repli est correct.
+
+Ajouter `&cb=1` à l'URL fautive faisait réapparaître la seconde famille : c'est un cache CDN.
+Correction retenue : une requête par famille, syntaxe vérifiée stable sur trois essais
+consécutifs. Les six fontes se chargent désormais, dont General Sans pour la première fois.
+
+**Vérifié**
+
+- Audit de contraste sur le rendu réel, pas sur la palette théorique : 245 éléments testés sur
+  l'accueil, 370 sur la page projets, **zéro échec** aux seuils AA.
+- Schéma du hero 420 x 494, marge minimale de 80px dans les boîtes, aucun débordement,
+  tous les traits atteignent `stroke-dashoffset: 0`.
+- Les six fontes en `loaded`. Les quatre pages servent le fond `#EFF1EF`.
+- Balises équilibrées sur les quatre pages, zéro erreur console, zéro tiret cadratin,
+  zéro emoji, aucun lien interne en `.html`, 5 ancres sur l'accueil et 7 sur projets.
+- `CACHE_VERSION` en `v28`.
+
+**Ouvert**
+
+- `README.md` n'a pas été retouché : il ne mentionne ni Batica ni la nouvelle direction.
+- Les trois points de la session 009 restent ouverts : Batica absent du CV et de LinkedIn,
+  nombre de tests mobiles non affiché.
+- Le portrait est en `.portrait-parcours`, non recadré pour le nouveau format. À revoir si le
+  rendu ne convient pas.
+
+---
+
 ## Session 012 · 1er septembre 2026 · Le schéma de process prend le hero
 
 **Objectif**
