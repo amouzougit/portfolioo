@@ -48,7 +48,7 @@ Site statique, sans build, sans dépendances à installer.
 ```
 index.html                      accueil : HTML et JS inline, 4 cartes projets en apercu,
                                 dont Batica en carte pleine largeur (.project-featured)
-projets.html                    page projets detaillee : 7 projets, une ancre par projet
+projets.html                    page projets detaillee : 8 projets, une ancre par projet
 styles.css                      style unique du site, partage par index.html et projets.html
 sw.js                           service worker (HTML, CV et styles.css en network-first,
                                 autres ressources en stale-while-revalidate)
@@ -224,12 +224,12 @@ grep -c 'href="/[A-Za-z0-9_-]*\.html' index.html projets.html merci.html 404.htm
 Contrôler aussi :
 
 - les 5 ancres `#about`, `#skills`, `#projects`, `#experience`, `#contact` sur `index.html` ;
-- les 7 ancres `#bi-dolibarr`, `#chatbot-rag`, `#pipeline-elt`, `#batica`,
-  `#back-end-metier`, `#digital-twin`, `#supply-chain` sur `projets.html` ;
-- l'affichage des 4 cartes projets sur l'accueil et des 7 projets détaillés sur `projets.html` ;
+- les 8 ancres `#bi-dolibarr`, `#chatbot-rag`, `#pipeline-elt`, `#batica`,
+  `#mersey-gateway`, `#back-end-metier`, `#digital-twin`, `#supply-chain` sur `projets.html` ;
+- l'affichage des 4 cartes projets sur l'accueil et des 8 projets détaillés sur `projets.html` ;
 - que `styles.css` est bien chargé sur les deux pages, aucun bloc `<style>` inline ;
 - la numérotation : **aucune sur l'accueil**, dont les sections ne forment pas une séquence,
-  et `01` à `07` sur `projets.html`, qui est une vraie liste ordonnée. Une numérotation qui
+  et `01` à `08` sur `projets.html`, qui est une vraie liste ordonnée. Une numérotation qui
   s'arrête à 03 sur 6 sections annonce une suite qui n'existe pas ;
 - les chiffres en chasse fixe, classe `.num` : ce sont des mesures, pas de la marque.
   `tabular-nums` remplace le calage au `min-width` du sommaire ;
