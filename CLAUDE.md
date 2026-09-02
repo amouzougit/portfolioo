@@ -124,6 +124,12 @@ Trois pièges, tous rencontrés :
    l'objet qui contient réellement `Td` et `Tj` après décompression.
 2. **Seuls les offsets situés après l'objet modifié se décalent.** L'objet 4 porte le flux mais
    commence avant lui : son propre offset ne bouge pas.
+0. **Extraire le texte suppose de gérer trois encodages.** `(...) Tj` en littéral UTF-16BE,
+   `<hex> Tj`, et surtout `[...] TJ` en tableau. **Tout le bloc COMPETENCES du CV est en
+   `TJ`.** Un extracteur qui l'ignore fait croire que Lean, PDCA, A3, 5S et Power BI sont
+   absents du CV alors qu'ils y sont. Erreur commise le 1er septembre, qui a conduit à retirer
+   Power BI du site à tort.
+
 3. **Les polices sont des sous-ensembles.** Seuls les contours des glyphes réellement
    utilisés sont embarqués. La table `/W` déclare pourtant des largeurs pour bien plus de
    caractères : elle ne prouve **pas** qu'un glyphe est affichable. Ajouter une lettre absente
@@ -143,7 +149,11 @@ Trois pièges, tous rencontrés :
    identifiée, ni `Tz` ni `Tc` ni `Tw` sur la ligne concernée. **Mesurer le rendu, pas le
    modèle** : `qlmanage -t -s 2000 -o dossier fichier.pdf` puis relever l'extension d'encre
    au pixel sur la ligne visée. Le moteur de rendu est le seul juge fiable.
-8. **Placer un texte long sur la ligne italique plutôt que sur la ligne de contact.**
+8. **Le sous-ensemble F1 ne porte que `ABCDEFGHIJLMOPQRSTUV` en capitales.** Ni K, ni N,
+   ni W, X, Y, Z. « Kaizen » y est donc impossible, il sortirait en `□aizen`. Vérifié le
+   2 septembre. Les minuscules `a` à `z` sont toutes présentes.
+
+9. **Placer un texte long sur la ligne italique plutôt que sur la ligne de contact.**
    Celle-ci finit à 473 pt sur 550 disponibles, il n'y tient que 77 pt. La ligne italique
    s'arrête à 332 pt et laisse 217 pt. L'URL du portfolio y a été posée en F1, en romain :
    le sous-ensemble F3 oblique n'a que 38 caractères et ne porte pas `k`, `z` ni `g`.
