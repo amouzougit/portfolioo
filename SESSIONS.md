@@ -75,6 +75,75 @@ devient sans objet. `CLAUDE.md` est complété des pièges 5 à 8.
 
 ---
 
+## Session 019 · 2 septembre 2026 · Mersey Gateway, et Batica entre au CV
+
+**Objectif**
+
+Kevo signale un projet absent partout : l'étude de cas Mersey Gateway, projet fil rouge du
+Master 2 A2I, en équipe de cinq.
+
+**Fait, sur le site**
+
+- Huitième projet détaillé, ancre `#mersey-gateway`, placé en **05**, premier des académiques
+  puisque c'est le fil rouge. Les trois autres projets UTBM décalent en 06, 07, 08.
+- Nom corrigé : le pont s'appelle **Mersey** Gateway, pas Mercey.
+- Chiffres du contexte vérifiés par recherche, pas de mémoire : ouverture octobre 2017,
+  600 M£ de construction, 1,86 Md£ sur la durée de vie jusqu'en 2044. Faits publics sur
+  l'ouvrage, ils donnent l'échelle sans rien affirmer sur le travail de Kevo.
+- Aucun outil revendiqué, faute de confirmation. Les tags sont des méthodes uniquement.
+
+**Pourquoi ça comptait**
+
+C'était le seul élément du dossier montrant l'analyse d'un cahier des charges, une estimation
+de coûts multi-scénarios et une recommandation soutenue devant un jury. Les sept autres projets
+sont data, simulation ou développement : **aucun ne parlait de chiffrage**. Il crée aussi un fil
+narratif absent : Mersey Gateway, BH2M, Batica, trois pièces du même métier.
+
+**Fait, sur le CV**
+
+Le CV listait **deux fois le même projet** : « Data Pipeline Industriel » et « Urban Mobility
+Analytics », même stack, même description, une seule entrée sur le site. Le doublon est
+remplacé par Batica, absent du CV jusque-là.
+
+**L'arbitrage, tranché par la mesure**
+
+Deux candidats pour une place. Vérifié avant de choisir : la dernière ligne des réalisations
+est à y=163,13, FORMATION à y=135,90, soit 27,23 pt d'écart pour un espacement d'entrée de
+24,95 pt, et la dernière ligne de la page est à y=7,22. **Une quatrième entrée toucherait
+FORMATION, et tout décaler ferait sortir la page.** Le CV est plein.
+
+Batica l'emporte : c'est le seul élément récent, autonome et livré, et le seul endroit où le CV
+montrerait du développement applicatif, sa ligne Data & Infrastructure s'arrêtant à Airflow,
+dbt, PostgreSQL et Docker. Mersey Gateway reste sur le site, où il a la place de raconter le
+jury, les scénarios et l'équipe.
+
+Effet de bord utile : « 29 tables, 108 policies RLS » passent du site au CV, ce qui ferme
+l'écart de chiffres sur Batica.
+
+**Piège d'encodage, troisième variante**
+
+Les deux lignes remplacées n'avaient pas le même encodage : la première en tableau `TJ`
+justifié, la seconde en littéral `(...) Tj`. Un remplacement qui ne gère qu'une forme échoue
+silencieusement sur l'autre. La ligne `TJ` a été remplacée en bloc par un `Tj` simple, ce qui
+perd la justification mais rend le texte correctement.
+
+**Vérifié**
+
+- Largeur mesurée au rendu : L1 484,98 pt, L2 428,99 pt, marge droite 549,92.
+- 27/27 entrées xref, `startxref` sur `xref`, même profil de flux, 80 lignes avant et après.
+- Deux lignes ajoutées, deux retirées, aucune autre touchée.
+- Rendu contrôlé au zoom 4x : aucun carré vide.
+- Site : 7 SVG valides, ids uniques, sommaire 01 à 08, zéro erreur console.
+
+**Ouvert**
+
+- Kaizen reste sur le site sans être au CV : le sous-ensemble F1 n'a pas de K majuscule.
+- Mersey Gateway reste sur le site sans être au CV, faute de place. Assumé.
+- Le CV est plein. Toute addition future suppose un retrait, ou une régénération depuis
+  la source mPDF.
+
+---
+
 ## Session 018 · 1er septembre 2026 · Le site montre enfin quelque chose
 
 **Objectif**
