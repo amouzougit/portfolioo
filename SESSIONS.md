@@ -75,6 +75,32 @@ devient sans objet. `CLAUDE.md` est complété des pièges 5 à 8.
 
 ---
 
+## Session 021 · 3 septembre 2026 · Colonnes du hero alignées en haut
+
+**Constat mesuré sur la production, à 1417 px**
+
+| Colonne | Haut | Bas | Hauteur |
+|---|---|---|---|
+| Gauche, texte | 160 | 1228 | 1068 |
+| Droite, schéma | 405 | 983 | 578 |
+
+La grille était en `align-items: center` : la colonne courte se centrait et laissait **245 px de
+vide au-dessus du schéma**. Le `h1`, élément le plus imposant de la page, n'avait rien à côté
+de lui.
+
+**Fait**
+
+- Utilitaire `.lg\:items-start` ajouté, appliqué au-delà de 1024 px. Le schéma remonte à 160 px,
+  aligné avec le haut du titre. Écart mesuré après : **0 px**. Le vide se déplace en bas, à
+  côté des cotes et des liens, où il gêne moins.
+- Le caractère `⌀` des cinq annotations du schéma se rendait en `ø`, une lettre danoise, pas un
+  symbole de diamètre. Et un diamètre devant une étape de process est forcé. Remplacé par un
+  point médian.
+
+`CACHE_VERSION` en `v41`. Zéro erreur console.
+
+---
+
 ## Session 020 · 3 septembre 2026 · Le menu mobile ne se fermait pas
 
 **Objectif**
