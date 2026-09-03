@@ -75,6 +75,61 @@ devient sans objet. `CLAUDE.md` est complété des pièges 5 à 8.
 
 ---
 
+## Session 022 · 3 septembre 2026 · Deux niveaux de compétences
+
+**Origine**
+
+Deux IA ont relu le site en ligne. Elles convergent sur **la même unique priorité** : la
+section Compétences reste un mur de tags, et il faut la hiérarchiser sans rien supprimer.
+Elles convergent aussi sur ce qu'il ne faut pas toucher : la cote sur trois emplacements,
+le hero, les schémas SVG. Et sur un principe : ne plus ajouter de décoration.
+
+**Le problème, formulé par la revue**
+
+66 tags au même poids visuel disent « il sait beaucoup de choses ». Ils ne répondent pas à la
+seule question du recruteur : **qu'est-ce que je peux lui confier demain**.
+
+**Fait**
+
+Deux niveaux dans chaque carte, séparés par un filet, sans intertitre supplémentaire :
+
+| Carte | Piliers | Environnement |
+|---|---|---|
+| Digitalisation & SI industriels | 5 | 7 |
+| Données & pilotage | 5 | 8 |
+| Développement & IA | 7 | 11 |
+| Méthodes & conduite de projet | 6 | 17 |
+| **Total** | **23** | **43** |
+
+**Aucun tag supprimé**, les 66 sont conservés : ils servent la recherche par mot-clé autant que
+la lecture humaine.
+
+**Le critère du tri, énoncé pour être contestable**
+
+Est pilier ce qui a été **pratiqué en contexte professionnel**, chez BH2M ou sur la mission
+R&D IA. Formation et projets personnels vont à l'environnement. Ce n'est pas une affaire de
+goût : Kevo peut contester une ligne précise et elle se déplace.
+
+**Traitement visuel**
+
+Le premier niveau garde le cadre et l'encre principale. Le second passe en encre secondaire
+sans bordure. Pas d'intertitres : quatre titres de plus dans une section déjà dense la
+chargeraient, ce que la revue reprochait justement.
+
+**Vérifié**
+
+- Contraste : 263 éléments testés, **zéro échec**. Pilier à 13,01:1, environnement à 7,26:1.
+  Le second niveau est atténué, pas illisible.
+- 23 + 43 = 66 tags, 4 séparateurs, balises équilibrées, zéro erreur console.
+- `CACHE_VERSION` en `v42`.
+
+**Écarté, sur recommandation des deux revues**
+
+Ne plus rien ajouter comme décoration. Le site a son langage. Le gain restant est dans la
+hiérarchie de l'information, pas dans un composant de plus.
+
+---
+
 ## Session 021 · 3 septembre 2026 · Colonnes du hero alignées en haut
 
 **Constat mesuré sur la production, à 1417 px**

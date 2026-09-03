@@ -400,6 +400,36 @@ body {
     transform: translateY(-1px);
 }
 
+/* ── DEUX NIVEAUX DE COMPETENCE ──
+   66 tags au meme poids visuel disent "il sait beaucoup de choses". Ils ne
+   repondent pas a la seule question du recruteur : qu'est-ce que je peux lui
+   confier demain. Le premier niveau garde le cadre, le second passe en encre
+   secondaire sans bordure et se lit comme un fond de decor.
+
+   Critere du tri, verifiable et non affaire de gout : est pilier ce qui a ete
+   pratique en contexte professionnel, chez BH2M ou sur la mission R&D IA.
+   Formation et projets personnels vont a l'environnement. Aucun tag n'est
+   supprime : ils servent la recherche par mot-cle autant que la lecture. */
+.skill-tag-2 {
+    font-size: 11px; padding: 4px 9px; border-radius: 4px;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--secondary);
+    display: inline-block; margin: 3px;
+    transition: all 0.2s ease;
+}
+.skill-tag-2:hover {
+    background: rgba(46,76,92,0.06);
+    border-color: rgba(46,76,92,0.16);
+    color: #2A3330;
+}
+/* Le filet marque la bascule d'un niveau a l'autre, sans ajouter de titre :
+   quatre intertitres de plus dans une section deja dense la chargeraient. */
+.skill-sep {
+    border: 0; border-top: 1px solid var(--line);
+    margin: 12px 3px 10px; width: 100%;
+}
+
 /* ── HERO OVERLAY ── */
 .hero-overlay {
     position: absolute;
