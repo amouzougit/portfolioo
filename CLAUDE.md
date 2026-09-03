@@ -29,8 +29,14 @@ Ne pas confondre deux choses :
   et SI », qui est l'intitulé exact du CV et ne doit apparaître que sur la ligne BH2M.
 
 Cibles de postes : ingénieur digitalisation industrielle, ingénieur méthodes et amélioration
-continue, data et pilotage industriel. Ces trois intitulés sont affichés à l'identique dans le
-hero et dans la section Postes recherchés, ils doivent le rester.
+continue, data et pilotage industriel, développeur d'application. Ces **quatre** intitulés sont
+affichés à l'identique dans le hero et dans la section Postes recherchés, ils doivent le rester.
+
+« Développeur d'application » a été ajouté le 3 septembre 2026, à la demande de Kevo et contre
+mon avis, que je consigne pour qu'il reste contestable : la capacité à développer est ce qui le
+distingue d'un ingénieur méthodes classique, et l'afficher comme cible peut faire douter de ce
+qu'il cherche. Elle est adossée à du réel, refonte Angular et Spring Boot en mission R&D,
+chatbot Flask, microservice Java, Batica en React et Expo. À réévaluer selon les retours.
 
 Ne pas afficher « Chef de projet » comme objectif : en France ce titre suppose 3 à 5 ans
 d'expérience, et le hero annonce « Ingénieur ». Le titre réellement occupé chez BH2M,
