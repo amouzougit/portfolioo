@@ -36,6 +36,16 @@
 .-left-\[43px\] { left: -43px; }
 .z-10 { z-index: 10; }
 .z-50 { z-index: 50; }
+/* L'attribut hidden n'est porte que par la feuille du navigateur, et les
+   styles de la page l'emportent toujours sur elle : des qu'une classe pose un
+   display, comme .flex ci-dessous, l'attribut ne fait plus rien. Le menu
+   mobile restait donc ouvert en permanence et le JS qui bascule menu.hidden
+   n'avait aucun effet visible. Signale par un lecteur du portfolio le
+   3 septembre 2026, sur les deux pages.
+   !important plutot qu'un simple ordre de declaration : sans lui, n'importe
+   quelle classe utilitaire ajoutee plus bas recasserait le menu. */
+[hidden] { display: none !important; }
+
 .hidden { display: none; }
 .flex { display: flex; }
 .inline-flex { display: inline-flex; }

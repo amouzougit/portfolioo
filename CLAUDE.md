@@ -243,6 +243,10 @@ Contrôler aussi :
   encore l'ancien HTML quelques instants après un déploiement, alors que `sw.js` est déjà à
   jour : un contrôle en `curl` nu donne des compteurs faux et fait croire à une régression.
   Utiliser `curl -H 'Cache-Control: no-cache' "https://kevo-amouzou.pages.dev/?cb=$RANDOM"` ;
+- **le menu mobile s'ouvre ET se ferme**, sous 768 px. L'attribut `hidden` seul ne suffit
+  pas : il n'est porté que par la feuille du navigateur, et toute classe qui pose un `display`
+  l'emporte sur elle. `[hidden] { display: none !important; }` est en tête de `styles.css`
+  pour ça, ne pas le retirer. Bug vécu, signalé par un lecteur le 3 septembre 2026 ;
 - l'absence d'erreur console ;
 - que `/index.html`, `/projets.html` et `/merci.html` se chargent en production **avec le
   service worker actif**, et pas seulement en `curl` : la redirection 308 ne casse que la

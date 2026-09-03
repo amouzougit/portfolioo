@@ -75,6 +75,55 @@ devient sans objet. `CLAUDE.md` est complété des pièges 5 à 8.
 
 ---
 
+## Session 020 · 3 septembre 2026 · Le menu mobile ne se fermait pas
+
+**Objectif**
+
+Un lecteur à qui Kevo a envoyé le portfolio signale : « je n'arrive pas à fermer le menu. Il
+est ouvert d'emblée et je ne peux pas le fermer. »
+
+**Cause**
+
+```html
+<div id="mobile-menu" hidden class="mobile-menu md:hidden ... flex flex-col gap-5">
+```
+
+L'attribut `hidden` n'est porté que par la feuille de style du navigateur,
+`[hidden] { display: none }`. **Les styles de la page l'emportent toujours sur celle du
+navigateur.** La classe `.flex { display: flex }` gagnait donc, l'élément restait affiché, et
+le JS qui bascule `menu.hidden` n'avait aucun effet visible : ni à l'ouverture, ni à la
+fermeture, ni sur Échap.
+
+Défaut présent depuis l'écriture du menu, sur les deux pages, et invisible depuis un poste de
+bureau puisque `md:hidden` masque le bloc au-dessus de 768 px. Seul un visiteur mobile le
+rencontrait. C'est le premier bug remonté par un vrai lecteur.
+
+**Correctif**
+
+`[hidden] { display: none !important; }` en tête de `styles.css`. Le `!important` plutôt qu'un
+simple ordre de déclaration : sans lui, n'importe quelle classe utilitaire ajoutée plus bas
+recasserait le menu.
+
+**Vérifié, avant et après**
+
+| État | `hidden` | `display` |
+|---|---|---|
+| Avant correctif, règle `[hidden]` neutralisée | `true` | **visible** |
+| Après, fermé | `true` | `none` |
+| Après, ouvert | `false` | `flex`, `aria-expanded=true`, icône croix |
+| Après, refermé | `true` | `none`, `aria-expanded=false`, icône menu |
+
+Séquence identique vérifiée sur `projets.html`. Zéro erreur console.
+`CACHE_VERSION` passé à `v40`. Le contrôle est ajouté à `CLAUDE.md`.
+
+**Leçon**
+
+Toute la vérification de cette série s'est faite au-dessus de 768 px. Le mobile n'a jamais été
+testé, et c'est là qu'était le seul bug bloquant du site. Un lecteur l'a trouvé en trente
+secondes.
+
+---
+
 ## Session 019 · 2 septembre 2026 · Mersey Gateway, et Batica entre au CV
 
 **Objectif**
