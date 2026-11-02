@@ -5,6 +5,20 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session · 2 novembre 2026 · Refonte validée du portfolio
+
+**Objectif :** rendre visibles les missions, compétences et outils de Kevo, avec un design personnel et sobre.
+
+**Fait :** page unique ivoire/encre/bleu ; portrait et nom mis en avant ; trois missions BH2M ; compétences/outils ; certifications et langues ; parcours ; liens LinkedIn/GitHub/e-mail et copie d’adresse. Ancienne page projets remplacée par une redirection. Build, cache, métadonnées et manifeste adaptés. Page 404 actualisée.
+
+**Décisions :** projets oubliés retirés ; projet personnel confidentiel absent du site. CV historique non publié car il cite ce projet ; original conservé. Aucun push ni déploiement dans cette session.
+
+**Vérifications :** aperçu validé par l’utilisateur ; interactions et largeurs mobile/tablette vérifiées ; contrastes principaux >= 4,5:1 ; contrôle des ancres et des ressources. Build et vérification du paquet avant commit.
+
+**Ouvert :** mettre à jour le CV avant de réintroduire un téléchargement public.
+
+---
+
 ## Session 017 · 1er septembre 2026 · L'URL du portfolio ajoutée au CV
 
 **Objectif**

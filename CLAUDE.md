@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## État validé le 2 novembre 2026 (prioritaire sur les détails historiques ci-dessous)
+
+Le portfolio est désormais une page unique : missions BH2M, compétences/outils, parcours et contact. Direction validée : ivoire #f4f1e9, encre #20241f, bleu #2045c7, typographie système. Ancres : #accueil, #realisations, #competences, #parcours, #contact. `script.js` gère la copie e-mail et le service worker. `projets.html` redirige vers /#realisations ; les anciens projets ne sont plus présentés. Le CV historique est conservé mais exclu du build car il cite un projet confidentiel. Ne pas le republier avant mise à jour. Les règles historiques sur huit projets, quatre cartes, les polices Fontshare et les quatre cibles de postes sont remplacées par cette version validée. Les règles de véracité, confidentialité et cohérence restent applicables. Aucun déploiement autorisé par le seul commit local.
+
 Contexte projet pour tout agent (Claude Code, Kimi, autre) travaillant sur ce dépôt.
 Lire ce fichier avant toute modification.
 

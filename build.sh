@@ -12,8 +12,8 @@ rm -rf dist
 mkdir -p dist
 # _redirects n'est pas copie : sa syntaxe "301!" est propre a Netlify et Cloudflare
 # la rejette. Les fichiers qu'il protegeait ne sont de toute facon pas publies ici.
-cp index.html projets.html merci.html 404.html styles.css sw.js manifest.json \
-   robots.txt sitemap.xml CV_Kevo_Amouzou_Industriel.pdf dist/
+cp index.html projets.html merci.html 404.html styles.css script.js sw.js manifest.json \
+   robots.txt sitemap.xml dist/
 cp -r images dist/images
 echo "dist prepare :"
 ls dist

@@ -16,7 +16,7 @@
  * Incrementer CACHE_VERSION apres toute modification d'un fichier de PRECACHE.
  */
 
-const CACHE_VERSION = 'v44';
+const CACHE_VERSION = 'v45';
 const CACHE_NAME = `kevo-portfolio-${CACHE_VERSION}`;
 
 const PRECACHE = [
@@ -25,13 +25,13 @@ const PRECACHE = [
     '/projets',
     '/styles.css',
     '/images/kevo.jpeg',
-    '/CV_Kevo_Amouzou_Industriel.pdf'
+    '/script.js'
 ];
 
 // Ressources dont une version perimee n'est pas acceptable.
 // styles.css est ici volontairement : depuis la session 007 il porte tout le style du
 // site. Une version perimee servie a cote d'un HTML frais afficherait une page nue.
-const ALWAYS_FRESH = ['/CV_Kevo_Amouzou_Industriel.pdf', '/styles.css'];
+const ALWAYS_FRESH = ['/styles.css', '/script.js'];
 
 // Installation : precache tolerant, un fichier manquant ne doit pas faire echouer
 // l'installation et laisser l'ancien worker en place.

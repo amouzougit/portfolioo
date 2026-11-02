@@ -4,8 +4,8 @@
   "description": "Portfolio professionnel. Digitalisation des opérations industrielles, ERP, données de pilotage, ISO 9001. Double Master UTBM, 3x Oracle Certified.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#EFF1EF",
-  "theme_color": "#2E4C5C",
+  "background_color": "#f4f1e9",
+  "theme_color": "#2045c7",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -33,10 +33,10 @@
   ],
   "shortcuts": [
     {
-      "name": "Voir mes projets",
-      "short_name": "Projets",
-      "description": "Découvrez mes derniers projets et réalisations",
-      "url": "/?section=projects",
+      "name": "Voir mes missions",
+      "short_name": "Missions",
+      "description": "Découvrir mes missions chez BH2M",
+      "url": "/#realisations",
       "icons": [
         {
           "src": "./images/icon-192.png",
@@ -48,7 +48,7 @@
       "name": "Me contacter",
       "short_name": "Contact",
       "description": "Envoyez-moi un message",
-      "url": "/?section=contact",
+      "url": "/#contact",
       "icons": [
         {
           "src": "./images/icon-192.png",
