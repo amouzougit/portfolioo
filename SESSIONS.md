@@ -5,6 +5,18 @@ Format : objectif, fait, décisions, ouvert.
 
 ---
 
+## Session · 2 novembre 2026 · Lisibilité des missions BH2M
+
+**Objectif :** resserrer les espacements, rendre les outils plus lisibles et montrer la contribution et les livrables sans clic.
+
+**Fait :** en-tête de section réorganisé, colonne latérale réduite, outils agrandis, contribution et résultat visibles pour chaque mission. Seul le contexte détaillé de la mission BI reste repliable. Aucun nouveau chiffre ni résultat extrapolé. Cache v46.
+
+**Vérifications :** build, ressources, ancres et rendu ordinateur/mobile avant commit et publication.
+
+**Suite :** examiner le profil LinkedIn après cette amélioration.
+
+---
+
 ## Session · 2 novembre 2026 · Refonte validée du portfolio
 
 **Objectif :** rendre visibles les missions, compétences et outils de Kevo, avec un design personnel et sobre.
